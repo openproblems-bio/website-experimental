@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>OpenProblems - Spatial Decomposition</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script type="ojs-define">
+{"contents":[{"name":"method_info_t","value":{"task_id":["spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition"],"method_id":["cell2location_amortised_detection_alpha_20","cell2location_detection_alpha_20","cell2location_detection_alpha_200","cell2location_detection_alpha_20_nb","destvi","nmf","nmfreg","nnls_scipy","random_proportions","rctd","seuratv3","stereoscope","tangram","true_proportions"],"method_name":["Cell2location, amortised (detection_alpha=20, reference hard-coded)","Cell2location (detection_alpha=20, reference hard-coded)","Cell2location (detection_alpha=200, reference hard-coded)","Cell2location (detection_alpha=20, reference NB without batch info)","DestVI","Non-Negative Matrix Factorization (NMF)","NMF-reg","Non-Negative Least Squares","Random Proportions","RCTD","SeuratV3","Stereoscope","Tangram","True Proportions"],"paper_name":["Cell2location maps fine-grained cell types in spatial transcriptomics","Cell2location maps fine-grained cell types in spatial transcriptomics","Cell2location maps fine-grained cell types in spatial transcriptomics","Cell2location maps fine-grained cell types in spatial transcriptomics","DestVI identifies continuums of cell types in spatial transcriptomics data","Fast local algorithms for large scale nonnegative matrix and tensor factorizations","Slide-seq: A scalable technology for measuring genome-wide expression at high spatial resolution","Solving Least Squares Problems","Random Proportions (baseline)","Robust decomposition of cell type mixtures in spatial transcriptomics","Comprehensive Integration of Single-Cell Data","Single-cell and spatial transcriptomics enables probabilistic inference of cell type topography","Deep learning and alignment of spatially resolved single-cell transcriptomes with Tangram","True Proportions (baseline)"],"paper_url":["https://doi.org/10.1038/s41587-021-01139-4","https://doi.org/10.1038/s41587-021-01139-4","https://doi.org/10.1038/s41587-021-01139-4","https://doi.org/10.1038/s41587-021-01139-4","https://doi.org/10.1038/s41587-022-01272-8","https://doi.org/10.1587/transfun.E92.A.708","https://doi.org/10.1126/science.aaw1219","https://doi.org/10.1137/1.9781611971217","https://openproblems.bio","https://doi.org/10.1038/s41587-021-00830-w","https://doi.org/10.1016/j.cell.2019.05.031","https://doi.org/10.1038/s41587-022-01272-8","https://doi.org/10.1038/s41592-021-01264-7","https://openproblems.bio"],"paper_year":[2022,2022,2022,2022,2022,2009,2019,1987,2022,2020,2019,2020,2021,2022],"code_url":["https://github.com/BayraktarLab/cell2location","https://github.com/BayraktarLab/cell2location","https://github.com/BayraktarLab/cell2location","https://github.com/BayraktarLab/cell2location","https://github.com/YosefLab/scvi-tools","https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html","https://github.com/tudaga/NMFreg_tutorial","https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.nnls.html","https://github.com/openproblems-bio/openproblems","https://github.com/dmcable/spacexr","https://satijalab.org/seurat/archive/v3.2/spatial_vignette.html","https://github.com/scverse/scvi-tools","https://github.com/broadinstitute/Tangram","https://github.com/openproblems-bio/openproblems"],"image":["openproblems-python-extras","openproblems-python-extras","openproblems-python-extras","openproblems-python-extras","openproblems-python-extras","openproblems","openproblems","openproblems","openproblems","openproblems-r-extras","openproblems-r-extras","openproblems-python-extras","openproblems-python-extras","openproblems"],"is_baseline":[false,false,false,false,false,false,false,false,true,false,false,false,false,true]}},{"name":"metric_info_t","value":{"task_id":["spatial_decomposition"],"metric_id":["r2"],"metric_name":["r2"],"maximize":[true],"image":["openproblems"]}},{"name":"dataset_info_t","value":{"task_id":["spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition"],"dataset_id":["destvi","pancreas_alpha_0_5","pancreas_alpha_1","pancreas_alpha_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_5"],"dataset_name":["DestVI","Pancreas (alpha=0.5)","Pancreas (alpha=1)","Pancreas (alpha=5)","Tabula muris senis (alpha=0.5)","Tabula muris senis (alpha=1)","Tabula muris senis (alpha=5)"],"image":["openproblems-python-extras","openproblems","openproblems","openproblems","openproblems","openproblems","openproblems"],"data_url":["https://github.com/romain-lopez/DestVI-reproducibility/blob/master/simulations/make_dataset.py","https://ndownloader.figshare.com/files/36086813","https://ndownloader.figshare.com/files/36086813","https://ndownloader.figshare.com/files/36086813","https://tabula-muris-senis.ds.czbiohub.org/","https://tabula-muris-senis.ds.czbiohub.org/","https://tabula-muris-senis.ds.czbiohub.org/"],"data_reference":["https://doi.org/10.1038/s41587-022-01272-8","https://doi.org/10.1038/s41592-021-01336-8","https://doi.org/10.1038/s41592-021-01336-8","https://doi.org/10.1038/s41592-021-01336-8","https://doi.org/10.1038/s41586-020-2496-1","https://doi.org/10.1038/s41586-020-2496-1","https://doi.org/10.1038/s41586-020-2496-1"],"dataset_summary":["scRNA-seq is generated based on learn NB parameters from the destVI manuscripts leveraging sparsePCA. Number of cells and cell types present in each spatial spot is computed via combination of kernel-based parametrization of a categorical distribution and the NB model.","Human pancreas cells aggregated from single-cell (Dirichlet alpha=0.5)","Human pancreas cells aggregated from single-cell (Dirichlet alpha=1)","Human pancreas cells aggregated from single-cell (Dirichlet alpha=5)","Mouse lung cells aggregated from single-cell (Dirichlet alpha=0.5)","Mouse lung cells aggregated from single-cell (Dirichlet alpha=1)","Mouse lung cells aggregated from single-cell (Dirichlet alpha=5)"]}},{"name":"results_t","value":{"task_id":["spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition"],"method_id":["true_proportions","random_proportions","nnls_scipy","nmf","nmfreg","seuratv3","tangram","rctd","destvi","stereoscope","cell2location_detection_alpha_20","cell2location_detection_alpha_20_nb","cell2location_detection_alpha_200","cell2location_amortised_detection_alpha_20","nmfreg","nmf","nnls_scipy","random_proportions","rctd","tangram","true_proportions","seuratv3","stereoscope","destvi","cell2location_detection_alpha_200","cell2location_detection_alpha_20_nb","cell2location_detection_alpha_20","cell2location_amortised_detection_alpha_20","nmf","nmfreg","random_proportions","nnls_scipy","tangram","true_proportions","seuratv3","rctd","destvi","stereoscope","cell2location_detection_alpha_200","cell2location_amortised_detection_alpha_20","cell2location_detection_alpha_20","cell2location_detection_alpha_20_nb","nmfreg","nnls_scipy","tangram","true_proportions","random_proportions","rctd","nmf","seuratv3","stereoscope","destvi","cell2location_detection_alpha_20_nb","cell2location_detection_alpha_20","cell2location_detection_alpha_200","cell2location_amortised_detection_alpha_20","nmf","random_proportions","nnls_scipy","tangram","nmfreg","seuratv3","true_proportions","rctd","stereoscope","destvi","cell2location_detection_alpha_200","cell2location_detection_alpha_20","cell2location_detection_alpha_20_nb","cell2location_amortised_detection_alpha_20","true_proportions","nnls_scipy","random_proportions","nmf","tangram","nmfreg","rctd","seuratv3","stereoscope","destvi","cell2location_detection_alpha_20","cell2location_detection_alpha_200","cell2location_amortised_detection_alpha_20","cell2location_detection_alpha_20_nb","nmf","random_proportions","nnls_scipy","tangram","nmfreg","true_proportions","rctd","seuratv3","stereoscope","destvi","cell2location_detection_alpha_20","cell2location_detection_alpha_200","cell2location_detection_alpha_20_nb","cell2location_amortised_detection_alpha_20"],"dataset_id":["destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","destvi","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_0_5","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_1","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","pancreas_alpha_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5","tabula_muris_senis_alpha_5"],"r2":[1,-0.1584,0.4086,0.207,0.3006,-3.1443,-1.2553,0.7,-0.21,0.2288,0.8822,0.8812,0.8822,0.886,0.0283,0.5776,0.815,-0.6795,0.7708,-1.0904,1,-1.2278,0.1528,-0.3697,0.8899,0.8704,0.8892,0.8824,-0.4153,0.109,-0.7518,0.673,-1.0872,1,-1.6198,0.7093,-0.4373,0.1612,0.8279,0.8419,0.826,0.8332,-0.3474,0.2521,-1.9251,1,-1.4934,0.3662,-0.7557,-2.8461,0.1775,-0.4868,0.6785,0.6807,0.674,0.6476,-0.0899,-1.6978,0.1302,-2.2699,-1.3992,-1.2386,1,0.3482,0.0063,-0.4817,0.5213,0.5284,0.4901,0.495,1,-0.089,-1.342,-0.4439,-1.7752,-2.7265,0.2637,-1.9458,0.0097,-0.6865,0.44,0.4326,0.3799,0.3984,-0.6359,-2.1264,-0.5019,-2.6414,-2.9195,1,-0.0366,-2.2002,0.0119,-0.4963,0.2275,0.2243,0.177,0.1188],"scaled_r2":[1,0,0.4895,0.3154,0.3962,-2.5776,-0.947,0.741,-0.0446,0.3343,0.8983,0.8975,0.8983,0.9015,0.4215,0.7485,0.8898,0,0.8635,-0.2446,1,-0.3265,0.4956,0.1845,0.9344,0.9228,0.934,0.93,0.1921,0.4914,0,0.8134,-0.1915,1,-0.4955,0.8341,0.1796,0.5212,0.9018,0.9097,0.9007,0.9048,0.4596,0.7,-0.1732,1,0,0.7458,0.2959,-0.5425,0.6701,0.4037,0.871,0.8719,0.8692,0.8586,0.596,0,0.6776,-0.212,0.1107,0.1702,1,0.7584,0.6317,0.4508,0.8226,0.8252,0.811,0.8128,1,0.535,0,0.3835,-0.1849,-0.5911,0.6856,-0.2578,0.5771,0.2799,0.7609,0.7577,0.7352,0.7431,0.4767,0,0.5196,-0.1647,-0.2537,1,0.6685,-0.0236,0.6839,0.5214,0.7529,0.7519,0.7368,0.7182],"submit":["2022-11-23 18:18:13","2022-11-23 18:18:12","2022-11-23 18:18:12","2022-11-23 18:18:12","2022-11-23 18:18:12","2022-11-23 18:18:13","2022-11-23 18:18:13","2022-11-23 18:18:12","2022-11-23 18:51:33","2022-11-23 19:23:12","2022-11-23 18:51:33","2022-11-23 19:22:12","2022-11-23 18:51:33","2022-11-24 00:25:42","2022-11-23 17:42:03","2022-11-23 17:42:13","2022-11-23 17:42:52","2022-11-23 17:42:52","2022-11-23 17:42:52","2022-11-23 17:42:53","2022-11-23 17:43:03","2022-11-23 17:43:02","2022-11-23 17:43:03","2022-11-23 17:42:03","2022-11-23 18:14:02","2022-11-23 18:14:12","2022-11-23 18:13:22","2022-11-23 18:12:13","2022-11-23 17:42:13","2022-11-23 17:42:03","2022-11-23 17:42:52","2022-11-23 17:42:53","2022-11-23 17:42:53","2022-11-23 17:43:03","2022-11-23 17:43:02","2022-11-23 17:42:52","2022-11-23 17:42:03","2022-11-23 17:43:03","2022-11-23 18:14:02","2022-11-23 18:12:13","2022-11-23 18:12:43","2022-11-23 18:13:32","2022-11-23 17:43:02","2022-11-23 17:43:02","2022-11-23 17:43:02","2022-11-23 17:43:03","2022-11-23 17:43:02","2022-11-23 17:43:02","2022-11-23 17:43:02","2022-11-23 17:43:03","2022-11-23 17:43:03","2022-11-23 17:43:02","2022-11-23 18:15:43","2022-11-23 18:15:42","2022-11-23 18:15:43","2022-11-23 18:15:42","2022-11-23 17:42:13","2022-11-23 17:42:52","2022-11-23 17:42:53","2022-11-23 17:42:53","2022-11-23 17:42:13","2022-11-23 17:43:02","2022-11-23 17:43:03","2022-11-23 17:42:52","2022-11-23 17:43:03","2022-11-23 18:13:32","2022-11-23 18:13:42","2022-11-23 18:13:33","2022-11-23 18:14:44","2022-11-23 18:13:32","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 17:43:13","2022-11-23 18:19:44","2022-11-23 18:19:42","2022-11-23 18:19:42","2022-11-23 18:18:22","2022-11-23 18:19:44","2022-11-23 17:45:33","2022-11-23 17:45:33","2022-11-23 17:45:33","2022-11-23 17:45:33","2022-11-23 17:45:32","2022-11-23 17:45:33","2022-11-23 17:45:33","2022-11-23 17:45:33","2022-11-23 18:25:32","2022-11-23 18:22:42","2022-11-23 18:22:13","2022-11-23 18:23:12","2022-11-23 18:23:42","2022-11-23 18:43:33"],"duration":[212,242,242,260,401,789,1540,3819,4029,2380,13639,15930,18588,12480,89,119,120,139,240,239,280,339,559,879,4850,5050,7259,11369,119,169,119,160,169,269,319,349,939,879,4809,5959,7599,8650,210,209,219,299,329,329,369,379,539,1170,3889,4179,4359,6540,109,119,129,199,248,430,439,469,1339,3339,3889,5189,6648,10689,319,339,349,379,380,569,589,889,1529,2728,3910,4139,6980,10248,489,490,490,499,559,559,720,849,800,3480,4229,4740,8280,13189],"realtime":[8.6,17.8,19,45.8,183,577,1342,1591,1825,1754,6092,6875,7709,12344,33.9,32.4,8.3,17,123,93,18,132,330,847,4425,4711,3104,7052,39.2,94,7.1,9.3,28,6.9,122,189,857,646,4387,5572,3314,4418,40.1,8.9,27,35.9,127,131,163,144,238,1003,3531,3896,3975,6255,24.4,7.3,11,53.5,160,230,173,318,1114,2964,3441,4809,6263,10258,10.3,24.7,31.7,27.5,60,221,275,369,1219,2615,3740,4024,6787,6439,23.1,15,24.9,34.6,121,30.5,283,346,782,3456,4187,4710,4742,8405],"cpu_pct":[106.7,64.8,65.5,887.1,982.2,120.8,746.7,100.7,1573.7,1649.2,1220.9,1214.8,1279.6,2109.8,2248.2,67.2,118.8,53.9,98.7,145.1,51.4,172,1286.5,1545.3,985.8,885,909,1207.5,606.8,935,113.1,94.1,828.2,111.8,170.7,76,1249.1,1085.7,973.1,1173.6,985.9,1015.2,1709.9,97.6,815.4,25,7.4,98.2,93.5,171.3,1348.4,1372.2,961.4,905.9,937.7,1186.7,1332.4,107.1,109.6,940.4,1376.5,156.2,6.1,87,1276.1,1488.1,895.6,914.6,943.1,1163.2,96.9,49.9,34.6,507.8,901.9,559.1,94.6,115.4,1242,1518.5,939.6,821.3,1038.6,920.3,213.4,63.2,43.3,905.5,1896.7,36.4,100.3,127,1480.4,1404.2,990.6,838.2,974.5,1150.1],"peak_rss_mb":[652.1,1126.4,477.8,1331.2,2355.2,216268.8,3276.8,4096,2252.8,1536,3174.4,3993.6,3174.4,41267.2,1536,662.4,642.4,425.9,2457.6,1024,239.6,30208,1331.2,1638.4,1536,3379.2,1433.6,13414.4,662,1536,240.9,662.3,1024,472.1,78540.8,2457.6,1740.8,1331.2,1740.8,12697.6,1433.6,3379.2,1433.6,662.2,1024,190.3,233.6,2457.6,662.8,67788.8,1331.2,1740.8,3379.2,1433.6,1433.6,13824,849.3,239.5,847.5,1331.2,3788.8,72396.8,239,5222.4,1433.6,2150.4,2662.4,2048,5529.6,13721.6,480.3,233.4,846.9,849.9,1331.2,3788.8,5222.4,95744,1536,2150.4,2150.4,1945.6,14131.2,5529.6,848.8,110,235.2,1331.2,3788.8,233,5222.4,82432,1536,2150.4,2252.8,1536,5529.6,13619.2],"peak_vmem_mb":[3276.8,5427.2,5120,6041.6,7168,227430.4,8192,6758.4,26419.2,24883.2,26214.4,26316.8,26316.8,80281.6,4403.2,3481.6,3174.4,3072,5120,6144,3072,36249.6,15155.2,25600,15564.8,26931.2,15564.8,35737.6,3481.6,4403.2,3072,3174.4,6246.4,3072,85504,5120,25702.4,15155.2,15769.6,35737.6,15564.8,26931.2,3993.6,3174.4,6246.4,2969.6,3072,5120,3481.6,74035.2,15052.8,25702.4,26828.8,15564.8,15564.8,35737.6,3584,3072,3379.2,6144,6656,78336,3072,7884.8,15257.6,26316.8,16691.2,16179.2,28979.2,36864,3072,3072,3379.2,2150.4,6144,5222.4,7884.8,102195.2,15360,26419.2,16281.6,16076.8,36864,28979.2,1331.2,2764.8,3072,6144,6656,3072,7884.8,88576,15257.6,26316.8,16384,15564.8,28979.2,36966.4],"rchar_mb":[470.1,470.1,470.1,470.1,470.2,1331.2,482.8,645.4,489.9,490,519.8,519.8,519.8,519.9,216.3,216.2,216.2,216.2,391.4,229,216.2,443,236,236,266.1,266.1,266.1,266.1,216.2,216.3,216.2,216.2,228.9,216.2,443,391.4,236,236,266.1,266.1,266.1,266.1,216.2,216.1,228.9,216.1,216.1,391.3,216.1,442.8,235.9,235.9,266,266,266,266,285.9,285.9,285.9,298.7,286,714.2,285.9,461.2,305.7,305.8,335.8,335.8,335.8,335.8,286,286,286,286,298.8,286.1,461.3,714.3,305.8,305.9,335.9,335.9,335.9,335.9,286.1,286.1,286.1,298.8,286.2,286.1,461.3,714.4,305.9,305.9,336,336,336,336],"wchar_mb":[25,25,25,25,25,784.7,25.2,31.2,25.2,25.3,38.6,38.7,38.7,65.2,4.1,4.1,4.1,4.1,4.7,4.8,4.1,138.1,4.4,4.4,16.3,15.6,15.3,47.6,4.1,4.1,4.1,4.1,4.8,4.1,138.1,4.7,4.4,4.4,16.2,47.6,15.4,15.8,4,4,4.7,4,4,4.6,4,137.9,4.3,4.3,15.1,16.4,16.4,47.6,4.4,4.4,4.4,5,4.4,339.1,4.4,4.9,4.7,4.8,16.4,17.1,16.3,51.3,4.6,4.6,4.6,4.5,5.1,4.6,5.1,339.5,4.8,5,17.2,16.1,51.4,16.2,4.6,4.6,4.6,5.1,4.6,4.6,5.1,339.5,4.8,4.9,17.2,16.6,16.1,51.4],"code_version":["0.6.0","0.6.0","1.9.3","1.1.3","1.1.3","4.1.1","1.0.3","2.0.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1","1.1.3","1.1.3","1.9.3","0.6.0","2.0.1","1.0.3","0.6.0","4.1.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1","1.1.3","1.1.3","0.6.0","1.9.3","1.0.3","0.6.0","4.1.1","2.0.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1","1.1.3","1.9.3","1.0.3","0.6.0","0.6.0","2.0.1","1.1.3","4.1.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1","1.1.3","0.6.0","1.9.3","1.0.3","1.1.3","4.1.1","0.6.0","2.0.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1","0.6.0","1.9.3","0.6.0","1.1.3","1.0.3","1.1.3","2.0.1","4.1.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1","1.1.3","0.6.0","1.9.3","1.0.3","1.1.3","0.6.0","2.0.1","4.1.1","0.16.4","0.16.4","0.1","0.1","0.1","0.1"],"is_baseline":[true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,true,false,false,false,false,false,false,false,false,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,true,false,false,false,false,false,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,false,false,false,false,false,false,false,false]}},{"name":"scaling_factors_t","value":{"dataset_id":["destvi","pancreas_alpha_0_5","pancreas_alpha_1","pancreas_alpha_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_5"],"metric_id":["r2","r2","r2","r2","r2","r2","r2"],"scale_min":[-0.1584,-0.6795,-0.7518,-1.4934,-1.6978,-1.342,-2.1264],"scale_max":[1,1,1,1,1,1,1]}},{"name":"summary_t","value":{"method_id":["true_proportions","cell2location_detection_alpha_20","cell2location_detection_alpha_200","cell2location_detection_alpha_20_nb","cell2location_amortised_detection_alpha_20","rctd","nnls_scipy","stereoscope","nmf","destvi","nmfreg","random_proportions","tangram","seuratv3"],"method_name":["True Proportions","Cell2location","Cell2location","Cell2location","Cell2location, amortised","RCTD","Non-Negative Least Squares","Stereoscope","Non-Negative Matrix Factorization","DestVI","NMF-reg","Random Proportions","Tangram","SeuratV3"],"method_config":["","detection_alpha=20, reference hard-coded","detection_alpha=200, reference hard-coded","detection_alpha=20, reference NB without batch info","detection_alpha=20, reference hard-coded","","","","NMF","","","","",""],"method_is_baseline":["yes","","","","","","","","","","","yes","",""],"mean_score":[1,0.8491,0.848,0.841,0.838,0.7567,0.6607,0.5591,0.4297,0.2822,0.1478,0,-0.3026,-0.579],"dataset_destvi":[1,0.8983,0.8983,0.8975,0.9015,0.741,0.4895,0.3343,0.3154,-0.0446,0.3962,0,-0.947,-2.5776],"dataset_pancreas_alpha_0_5":[1,0.934,0.9344,0.9228,0.93,0.8635,0.8898,0.4956,0.7485,0.1845,0.4215,0,-0.2446,-0.3265],"dataset_pancreas_alpha_1":[1,0.9007,0.9018,0.9048,0.9097,0.8341,0.8134,0.5212,0.1921,0.1796,0.4914,0,-0.1915,-0.4955],"dataset_pancreas_alpha_5":[1,0.8719,0.8692,0.871,0.8586,0.7458,0.7,0.6701,0.2959,0.4037,0.4596,0,-0.1732,-0.5425],"dataset_tabula_muris_senis_alpha_0_5":[1,0.8252,0.8226,0.811,0.8128,0.7584,0.6776,0.6317,0.596,0.4508,0.1107,0,-0.212,0.1702],"dataset_tabula_muris_senis_alpha_1":[1,0.7609,0.7577,0.7431,0.7352,0.6856,0.535,0.5771,0.3835,0.2799,-0.5911,0,-0.1849,-0.2578],"dataset_tabula_muris_senis_alpha_5":[1,0.7529,0.7519,0.7368,0.7182,0.6685,0.5196,0.6839,0.4767,0.5214,-0.2537,0,-0.1647,-0.0236],"metric_r2":[1,0.8491,0.848,0.841,0.838,0.7567,0.6607,0.5591,0.4297,0.2822,0.1478,0,-0.3026,-0.579]}},{"name":"qc_t","value":{"task_id":["spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition","spatial_decomposition"],"section":["Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Metric scaling","Metric scaling"],"name":["Long table size","Percentage of missing results","Percentage of missing results per metric","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Lower bound check scores after scaling","Upper bound check scores after scaling"],"desc":["Whether the long form of the results table has the right number of rows.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range."],"variable":[null,null,"r2","destvi","pancreas_alpha_0_5","pancreas_alpha_1","pancreas_alpha_5","tabula_muris_senis_alpha_0_5","tabula_muris_senis_alpha_1","tabula_muris_senis_alpha_5","cell2location_amortised_detection_alpha_20","cell2location_detection_alpha_20","cell2location_detection_alpha_20_nb","cell2location_detection_alpha_200","destvi","nmf","nmfreg","nnls_scipy","random_proportions","rctd","seuratv3","stereoscope","tangram","true_proportions","r2","r2"],"value":[98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2.5776,1],"lower":[98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1],"upper":[98,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,2,2]}}]}
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../results/index.html">
+ <span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../manuscript/index.html">
+ <span class="menu-text">Manuscript</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pre-process-raw-scores" id="toc-pre-process-raw-scores" class="nav-link active" data-scroll-target="#pre-process-raw-scores">Pre-process raw scores</a></li>
+  <li><a href="#compute-scaling-factors" id="toc-compute-scaling-factors" class="nav-link" data-scroll-target="#compute-scaling-factors">Compute scaling factors</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality control</a></li>
+  <li><a href="#raw-data" id="toc-raw-data" class="nav-link" data-scroll-target="#raw-data">Raw data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Spatial Decomposition</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pre-process-raw-scores" class="level2">
+<h2 class="anchored" data-anchor-id="pre-process-raw-scores">Pre-process raw scores</h2>
+<p>Build a full crossing to make sure no results are missing. It’s likely some of the methods didn’t finish running on all datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cross_df <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dataset_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(dataset_id),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  method_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(method_id, is_baseline),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  metric_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(metric_id)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Transform the results into a long format and join with the crossing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results_long <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  results <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(metric_id, value, <span class="sc">!!</span>metric_info<span class="sc">$</span>metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(method_id, dataset_id, metric_id, value, is_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(cross_df, <span class="at">by =</span> <span class="fu">colnames</span>(cross_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot the raw scores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results_long) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(value, method_id, <span class="at">colour =</span> is_baseline)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_id, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="compute-scaling-factors" class="level2">
+<h2 class="anchored" data-anchor-id="compute-scaling-factors">Compute scaling factors</h2>
+<ul>
+<li>Compute the minimum and maximum scores of baseline methods per dataset per metric.</li>
+<li>Rescale values</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scaling_factors <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  results <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(is_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(metric_id, value, <span class="sc">!!</span>metric_info<span class="sc">$</span>metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(dataset_id, metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale_min =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="fu">min</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale_max =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="fu">max</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualise the scaling factors.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results_long_scaled <span class="ot">&lt;-</span> results_long <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(scaling_factors, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dataset_id"</span>, <span class="st">"metric_id"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(metric_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(metric_id, maximize), <span class="at">by =</span> <span class="st">"metric_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">~</span> value,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      maximize <span class="sc">~</span> scale_min,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span>maximize <span class="sc">~</span> scale_max</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> (scaled_score <span class="sc">-</span> scale_min) <span class="sc">/</span> (scale_max <span class="sc">-</span> scale_min),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> <span class="fu">ifelse</span>(maximize, scaled_score, <span class="dv">1</span> <span class="sc">-</span> scaled_score)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>overall_ranking <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(scaled_score)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>View results</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order by ranking</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>results_long_scaled<span class="sc">$</span>method_id <span class="ot">&lt;-</span> <span class="fu">factor</span>(results_long_scaled<span class="sc">$</span>method_id, <span class="at">levels =</span> <span class="fu">rev</span>(overall_ranking<span class="sc">$</span>method_id))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results_long_scaled <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(method_id)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> x), <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(scaled_score, method_id, <span class="at">group =</span> dataset_id), <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(scaled_score, method_id, <span class="at">colour =</span> is_baseline)) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_id, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Add extra columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>per_dataset <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id, dataset_id) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(scaled_score), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dataset_id =</span> <span class="fu">paste0</span>(<span class="st">"dataset_"</span>, dataset_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(dataset_id, score)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>per_metric <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id, metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(scaled_score), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_id =</span> <span class="fu">paste0</span>(<span class="st">"metric_"</span>, metric_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(metric_id, score)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  method_info <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    method_id,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_tmp =</span> method_name,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_name =</span> <span class="fu">gsub</span>(<span class="st">" </span><span class="sc">\\</span><span class="st">(.*"</span>, <span class="st">""</span>, name_tmp),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_config =</span> <span class="fu">gsub</span>(<span class="st">"[^</span><span class="sc">\\</span><span class="st">(]*</span><span class="sc">\\</span><span class="st">(?([^</span><span class="sc">\\</span><span class="st">)]*)</span><span class="sc">\\</span><span class="st">)?"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, name_tmp),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_is_baseline =</span> <span class="fu">ifelse</span>(is_baseline, <span class="st">"yes"</span>, <span class="st">""</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name_tmp) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(overall_ranking, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(per_dataset, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(per_metric, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix funkyheatmap defaults so we don't need to do the processing below</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>column_info <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">colnames</span>(summary)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> id <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"^[^_]+_"</span>, <span class="st">""</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">" "</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_to_title</span>(),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">gsub</span>(<span class="st">"_.*"</span>, <span class="st">""</span>, id),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">==</span> <span class="st">"method"</span> <span class="sc">~</span> <span class="st">"text"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">==</span> <span class="st">"mean"</span> <span class="sc">~</span> <span class="st">"bar"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"dataset"</span>, <span class="st">"metric"</span>) <span class="sc">~</span> <span class="st">"funkyrect"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="fu">ifelse</span>(group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"dataset"</span>, <span class="st">"metric"</span>), group, <span class="cn">NA_character_</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">map2</span>(id, geom, <span class="cf">function</span>(id, geom) {</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"method_name"</span>) {</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">6</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"method_config"</span>) {</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">4</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"is_baseline"</span>) {</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (geom <span class="sc">==</span> <span class="st">"bar"</span>) {</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">4</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>()</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">funky_heatmap</span>(</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> summary,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">column_info =</span> column_info,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">expand =</span> <span class="fu">c</span>(<span class="at">xmax =</span> <span class="dv">3</span>),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_annot_offset =</span> <span class="dv">4</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Could not find column 'id' in data. Using rownames as 'id'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No row info was provided, assuming all rows in `data` are to be plotted.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Row info did not contain group information, assuming rows are ungrouped.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No column groups was provided, deriving from column info.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Column groups did not contain a column called 'palette'. Assuming no colour scales need to be used.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Column groups did not contain a column called 'level1'. Using `column_info$group` as a makeshift column group name.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No palettes were provided, trying to automatically assign palettes.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'mean' was not defined. Assuming palette is numerical. Automatically selected palette 'Blues'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'dataset' was not defined. Assuming palette is numerical. Automatically selected palette 'Reds'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'metric' was not defined. Assuming palette is numerical. Automatically selected palette 'YlOrBr'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Ignoring unknown parameters: size</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="680"></p>
+</div>
+</div>
+</section>
+<section id="quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control">Quality control</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> section </th>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> variable </th>
+   <th style="text-align:right;"> lower </th>
+   <th style="text-align:right;"> value </th>
+   <th style="text-align:right;"> upper </th>
+   <th style="text-align:left;"> test </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> r2 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 1.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> r2 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -2.578 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> Long table size </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows.">  </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 98 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 98.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 98.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%.">  </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> destvi </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> pancreas_alpha_0_5 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> pancreas_alpha_1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> pancreas_alpha_5 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> tabula_muris_senis_alpha_0_5 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> tabula_muris_senis_alpha_1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> tabula_muris_senis_alpha_5 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> cell2location_amortised_detection_alpha_20 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> cell2location_detection_alpha_20 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> cell2location_detection_alpha_20_nb </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> cell2location_detection_alpha_200 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> destvi </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> nmf </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> nmfreg </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> nnls_scipy </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> random_proportions </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> rctd </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> seuratv3 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> stereoscope </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> tangram </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> true_proportions </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> r2 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="raw-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="raw-data">Raw data</h2>
+<div class="column-page">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Methods</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metrics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Datasets</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Scaling factors</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">Quality control</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb22" data-startfrom="469" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 468;"><span id="cb22-469"><a href="#cb22-469" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(method_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb23" data-startfrom="476" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 475;"><span id="cb23-476"><a href="#cb23-476" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(metric_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb24" data-startfrom="482" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 481;"><span id="cb24-482"><a href="#cb24-482" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(dataset_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb25" data-startfrom="488" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 487;"><span id="cb25-488"><a href="#cb25-488" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb26" data-startfrom="494" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 493;"><span id="cb26-494"><a href="#cb26-494" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(scaling_factors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb27" data-startfrom="500" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 499;"><span id="cb27-500"><a href="#cb27-500" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb28" data-startfrom="506" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 505;"><span id="cb28-506"><a href="#cb28-506" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb29" data-startfrom="530" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 529;"><span id="cb29-530"><a href="#cb29-530" aria-hidden="true" tabindex="-1"></a>method_info <span class="op">=</span> <span class="fu">transpose</span>(method_info_t)</span>
+<span id="cb29-531"><a href="#cb29-531" aria-hidden="true" tabindex="-1"></a>metric_info <span class="op">=</span> <span class="fu">transpose</span>(metric_info_t)</span>
+<span id="cb29-532"><a href="#cb29-532" aria-hidden="true" tabindex="-1"></a>dataset_info <span class="op">=</span> <span class="fu">transpose</span>(dataset_info_t)</span>
+<span id="cb29-533"><a href="#cb29-533" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> <span class="fu">transpose</span>(results_t)</span>
+<span id="cb29-534"><a href="#cb29-534" aria-hidden="true" tabindex="-1"></a>scaling_factors <span class="op">=</span> <span class="fu">transpose</span>(scaling_factors_t)</span>
+<span id="cb29-535"><a href="#cb29-535" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> <span class="fu">transpose</span>(summary_t)</span>
+<span id="cb29-536"><a href="#cb29-536" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> <span class="fu">transpose</span>(qc_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"Inputs.table(method_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Inputs.table(metric_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"Inputs.table(dataset_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"Inputs.table(results)\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"Inputs.table(scaling_factors)\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"Inputs.table(summary)\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"Inputs.table(qc)\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"method_info = transpose(method_info_t)\nmetric_info = transpose(metric_info_t)\ndataset_info = transpose(dataset_info_t)\nresults = transpose(results_t)\nscaling_factors = transpose(scaling_factors_t)\nsummary = transpose(summary_t)\nqc = transpose(qc_t)\n"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../results/spatial_decomposition";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

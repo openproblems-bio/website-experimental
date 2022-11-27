@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>OpenProblems - Cell-Cell Communication Inference (Source-Target)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script type="ojs-define">
+{"contents":[{"name":"method_info_t","value":{"task_id":["cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target"],"method_id":["cellphonedb_max","cellphonedb_sum","connectome_max","connectome_sum","liana_max","liana_sum","logfc_max","logfc_sum","natmi_max","natmi_sum","random_events","sca_max","sca_sum","true_events"],"method_name":["CellPhoneDB (max)","CellPhoneDB (sum)","Connectome (max)","Connectome (sum)","LIANA Rank Aggregate (max)","LIANA Rank Aggregate (sum)","Log2FC (max)","Log2FC (sum)","NATMI (max)","NATMI (sum)","Random Events","SingleCellSignalR (max)","SingleCellSignalR (sum)","True Events"],"paper_name":["CellPhoneDB: inferring cell–cell communication from combined expression of multi-subunit ligand–receptor complexes","CellPhoneDB: inferring cell–cell communication from combined expression of multi-subunit ligand–receptor complexes","Computation and visualization of cell–cell signaling topologies in single-cell systems data using Connectome","Computation and visualization of cell–cell signaling topologies in single-cell systems data using Connectome","Comparison of methods and resources for cell-cell communication inference from single-cell RNA-Seq data","Comparison of methods and resources for cell-cell communication inference from single-cell RNA-Seq data","Computation and visualization of cell–cell signaling topologies in single-cell systems data using Connectome","Computation and visualization of cell–cell signaling topologies in single-cell systems data using Connectome","Predicting cell-to-cell communication networks using NATMI","Predicting cell-to-cell communication networks using NATMI","Random Events (baseline)","SingleCellSignalR: inference of intercellular networks from single-cell transcriptomics","SingleCellSignalR: inference of intercellular networks from single-cell transcriptomics","True Events (baseline)"],"paper_url":["https://www.nature.com/articles/s41596-020-0292-x","https://www.nature.com/articles/s41596-020-0292-x","https://www.nature.com/articles/s41598-022-07959-x","https://www.nature.com/articles/s41598-022-07959-x","https://www.nature.com/articles/s41467-022-30755-0","https://www.nature.com/articles/s41467-022-30755-0","https://www.nature.com/articles/s41598-022-07959-x","https://www.nature.com/articles/s41598-022-07959-x","https://www.nature.com/articles/s41467-020-18873-z","https://www.nature.com/articles/s41467-020-18873-z","https://openproblems.bio","https://academic.oup.com/nar/article/48/10/e55/5810485","https://academic.oup.com/nar/article/48/10/e55/5810485","https://openproblems.bio"],"paper_year":[2020,2020,2022,2022,2022,2022,2022,2022,2021,2021,2022,2021,2021,2022],"code_url":["https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/openproblems-bio/openproblems","https://github.com/saezlab/liana","https://github.com/saezlab/liana","https://github.com/openproblems-bio/openproblems"],"image":["openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems-r-extras","openproblems","openproblems-r-extras","openproblems-r-extras","openproblems"],"is_baseline":[false,false,false,false,false,false,false,false,false,false,true,false,false,true]}},{"name":"metric_info_t","value":{"task_id":["cell_cell_communication_source_target","cell_cell_communication_source_target"],"metric_id":["auprc","odds_ratio"],"metric_name":["Precision-recall AUC","Odds Ratio"],"maximize":[true,true],"image":["openproblems","openproblems"]}},{"name":"dataset_info_t","value":{"task_id":["cell_cell_communication_source_target"],"dataset_id":["mouse_brain_atlas"],"dataset_name":["Mouse brain atlas"],"image":["openproblems-r-extras"],"data_url":["https://figshare.com/ndownloader/files/36509385"],"data_reference":["https://doi.org/10.1038/nn.4216"],"dataset_summary":["A murine brain atlas with adjacent cell types as assumed benchmark truth, inferred from deconvolution proportion correlations using matching 10x Visium slides (see Dimitrov et al., 2022). 14249 cells x 34617 features with 23 cell type labels."]}},{"name":"results_t","value":{"task_id":["cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target"],"method_id":["random_events","true_events","logfc_sum","sca_sum","sca_max","logfc_max","connectome_max","connectome_sum","natmi_sum","natmi_max","cellphonedb_sum","cellphonedb_max","liana_sum","liana_max"],"dataset_id":["mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas","mouse_brain_atlas"],"auprc":[0.0815,1,0.1225,0.0358,0.0875,0.0835,0.0657,0.0617,0.0618,0.0865,0.0385,0.0884,0.0385,0.0722],"odds_ratio":[0.4419,1,0.6543,0,0.7224,0.6543,0.2669,0.6543,0.5644,0.6543,0,0.7753,0.2669,0.5644],"scaled_auprc":[0,1,0.0447,-0.0497,0.0066,0.0022,-0.0171,-0.0215,-0.0214,0.0055,-0.0468,0.0075,-0.0468,-0.0101],"scaled_odds_ratio":[0,1,0.3806,-0.7917,0.5026,0.3806,-0.3135,0.3806,0.2196,0.3806,-0.7917,0.5974,-0.3135,0.2196],"submit":["2022-11-23 17:45:22","2022-11-23 17:45:22","2022-11-23 17:57:04","2022-11-23 17:57:03","2022-11-23 17:57:12","2022-11-23 17:57:22","2022-11-23 17:57:32","2022-11-23 18:02:32","2022-11-23 17:56:22","2022-11-23 19:55:03","2022-11-23 22:31:53","2022-11-23 23:16:43","2022-11-23 23:16:42","2022-11-23 22:08:22"],"duration":[390,450,2088,2209,2200,2190,2180,2009,5739,1979,10829,10059,10330,14520],"realtime":[13,13.5,678,949,951,820,821,932,1198,1913,8572,9516,9844,10822],"cpu_pct":[98.9,83.9,94.3,92.9,94.4,94,94.2,94.7,101.2,101.2,99.8,100.5,100.5,100.2],"peak_rss_mb":[2252.8,2252.8,20889.6,20684.8,21094.4,21196.8,20889.6,20992,20889.6,20889.6,121856,125747.2,114892.8,123289.6],"peak_vmem_mb":[4812.8,4812.8,22937.6,26214.4,27750.4,26112,26112,26316.8,23347.2,26112,127078.4,131174.4,120422.4,128819.2],"rchar_mb":[1945.6,1945.6,2048,2048,2048,2048,2048,2048,2764.8,2764.8,2150.4,2150.4,2764.8,2764.8],"wchar_mb":[1945.6,1945.6,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2,2867.2],"code_version":["0.6.0","0.6.0","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7","0.1.7"],"is_baseline":[true,true,false,false,false,false,false,false,false,false,false,false,false,false]}},{"name":"scaling_factors_t","value":{"dataset_id":["mouse_brain_atlas","mouse_brain_atlas"],"metric_id":["auprc","odds_ratio"],"scale_min":[0.0815,0.4419],"scale_max":[1,1]}},{"name":"summary_t","value":{"method_id":["true_events","cellphonedb_max","sca_max","logfc_sum","natmi_max","logfc_max","connectome_sum","liana_max","natmi_sum","random_events","connectome_max","liana_sum","cellphonedb_sum","sca_sum"],"method_name":["True Events","CellPhoneDB","SingleCellSignalR","Log2FC","NATMI","Log2FC","Connectome","LIANA Rank Aggregate","NATMI","Random Events","Connectome","LIANA Rank Aggregate","CellPhoneDB","SingleCellSignalR"],"method_config":["","max","max","sum","max","max","sum","max","sum","","max","sum","sum","sum"],"method_is_baseline":["yes","","","","","","","","","yes","","","",""],"mean_score":[1,0.3025,0.2546,0.2127,0.1931,0.1914,0.1796,0.1048,0.0991,0,-0.1653,-0.1801,-0.4192,-0.4207],"dataset_mouse_brain_atlas":[1,0.3025,0.2546,0.2127,0.1931,0.1914,0.1796,0.1048,0.0991,0,-0.1653,-0.1801,-0.4192,-0.4207],"metric_auprc":[1,0.0075,0.0066,0.0447,0.0055,0.0022,-0.0215,-0.0101,-0.0214,0,-0.0171,-0.0468,-0.0468,-0.0497],"metric_odds_ratio":[1,0.5974,0.5026,0.3806,0.3806,0.3806,0.3806,0.2196,0.2196,0,-0.3135,-0.3135,-0.7917,-0.7917]}},{"name":"qc_t","value":{"task_id":["cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target","cell_cell_communication_source_target"],"section":["Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Metric scaling","Metric scaling","Metric scaling","Metric scaling"],"name":["Long table size","Percentage of missing results","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per dataset","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling"],"desc":["Whether the long form of the results table has the right number of rows.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range."],"variable":[null,null,"auprc","odds_ratio","mouse_brain_atlas","cellphonedb_max","cellphonedb_sum","connectome_max","connectome_sum","liana_max","liana_sum","logfc_max","logfc_sum","natmi_max","natmi_sum","random_events","sca_max","sca_sum","true_events","auprc","auprc","odds_ratio","odds_ratio"],"value":[28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-0.0497,1,-0.7917,1],"lower":[28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,-1,-1],"upper":[28,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,2,2,2,2]}}]}
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../results/index.html">
+ <span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../manuscript/index.html">
+ <span class="menu-text">Manuscript</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pre-process-raw-scores" id="toc-pre-process-raw-scores" class="nav-link active" data-scroll-target="#pre-process-raw-scores">Pre-process raw scores</a></li>
+  <li><a href="#compute-scaling-factors" id="toc-compute-scaling-factors" class="nav-link" data-scroll-target="#compute-scaling-factors">Compute scaling factors</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality control</a></li>
+  <li><a href="#raw-data" id="toc-raw-data" class="nav-link" data-scroll-target="#raw-data">Raw data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cell-Cell Communication Inference (Source-Target)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pre-process-raw-scores" class="level2">
+<h2 class="anchored" data-anchor-id="pre-process-raw-scores">Pre-process raw scores</h2>
+<p>Build a full crossing to make sure no results are missing. It’s likely some of the methods didn’t finish running on all datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cross_df <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dataset_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(dataset_id),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  method_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(method_id, is_baseline),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  metric_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(metric_id)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Transform the results into a long format and join with the crossing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results_long <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  results <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(metric_id, value, <span class="sc">!!</span>metric_info<span class="sc">$</span>metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(method_id, dataset_id, metric_id, value, is_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(cross_df, <span class="at">by =</span> <span class="fu">colnames</span>(cross_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot the raw scores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results_long) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(value, method_id, <span class="at">colour =</span> is_baseline)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_id, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="compute-scaling-factors" class="level2">
+<h2 class="anchored" data-anchor-id="compute-scaling-factors">Compute scaling factors</h2>
+<ul>
+<li>Compute the minimum and maximum scores of baseline methods per dataset per metric.</li>
+<li>Rescale values</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scaling_factors <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  results <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(is_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(metric_id, value, <span class="sc">!!</span>metric_info<span class="sc">$</span>metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(dataset_id, metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale_min =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="fu">min</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale_max =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="fu">max</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualise the scaling factors.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results_long_scaled <span class="ot">&lt;-</span> results_long <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(scaling_factors, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dataset_id"</span>, <span class="st">"metric_id"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(metric_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(metric_id, maximize), <span class="at">by =</span> <span class="st">"metric_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">~</span> value,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      maximize <span class="sc">~</span> scale_min,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span>maximize <span class="sc">~</span> scale_max</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> (scaled_score <span class="sc">-</span> scale_min) <span class="sc">/</span> (scale_max <span class="sc">-</span> scale_min),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> <span class="fu">ifelse</span>(maximize, scaled_score, <span class="dv">1</span> <span class="sc">-</span> scaled_score)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>overall_ranking <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(scaled_score)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>View results</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order by ranking</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>results_long_scaled<span class="sc">$</span>method_id <span class="ot">&lt;-</span> <span class="fu">factor</span>(results_long_scaled<span class="sc">$</span>method_id, <span class="at">levels =</span> <span class="fu">rev</span>(overall_ranking<span class="sc">$</span>method_id))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results_long_scaled <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(method_id)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> x), <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(scaled_score, method_id, <span class="at">group =</span> dataset_id), <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(scaled_score, method_id, <span class="at">colour =</span> is_baseline)) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_id, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Add extra columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>per_dataset <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id, dataset_id) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(scaled_score), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dataset_id =</span> <span class="fu">paste0</span>(<span class="st">"dataset_"</span>, dataset_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(dataset_id, score)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>per_metric <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id, metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(scaled_score), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_id =</span> <span class="fu">paste0</span>(<span class="st">"metric_"</span>, metric_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(metric_id, score)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  method_info <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    method_id,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_tmp =</span> method_name,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_name =</span> <span class="fu">gsub</span>(<span class="st">" </span><span class="sc">\\</span><span class="st">(.*"</span>, <span class="st">""</span>, name_tmp),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_config =</span> <span class="fu">gsub</span>(<span class="st">"[^</span><span class="sc">\\</span><span class="st">(]*</span><span class="sc">\\</span><span class="st">(?([^</span><span class="sc">\\</span><span class="st">)]*)</span><span class="sc">\\</span><span class="st">)?"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, name_tmp),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_is_baseline =</span> <span class="fu">ifelse</span>(is_baseline, <span class="st">"yes"</span>, <span class="st">""</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name_tmp) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(overall_ranking, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(per_dataset, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(per_metric, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix funkyheatmap defaults so we don't need to do the processing below</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>column_info <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">colnames</span>(summary)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> id <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"^[^_]+_"</span>, <span class="st">""</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">" "</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_to_title</span>(),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">gsub</span>(<span class="st">"_.*"</span>, <span class="st">""</span>, id),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">==</span> <span class="st">"method"</span> <span class="sc">~</span> <span class="st">"text"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">==</span> <span class="st">"mean"</span> <span class="sc">~</span> <span class="st">"bar"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"dataset"</span>, <span class="st">"metric"</span>) <span class="sc">~</span> <span class="st">"funkyrect"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="fu">ifelse</span>(group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"dataset"</span>, <span class="st">"metric"</span>), group, <span class="cn">NA_character_</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">map2</span>(id, geom, <span class="cf">function</span>(id, geom) {</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"method_name"</span>) {</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">6</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"method_config"</span>) {</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">4</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"is_baseline"</span>) {</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (geom <span class="sc">==</span> <span class="st">"bar"</span>) {</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">4</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>()</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">funky_heatmap</span>(</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> summary,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">column_info =</span> column_info,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">expand =</span> <span class="fu">c</span>(<span class="at">xmax =</span> <span class="dv">3</span>),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_annot_offset =</span> <span class="dv">4</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Could not find column 'id' in data. Using rownames as 'id'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No row info was provided, assuming all rows in `data` are to be plotted.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Row info did not contain group information, assuming rows are ungrouped.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No column groups was provided, deriving from column info.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Column groups did not contain a column called 'palette'. Assuming no colour scales need to be used.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Column groups did not contain a column called 'level1'. Using `column_info$group` as a makeshift column group name.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No palettes were provided, trying to automatically assign palettes.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'mean' was not defined. Assuming palette is numerical. Automatically selected palette 'Blues'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'dataset' was not defined. Assuming palette is numerical. Automatically selected palette 'Reds'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'metric' was not defined. Assuming palette is numerical. Automatically selected palette 'YlOrBr'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Ignoring unknown parameters: size</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="548"></p>
+</div>
+</div>
+</section>
+<section id="quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control">Quality control</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> section </th>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> variable </th>
+   <th style="text-align:right;"> lower </th>
+   <th style="text-align:right;"> value </th>
+   <th style="text-align:right;"> upper </th>
+   <th style="text-align:left;"> test </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> auprc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 1.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> odds_ratio </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 1.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> auprc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -0.050 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> odds_ratio </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -0.792 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> Long table size </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows.">  </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 28 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 28.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 28.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%.">  </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> mouse_brain_atlas </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> cellphonedb_max </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> cellphonedb_sum </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> connectome_max </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> connectome_sum </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> liana_max </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> liana_sum </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> logfc_max </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> logfc_sum </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> natmi_max </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> natmi_sum </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> random_events </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> sca_max </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> sca_sum </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> true_events </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> auprc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> odds_ratio </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="raw-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="raw-data">Raw data</h2>
+<div class="column-page">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Methods</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metrics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Datasets</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Scaling factors</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">Quality control</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb22" data-startfrom="469" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 468;"><span id="cb22-469"><a href="#cb22-469" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(method_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb23" data-startfrom="476" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 475;"><span id="cb23-476"><a href="#cb23-476" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(metric_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb24" data-startfrom="482" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 481;"><span id="cb24-482"><a href="#cb24-482" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(dataset_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb25" data-startfrom="488" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 487;"><span id="cb25-488"><a href="#cb25-488" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb26" data-startfrom="494" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 493;"><span id="cb26-494"><a href="#cb26-494" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(scaling_factors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb27" data-startfrom="500" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 499;"><span id="cb27-500"><a href="#cb27-500" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb28" data-startfrom="506" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 505;"><span id="cb28-506"><a href="#cb28-506" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb29" data-startfrom="530" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 529;"><span id="cb29-530"><a href="#cb29-530" aria-hidden="true" tabindex="-1"></a>method_info <span class="op">=</span> <span class="fu">transpose</span>(method_info_t)</span>
+<span id="cb29-531"><a href="#cb29-531" aria-hidden="true" tabindex="-1"></a>metric_info <span class="op">=</span> <span class="fu">transpose</span>(metric_info_t)</span>
+<span id="cb29-532"><a href="#cb29-532" aria-hidden="true" tabindex="-1"></a>dataset_info <span class="op">=</span> <span class="fu">transpose</span>(dataset_info_t)</span>
+<span id="cb29-533"><a href="#cb29-533" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> <span class="fu">transpose</span>(results_t)</span>
+<span id="cb29-534"><a href="#cb29-534" aria-hidden="true" tabindex="-1"></a>scaling_factors <span class="op">=</span> <span class="fu">transpose</span>(scaling_factors_t)</span>
+<span id="cb29-535"><a href="#cb29-535" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> <span class="fu">transpose</span>(summary_t)</span>
+<span id="cb29-536"><a href="#cb29-536" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> <span class="fu">transpose</span>(qc_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"Inputs.table(method_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Inputs.table(metric_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"Inputs.table(dataset_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"Inputs.table(results)\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"Inputs.table(scaling_factors)\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"Inputs.table(summary)\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"Inputs.table(qc)\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"method_info = transpose(method_info_t)\nmetric_info = transpose(metric_info_t)\ndataset_info = transpose(dataset_info_t)\nresults = transpose(results_t)\nscaling_factors = transpose(scaling_factors_t)\nsummary = transpose(summary_t)\nqc = transpose(qc_t)\n"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../results/cell_cell_communication_source_target";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

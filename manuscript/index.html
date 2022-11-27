@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>OpenProblems - Defining challenges and benchmarking open problems in Single-cell analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../results/index.html">
+ <span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../manuscript/index.html" aria-current="page">
+ <span class="menu-text">Manuscript</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#an-infrastructure-for-living-benchmarks-in-single-cell-data-science" id="toc-an-infrastructure-for-living-benchmarks-in-single-cell-data-science" class="nav-link" data-scroll-target="#an-infrastructure-for-living-benchmarks-in-single-cell-data-science">An infrastructure for living benchmarks in Single-cell Data Science</a></li>
+  <li><a href="#community-defined-open-problems-in-single-cell-analysis" id="toc-community-defined-open-problems-in-single-cell-analysis" class="nav-link" data-scroll-target="#community-defined-open-problems-in-single-cell-analysis">Community-defined open problems in Single-cell analysis</a></li>
+  <li><a href="#proposed-structure" id="toc-proposed-structure" class="nav-link" data-scroll-target="#proposed-structure">Proposed structure</a></li>
+  <li><a href="#defined-open-problems-facilitatedrive-innovation-in-single-cell-data-science" id="toc-defined-open-problems-facilitatedrive-innovation-in-single-cell-data-science" class="nav-link" data-scroll-target="#defined-open-problems-facilitatedrive-innovation-in-single-cell-data-science">Defined open problems facilitate/drive innovation in single-cell data science</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Defining challenges and benchmarking open problems in Single-cell analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Single-cell genomics has enabled the study of biological processes at an unprecedented scale and resolution <span class="citation" data-cites="celltypeatlas_plass2018 humancellatlas_cao2020 revisedairwayepithelial_montoro2018">(<a href="#ref-celltypeatlas_plass2018" role="doc-biblioref">Plass et al. 2018</a>; <a href="#ref-humancellatlas_cao2020" role="doc-biblioref">Cao et al. 2020</a>; <a href="#ref-revisedairwayepithelial_montoro2018" role="doc-biblioref">Montoro et al. 2018</a>)</span>. These studies have been enabled by computational tools for the analysis of single-cell data, which has surpassed 1300 published algorithms <span class="citation" data-cites="overtoolsreveal_zappia2021">(<a href="#ref-overtoolsreveal_zappia2021" role="doc-biblioref">Zappia and Theis 2021</a>)</span>. Evolving biological questions and technological development <span class="citation" data-cites="methodyearspatially_nmeth2021 methodyearsinglecell_nmeth2020">(<a href="#ref-methodyearspatially_nmeth2021" role="doc-biblioref"><span>“Method of the Year 2020: Spatially Resolved Transcriptomics”</span> 2021</a>; <a href="#ref-methodyearsinglecell_nmeth2020" role="doc-biblioref"><span>“Method of the Year 2019: Single-Cell Multimodal Omics”</span> 2020</a>)</span> continuously pose new challenges for data analysts, which has led to the description of grand challenges for single-cell data science <span class="citation" data-cites="elevengrandchallenges_lahnemann2020">(<a href="#ref-elevengrandchallenges_lahnemann2020" role="doc-biblioref">Lähnemann et al. 2020</a>)</span>. While the identification of such grand challenges in single-cell genomics can concentrate research into relevant areas, the current definitions of these challenges are qualitative in nature.</p>
+<p>Clear definitions of open problems including quantifications of progress has driven innovation in machine learning research <span class="citation" data-cites="yearsdatascience_donoho2017">(<a href="#ref-yearsdatascience_donoho2017" role="doc-biblioref">Donoho 2017</a>)</span>. Open challenges such as the Netflix prize <span class="citation" data-cites="netflixprize_bennet2007">(<a href="#ref-netflixprize_bennet2007" role="doc-biblioref">Bennett, Lanning, et al. 2007</a>)</span> and ImageNet <span class="citation" data-cites="largescalehierarchical_deng2009">(<a href="#ref-largescalehierarchical_deng2009" role="doc-biblioref">Deng et al. 2009</a>)</span> represent landmark problems that allow measurement of progress across decades. These challenges have provided a common vocabulary for innovation: image classification accuracy has improved from 50% to over 90% on ImageNet since 2011. Inspired by open challenges in machine learning, Critical Assessment of protein Structure Prediction (CASP), Recursion’s cellular image classification Kaggle competition, various DREAM challenges, and our recent multimodal data integration competition at NeurIPS 2021 <span class="citation" data-cites="sandboxpredictionintegration_luecken2021">(<a href="#ref-sandboxpredictionintegration_luecken2021" role="doc-biblioref">Malte D. Luecken et al. 2021a</a>)</span> have focused research efforts in computational biology disciplines such as protein structure prediction, cellular diagnostics, gene module prediction, and multimodal single-cell data integration. Particularly successful competitions such as CASP have built communities that accelerate research toward these goals.</p>
+<p>In single-cell genomics, large-scale benchmarks <span class="citation" data-cites="comparisonsinglecell_saelens2019 benchmarkingatlaslevel_luecken2020 biasrobustnessscalability_soneson2018 confrontingfalsediscoveries_squair2021">(<a href="#ref-comparisonsinglecell_saelens2019" role="doc-biblioref">Saelens et al. 2019</a>; <a href="#ref-benchmarkingatlaslevel_luecken2020" role="doc-biblioref">Malte D. Luecken et al. 2021b</a>; <a href="#ref-biasrobustnessscalability_soneson2018" role="doc-biblioref">Soneson and Robinson 2018</a>; <a href="#ref-confrontingfalsediscoveries_squair2021" role="doc-biblioref">Squair et al. 2021</a>)</span> have quantified open questions by proposing evaluation metrics and using these to compare existing methods. Yet, benchmarks inevitably age: newly developed tools that optimize the proposed benchmarking metrics cannot be compared in the same study; existing tools may perform differently on newly generated benchmarking datasets of better quality; and used metrics may not capture the aspects of method performance that a user is interested in. These challenges can only be addressed by community participation in benchmarking. To build such communities around quantified challenges, benchmarking studies would require frequent updating and open discussion on benchmarking datasets, proposed metrics, and selected methods.</p>
+<p>Learning from machine learning competitions, we propose a living benchmarking framework for single-cell genomics tools that follows the Common Task Framework (CTF) <span class="citation" data-cites="yearsdatascience_donoho2017">(<a href="#ref-yearsdatascience_donoho2017" role="doc-biblioref">Donoho 2017</a>)</span>. The CTF has 3 criteria: (1) An easily available training dataset of sufficient complexity, (2) a set of competitors who submit methods for benchmarking, and (3) a set of metrics that are evaluated on test data to define progress on the task and thereby formally define it. When continuously updating such benchmarks, …</p>
+<p>We have developed the Open Problems in Single-cell Analysis (Open Problems) framework, a platform that defines and measures progress towards open challenges in single-cell genomics following the CTF. Open Problems combines an open github repository with community-defined tasks, Github Actions testing workflows, a benchmarking pipeline using Nextflow <span class="citation" data-cites="nextflowenablesreproducible_tommaso2017">(<a href="#ref-nextflowenablesreproducible_tommaso2017" role="doc-biblioref">Tommaso et al. 2017</a>)</span> and Amazon Web Services, and a website to explore the results to build a living, community-based benchmarking project. Currently, Open Problems includes X defined tasks, on which Y datasets are used to evaluate Z methods using XY metrics. These tasks were defined by interactions between contributors, which has led to new benchmarking insights even when contributors had already published benchmarks on these tasks. Open Problems provides community-defined standards for progress in single-cell data science to enable decentralized method development towards a common goal.</p>
+</section>
+<section id="an-infrastructure-for-living-benchmarks-in-single-cell-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="an-infrastructure-for-living-benchmarks-in-single-cell-data-science">An infrastructure for living benchmarks in Single-cell Data Science</h2>
+<p>In order to enable a truly living benchmark, we have designed a standardized and automated infrastructure which allows members of the single-cell community to contribute to Open Problems in a seamless manner. Each Open Problems task is comprised of datasets, methods, and metrics (Fig 1): datasets define both the input and the ground truth for a task, methods attempt to solve the task, and metrics evaluate the success of a method on a given dataset. Metrics are normalized between 0 and 1 based on the inclusion of “baseline” methods which are designed to emulate either random or perfect performance. Methods are then ranked on a per-dataset basis by the average normalized metric score and presented in a summary table on the Open Problems website (<a href="https://openproblems.bio">openproblems.bio</a>).</p>
+<p>To enable seamless community involvement in Open Problems, we have designed the infrastructure to take advantage of automated workflows through GitHub Actions, Nextflow[cite], and AWS Batch. When a community member adds a task, dataset, method, or metric, the new contributions are automatically tested on the cloud. When all tests pass and the new contribution is merged into the main repository, the results from the new contribution are automatically submitted to the Open Problems website. To maximize reproducibility, all code is run within Docker containers and all data is downloaded from public repositories, including figshare, GEO, and CELLxGENE <span class="citation" data-cites="cellxgeneperformantscalable_megill2021">(<a href="#ref-cellxgeneperformantscalable_megill2021" role="doc-biblioref">Megill et al. 2021</a>)</span>. Task definitions, choices of metrics, and implementations of methods care discussed on our github repository (<a href="https://github.com/openproblems-bio/openproblems">github.com/openproblems-bio/openproblems</a>) and can be easily amended by pull requests which are reviewed by task leaders (who initially defined the task) and the core infrastructure team.</p>
+</section>
+<section id="community-defined-open-problems-in-single-cell-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="community-defined-open-problems-in-single-cell-analysis">Community-defined open problems in Single-cell analysis</h2>
+<p>Building on previous work defining open challenges in single-cell analysis <span class="citation" data-cites="elevengrandchallenges_lahnemann2020">(<a href="#ref-elevengrandchallenges_lahnemann2020" role="doc-biblioref">Lähnemann et al. 2020</a>)</span> and many independent benchmarking studies in single-cell genomics <span class="citation" data-cites="benchmarkingatlaslevel_luecken2020 biasrobustnessscalability_soneson2018 benchmarkingspatialsingle_li2022 systematicevaluationsingle_hou2020 tuningparametersdimensionality_raimundo2020 comprehensivecomparisonsupervised_sun2022 accuracyrobustnessscalability_sun2019 evaluationmachinelearning_huang2021 flexiblecomparisonbatch_chazarragil2021 benchmarkingjointmultiomics_cantini2021 benchmarkingcelltype_avilacobos2020">(<a href="#ref-benchmarkingatlaslevel_luecken2020" role="doc-biblioref">Malte D. Luecken et al. 2021b</a>; <a href="#ref-biasrobustnessscalability_soneson2018" role="doc-biblioref">Soneson and Robinson 2018</a>; <a href="#ref-benchmarkingspatialsingle_li2022" role="doc-biblioref">Li et al. 2022</a>; <a href="#ref-systematicevaluationsingle_hou2020" role="doc-biblioref">Hou et al. 2020</a>; <a href="#ref-tuningparametersdimensionality_raimundo2020" role="doc-biblioref">Raimundo, Vallot, and Vert 2020</a>; <a href="#ref-comprehensivecomparisonsupervised_sun2022" role="doc-biblioref">X. Sun et al. 2022</a>; <a href="#ref-accuracyrobustnessscalability_sun2019" role="doc-biblioref">S. Sun et al. 2019</a>; <a href="#ref-evaluationmachinelearning_huang2021" role="doc-biblioref">Huang and Zhang 2021</a>; <a href="#ref-flexiblecomparisonbatch_chazarragil2021" role="doc-biblioref">Chazarra-Gil et al. 2021</a>; <a href="#ref-benchmarkingjointmultiomics_cantini2021" role="doc-biblioref">Cantini et al. 2021</a>; <a href="#ref-benchmarkingcelltype_avilacobos2020" role="doc-biblioref">Cobos et al. 2020</a>)</span>, we defined X Open Problems tasks (Fig 2a). While some tasks were directly transferred from published benchmarking papers (e.g., batch correction12), others were defined directly by method developers in the single-cell community (e.g., spatial decomposition). To exemplify how such a task is defined and the value that the task adds, we elaborate on the spatial deconvolution task.</p>
+</section>
+<section id="proposed-structure" class="level2">
+<h2 class="anchored" data-anchor-id="proposed-structure">Proposed structure</h2>
+<ol type="1">
+<li>Task overview</li>
+<li>Results from a few tasks</li>
+</ol>
+<ol type="a">
+<li>All of the scIB benchmarking can be migrated into this framework (highly extensible)</li>
+<li>Addition of completely novel tasks (e.g.&nbsp;gene regulatory prediction)</li>
+<li>Community-driven benchmarking for emerging methodology (e.g.&nbsp;differential abundance, spatial decomposition)</li>
+<li>Results of the CZI jamboree</li>
+</ol>
+<ol start="2" type="1">
+<li>Focus on spatial decomposition task</li>
+</ol>
+<ol type="a">
+<li>Explain metrics, datasets, methods</li>
+</ol>
+</section>
+<section id="defined-open-problems-facilitatedrive-innovation-in-single-cell-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="defined-open-problems-facilitatedrive-innovation-in-single-cell-data-science">Defined open problems facilitate/drive innovation in single-cell data science</h2>
+<ol type="1">
+<li>Reaching out to the ML community:</li>
+</ol>
+<ol type="a">
+<li>NeurIPS competition built on Open Problems - Note: Community-informed re-evaluation of metrics (PMLR report)</li>
+</ol>
+<ol start="2" type="1">
+<li>Using framework to drive development of novel methods</li>
+<li>Enable method developers to include their methods in live benchmark and publish results</li>
+<li>Build analysis pipelines from top performers across tasks</li>
+</ol>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-netflixprize_bennet2007" class="csl-entry" role="doc-biblioentry">
+Bennett, James, Stan Lanning, et al. 2007. <span>“The Netflix Prize.”</span> In.
+</div>
+<div id="ref-benchmarkingjointmultiomics_cantini2021" class="csl-entry" role="doc-biblioentry">
+Cantini, Laura, Pooya Zakeri, Celine Hernandez, Aurelien Naldi, Denis Thieffry, Elisabeth Remy, and Anaïs Baudot. 2021. <span>“Benchmarking Joint Multi-Omics Dimensionality Reduction Approaches for the Study of Cancer.”</span> <em>Nat Commun</em> 12 (1). <a href="https://doi.org/10.1038/s41467-020-20430-7">https://doi.org/10.1038/s41467-020-20430-7</a>.
+</div>
+<div id="ref-humancellatlas_cao2020" class="csl-entry" role="doc-biblioentry">
+Cao, Junyue, Diana R. O’Day, Hannah A. Pliner, Paul D. Kingsley, Mei Deng, Riza M. Daza, Michael A. Zager, et al. 2020. <span>“A Human Cell Atlas of Fetal Gene Expression.”</span> <em>Science</em> 370 (6518). <a href="https://doi.org/10.1126/science.aba7721">https://doi.org/10.1126/science.aba7721</a>.
+</div>
+<div id="ref-flexiblecomparisonbatch_chazarragil2021" class="csl-entry" role="doc-biblioentry">
+Chazarra-Gil, Ruben, Stijn van Dongen, Vladimir Yu Kiselev, and Martin Hemberg. 2021. <span>“Flexible Comparison of Batch Correction Methods for Single-Cell <span>RNA</span>-Seq Using <span>BatchBench</span>.”</span> <em>Nucleic Acids Research</em> 49 (7): e42–42. <a href="https://doi.org/10.1093/nar/gkab004">https://doi.org/10.1093/nar/gkab004</a>.
+</div>
+<div id="ref-benchmarkingcelltype_avilacobos2020" class="csl-entry" role="doc-biblioentry">
+Cobos, Francisco Avila, José Alquicira-Hernandez, Joseph E. Powell, Pieter Mestdagh, and Katleen De Preter. 2020. <span>“Benchmarking of Cell Type Deconvolution Pipelines for Transcriptomics Data.”</span> <em>Nat Commun</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-19015-1">https://doi.org/10.1038/s41467-020-19015-1</a>.
+</div>
+<div id="ref-largescalehierarchical_deng2009" class="csl-entry" role="doc-biblioentry">
+Deng, Jia, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei. 2009. <span>“<span>ImageNet</span>: A Large-Scale Hierarchical Image Database.”</span> In <em>2009 <span>IEEE</span> Conference on Computer Vision and Pattern Recognition</em>. <span>IEEE</span>. <a href="https://doi.org/10.1109/cvpr.2009.5206848">https://doi.org/10.1109/cvpr.2009.5206848</a>.
+</div>
+<div id="ref-yearsdatascience_donoho2017" class="csl-entry" role="doc-biblioentry">
+Donoho, David. 2017. <span>“50 Years of Data Science.”</span> <em>Journal of Computational and Graphical Statistics</em> 26 (4): 745–66. <a href="https://doi.org/10.1080/10618600.2017.1384734">https://doi.org/10.1080/10618600.2017.1384734</a>.
+</div>
+<div id="ref-systematicevaluationsingle_hou2020" class="csl-entry" role="doc-biblioentry">
+Hou, Wenpin, Zhicheng Ji, Hongkai Ji, and Stephanie C. Hicks. 2020. <span>“A Systematic Evaluation of Single-Cell <span>RNA</span>-Sequencing Imputation Methods.”</span> <em>Genome Biol</em> 21 (1). <a href="https://doi.org/10.1186/s13059-020-02132-x">https://doi.org/10.1186/s13059-020-02132-x</a>.
+</div>
+<div id="ref-evaluationmachinelearning_huang2021" class="csl-entry" role="doc-biblioentry">
+Huang, Yixuan, and Peng Zhang. 2021. <span>“Evaluation of Machine Learning Approaches for Cell-Type Identification from Single-Cell Transcriptomics Data.”</span> <em>Briefings in Bioinformatics</em>, February. <a href="https://doi.org/10.1093/bib/bbab035">https://doi.org/10.1093/bib/bbab035</a>.
+</div>
+<div id="ref-elevengrandchallenges_lahnemann2020" class="csl-entry" role="doc-biblioentry">
+Lähnemann, David, Johannes Köster, Ewa Szczurek, Davis J. McCarthy, Stephanie C. Hicks, Mark D. Robinson, Catalina A. Vallejos, et al. 2020. <span>“Eleven Grand Challenges in Single-Cell Data Science.”</span> <em>Genome Biol</em> 21 (1). <a href="https://doi.org/10.1186/s13059-020-1926-6">https://doi.org/10.1186/s13059-020-1926-6</a>.
+</div>
+<div id="ref-benchmarkingspatialsingle_li2022" class="csl-entry" role="doc-biblioentry">
+Li, Bin, Wen Zhang, Chuang Guo, Hao Xu, Longfei Li, Minghao Fang, Yinlei Hu, et al. 2022. <span>“Benchmarking Spatial and Single-Cell Transcriptomics Integration Methods for Transcript Distribution Prediction and Cell Type Deconvolution.”</span> <em>Nat Methods</em> 19 (6): 662–70. <a href="https://doi.org/10.1038/s41592-022-01480-9">https://doi.org/10.1038/s41592-022-01480-9</a>.
+</div>
+<div id="ref-sandboxpredictionintegration_luecken2021" class="csl-entry" role="doc-biblioentry">
+Luecken, Malte D, Daniel Bernard Burkhardt, Robrecht Cannoodt, Christopher Lance, Aditi Agrawal, Hananeh Aliee, Ann T Chen, et al. 2021a. <span>“A Sandbox for Prediction and Integration of <span>DNA</span>, <span>RNA</span>, and Proteins in Single Cells.”</span> In <em>Thirty-Fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2)</em>. <a href="https://openreview.net/forum?id=gN35BGa1Rt">https://openreview.net/forum?id=gN35BGa1Rt</a>.
+</div>
+<div id="ref-benchmarkingatlaslevel_luecken2020" class="csl-entry" role="doc-biblioentry">
+Luecken, Malte D., M. Büttner, K. Chaichoompu, A. Danese, M. Interlandi, M. F. Mueller, D. C. Strobl, et al. 2021b. <span>“Benchmarking Atlas-Level Data Integration in Single-Cell Genomics.”</span> <em>Nat Methods</em> 19 (1): 41–50. <a href="https://doi.org/10.1038/s41592-021-01336-8">https://doi.org/10.1038/s41592-021-01336-8</a>.
+</div>
+<div id="ref-cellxgeneperformantscalable_megill2021" class="csl-entry" role="doc-biblioentry">
+Megill, Colin, Bruce Martin, Charlotte Weaver, Sidney Bell, Lia Prins, Seve Badajoz, Brian McCandless, et al. 2021. <span>“Cellxgene: A Performant, Scalable Exploration Platform for High Dimensional Sparse Matrices,”</span> April. <a href="https://doi.org/10.1101/2021.04.05.438318">https://doi.org/10.1101/2021.04.05.438318</a>.
+</div>
+<div id="ref-methodyearsinglecell_nmeth2020" class="csl-entry" role="doc-biblioentry">
+<span>“Method of the Year 2019: Single-Cell Multimodal Omics.”</span> 2020. <em>Nat Methods</em> 17 (1): 1–1. <a href="https://doi.org/10.1038/s41592-019-0703-5">https://doi.org/10.1038/s41592-019-0703-5</a>.
+</div>
+<div id="ref-methodyearspatially_nmeth2021" class="csl-entry" role="doc-biblioentry">
+<span>“Method of the Year 2020: Spatially Resolved Transcriptomics.”</span> 2021. <em>Nat Methods</em> 18 (1): 1–1. <a href="https://doi.org/10.1038/s41592-020-01042-x">https://doi.org/10.1038/s41592-020-01042-x</a>.
+</div>
+<div id="ref-revisedairwayepithelial_montoro2018" class="csl-entry" role="doc-biblioentry">
+Montoro, Daniel T., Adam L. Haber, Moshe Biton, Vladimir Vinarsky, Brian Lin, Susan E. Birket, Feng Yuan, et al. 2018. <span>“A Revised Airway Epithelial Hierarchy Includes <span>CFTR</span>-Expressing Ionocytes.”</span> <em>Nature</em> 560 (7718): 319–24. <a href="https://doi.org/10.1038/s41586-018-0393-7">https://doi.org/10.1038/s41586-018-0393-7</a>.
+</div>
+<div id="ref-celltypeatlas_plass2018" class="csl-entry" role="doc-biblioentry">
+Plass, Mireya, Jordi Solana, F. Alexander Wolf, Salah Ayoub, Aristotelis Misios, Petar Glažar, Benedikt Obermayer, Fabian J. Theis, Christine Kocks, and Nikolaus Rajewsky. 2018. <span>“Cell Type Atlas and Lineage Tree of a Whole Complex Animal by Single-Cell Transcriptomics.”</span> <em>Science</em> 360 (6391). <a href="https://doi.org/10.1126/science.aaq1723">https://doi.org/10.1126/science.aaq1723</a>.
+</div>
+<div id="ref-tuningparametersdimensionality_raimundo2020" class="csl-entry" role="doc-biblioentry">
+Raimundo, Felix, Celine Vallot, and Jean-Philippe Vert. 2020. <span>“Tuning Parameters of Dimensionality Reduction Methods for Single-Cell <span>RNA</span>-Seq Analysis.”</span> <em>Genome Biol</em> 21 (1). <a href="https://doi.org/10.1186/s13059-020-02128-7">https://doi.org/10.1186/s13059-020-02128-7</a>.
+</div>
+<div id="ref-comparisonsinglecell_saelens2019" class="csl-entry" role="doc-biblioentry">
+Saelens, Wouter, Robrecht Cannoodt, Helena Todorov, and Yvan Saeys. 2019. <span>“A Comparison of Single-Cell Trajectory Inference Methods.”</span> <em>Nat Biotechnol</em> 37 (5): 547–54. <a href="https://doi.org/10.1038/s41587-019-0071-9">https://doi.org/10.1038/s41587-019-0071-9</a>.
+</div>
+<div id="ref-biasrobustnessscalability_soneson2018" class="csl-entry" role="doc-biblioentry">
+Soneson, Charlotte, and Mark D Robinson. 2018. <span>“Bias, Robustness and Scalability in Single-Cell Differential Expression Analysis.”</span> <em>Nat Methods</em> 15 (4): 255–61. <a href="https://doi.org/10.1038/nmeth.4612">https://doi.org/10.1038/nmeth.4612</a>.
+</div>
+<div id="ref-confrontingfalsediscoveries_squair2021" class="csl-entry" role="doc-biblioentry">
+Squair, Jordan W., Matthieu Gautier, Claudia Kathe, Mark A. Anderson, Nicholas D. James, Thomas H. Hutson, Rémi Hudelle, et al. 2021. <span>“Confronting False Discoveries in Single-Cell Differential Expression.”</span> <em>Nat Commun</em> 12 (1). <a href="https://doi.org/10.1038/s41467-021-25960-2">https://doi.org/10.1038/s41467-021-25960-2</a>.
+</div>
+<div id="ref-accuracyrobustnessscalability_sun2019" class="csl-entry" role="doc-biblioentry">
+Sun, Shiquan, Jiaqiang Zhu, Ying Ma, and Xiang Zhou. 2019. <span>“Accuracy, Robustness and Scalability of Dimensionality Reduction Methods for Single-Cell <span>RNA</span>-Seq Analysis.”</span> <em>Genome Biol</em> 20 (1). <a href="https://doi.org/10.1186/s13059-019-1898-6">https://doi.org/10.1186/s13059-019-1898-6</a>.
+</div>
+<div id="ref-comprehensivecomparisonsupervised_sun2022" class="csl-entry" role="doc-biblioentry">
+Sun, Xiaobo, Xiaochu Lin, Ziyi Li, and Hao Wu. 2022. <span>“A Comprehensive Comparison of Supervised and Unsupervised Methods for Cell Type Identification in Single-Cell <span>RNA</span>-Seq.”</span> <em>Briefings in Bioinformatics</em> 23 (2). <a href="https://doi.org/10.1093/bib/bbab567">https://doi.org/10.1093/bib/bbab567</a>.
+</div>
+<div id="ref-nextflowenablesreproducible_tommaso2017" class="csl-entry" role="doc-biblioentry">
+Tommaso, Paolo Di, Maria Chatzou, Evan W Floden, Pablo Prieto Barja, Emilio Palumbo, and Cedric Notredame. 2017. <span>“Nextflow Enables Reproducible Computational Workflows.”</span> <em>Nat Biotechnol</em> 35 (4): 316–19. <a href="https://doi.org/10.1038/nbt.3820">https://doi.org/10.1038/nbt.3820</a>.
+</div>
+<div id="ref-overtoolsreveal_zappia2021" class="csl-entry" role="doc-biblioentry">
+Zappia, Luke, and Fabian J. Theis. 2021. <span>“Over 1000 Tools Reveal Trends in the Single-Cell <span>RNA</span>-Seq Analysis Landscape.”</span> <em>Genome Biol</em> 22 (1). <a href="https://doi.org/10.1186/s13059-021-02519-4">https://doi.org/10.1186/s13059-021-02519-4</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

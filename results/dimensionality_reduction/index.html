@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>OpenProblems - Dimensionality reduction for visualisation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script type="ojs-define">
+{"contents":[{"name":"method_info_t","value":{"task_id":["dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction"],"method_id":["densmap_logCPM_1kHVG","densmap_pca_logCPM_1kHVG","high_dim_pca","neuralee_default","neuralee_logCPM_1kHVG","pca_logCPM_1kHVG","phate_default","phate_logCPM_1kHVG","phate_sqrt","random_features","tsne_logCPM_1kHVG","umap_logCPM_1kHVG"],"method_name":["densMAP (logCPM, 1kHVG)","densMAP PCA (logCPM, 1kHVG)","High-dimensional PCA","NeuralEE (CPU) (Default)","NeuralEE (CPU) (logCPM, 1kHVG)","Principle Component Analysis (PCA) (logCPM, 1kHVG)","PHATE (default)","PHATE (logCPM, 1kHVG)","PHATE (gamma=0)","Random Features","“t-Distributed Stochastic Neighbor Embedding (t-SNE) (logCPM, 1kHVG)","Uniform Manifold Approximation and Projection (UMAP), as implemented by scanpy (logCPM, 1kHVG)"],"paper_name":["Assessing single-cell transcriptomic variability through density-preserving data visualization","Assessing single-cell transcriptomic variability through density-preserving data visualization","High-dimensional PCA (baseline)","NeuralEE: A GPU-Accelerated Elastic Embedding Dimensionality Reduction Method for Visualizing Large-Scale scRNA-Seq Data","NeuralEE: A GPU-Accelerated Elastic Embedding Dimensionality Reduction Method for Visualizing Large-Scale scRNA-Seq Data","On lines and planes of closest fit to systems of points in space","Visualizing Transitions and Structure for Biological Data Exploration","Visualizing Transitions and Structure for Biological Data Exploration","Visualizing Transitions and Structure for Biological Data Exploration","Random Features (baseline)","Visualizing Data using t-SNE","UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction"],"paper_url":["https://www.nature.com/articles/s41587-020-00801-7","https://www.nature.com/articles/s41587-020-00801-7","https://openproblems.bio","https://www.frontiersin.org/articles/10.3389/fgene.2020.00786/full","https://www.frontiersin.org/articles/10.3389/fgene.2020.00786/full","https://doi.org/10.1080/14786440109462720","https://www.nature.com/articles/s41587-019-0336-3","https://www.nature.com/articles/s41587-019-0336-3","https://www.nature.com/articles/s41587-019-0336-3","https://openproblems.bio","https://www.jmlr.org/papers/v9/vandermaaten08a.html","https://arxiv.org/abs/1802.03426"],"paper_year":[2021,2021,2022,2020,2020,1901,2019,2019,2019,2022,2008,2018],"code_url":["https://github.com/lmcinnes/umap","https://github.com/lmcinnes/umap","https://github.com/openproblems-bio/openproblems","https://github.com/HiBearME/NeuralEE","https://github.com/HiBearME/NeuralEE","https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html","https://github.com/KrishnaswamyLab/PHATE/","https://github.com/KrishnaswamyLab/PHATE/","https://github.com/KrishnaswamyLab/PHATE/","https://github.com/openproblems-bio/openproblems","https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html#sklearn.manifold.TSNE","https://github.com/lmcinnes/umap"],"image":["openproblems-python-extras","openproblems-python-extras","openproblems","openproblems-python-extras","openproblems-python-extras","openproblems","openproblems-python-extras","openproblems-python-extras","openproblems-python-extras","openproblems","openproblems-python-extras","openproblems"],"is_baseline":[false,false,true,false,false,false,false,false,false,true,false,false]}},{"name":"metric_info_t","value":{"task_id":["dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction"],"metric_id":["continuity","density_preservation","lcmc","qglobal","qlocal","qnn","qnn_auc","rmse","trustworthiness"],"metric_name":["continuity","density preservation","local continuity meta criterion","global property","local property","co-KNN size","co-KNN AUC","root mean squared error","trustworthiness"],"maximize":[true,true,true,true,true,true,true,true,true],"image":["openproblems","openproblems-python-extras","openproblems","openproblems","openproblems","openproblems","openproblems","openproblems","openproblems"]}},{"name":"dataset_info_t","value":{"task_id":["dimensionality_reduction","dimensionality_reduction","dimensionality_reduction"],"dataset_id":["mouse_hspc_nestorowa2016","olsson_2016_mouse_blood","tenx_5k_pbmc"],"dataset_name":["Mouse hematopoietic stem cell differentiation","Mouse myeloid lineage differentiation","5k Peripheral blood mononuclear cells"],"image":["openproblems","openproblems","openproblems"],"data_url":["https://ndownloader.figshare.com/files/36088649","https://figshare.com/ndownloader/files/36872214","https://ndownloader.figshare.com/files/25555739"],"data_reference":["https://doi.org/10.1182/blood-2016-05-716480","https://doi.org/10.1038/nature19348","https://www.10xgenomics.com/resources/datasets"],"dataset_summary":["1.6k hematopoietic stem and progenitor cells from mouse bone marrow. Sequenced by Smart-seq2. 1920 cells x 43258 features with 3 cell type labels","Myeloid lineage differentiation from mouse blood. Sequenced by SMARTseq in 2016 by Olsson et al. 660 cells x 112815 features with 4 cell type labels","5k Peripheral Blood Mononuclear Cells (PBMCs) from a healthy donor. Sequenced on 10X v3 chemistry in July 2019 by 10X Genomics. 5247 cells x 20822 features with no cell type labels"]}},{"name":"results_t","value":{"task_id":["dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction"],"method_id":["umap_logCPM_1kHVG","phate_logCPM_1kHVG","neuralee_logCPM_1kHVG","random_features","pca_logCPM_1kHVG","tsne_logCPM_1kHVG","densmap_logCPM_1kHVG","neuralee_default","phate_default","phate_sqrt","densmap_pca_logCPM_1kHVG","high_dim_pca","random_features","pca_logCPM_1kHVG","umap_logCPM_1kHVG","neuralee_logCPM_1kHVG","phate_default","phate_sqrt","phate_logCPM_1kHVG","tsne_logCPM_1kHVG","densmap_logCPM_1kHVG","high_dim_pca","neuralee_default","densmap_pca_logCPM_1kHVG","pca_logCPM_1kHVG","random_features","umap_logCPM_1kHVG","phate_default","densmap_logCPM_1kHVG","phate_logCPM_1kHVG","phate_sqrt","tsne_logCPM_1kHVG","densmap_pca_logCPM_1kHVG","neuralee_default","neuralee_logCPM_1kHVG","high_dim_pca"],"dataset_id":["mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc"],"density_preservation":[0.005,0.0286,0.6851,0.0125,0.5627,0.3071,0.8348,0.2704,-0.3856,-0.2177,0.8093,0.9802,-0.0301,0.631,-0.2621,0.801,0.0825,-0.2241,0.8202,-0.2467,0.8622,0.976,0.0589,0.6627,0.3807,-0.0004,-0.0039,0.341,0.7583,0.1436,0.29,0.1028,0.7809,0.5125,0.4715,0.9891],"qnn":[0.1118,0.0954,0.0681,0.0157,0.0644,0.1332,0.0888,0.0312,0.0462,0.0463,0.1135,0.0379,0.0465,0.3762,0.4059,0.6824,0.3352,0.3348,0.6794,0.4395,0.3487,0.3708,0.3763,0.395,0.0442,0.006,0.0807,0.0625,0.0665,0.0691,0.0642,0.098,0.0742,0.0447,0.0586,0.0535],"qglobal":[0.6295,0.6486,0.7511,0.5482,0.7282,0.6516,0.7368,0.5697,0.5917,0.5997,0.6881,0.5318,0.831,0.8256,0.6751,0.8611,0.5705,0.6311,0.7063,0.7404,0.7377,0.5871,0.6609,0.7423,0.8783,0.659,0.8514,0.7803,0.8474,0.8621,0.7683,0.8374,0.8235,0.7676,0.8735,0.6862],"lcmc":[0.0956,0.0793,0.0519,-0.0005,0.0483,0.1171,0.0727,0.015,0.03,0.0302,0.0974,0.0217,-0.0007,0.3291,0.3588,0.6353,0.2881,0.2877,0.6323,0.3924,0.3016,0.3237,0.3292,0.3479,0.0383,0,0.0748,0.0566,0.0606,0.0632,0.0583,0.0921,0.0683,0.0388,0.0527,0.0476],"continuity":[0.7658,0.7703,0.838,0.5289,0.7836,0.7779,0.824,0.567,0.5973,0.6239,0.7885,0.5205,0.5491,0.9262,0.9089,0.9885,0.7691,0.874,0.9729,0.916,0.9185,0.7996,0.8446,0.9104,0.7961,0.528,0.8068,0.7053,0.8555,0.792,0.7333,0.838,0.8399,0.7007,0.8643,0.6016],"qnn_auc":[0.5618,0.5689,0.6257,0.5,0.5935,0.5789,0.6254,0.5109,0.5248,0.5295,0.5984,0.5028,0.5,0.7814,0.6486,0.8421,0.5466,0.6014,0.7018,0.7107,0.7008,0.5639,0.6313,0.7092,0.7521,0.5004,0.7402,0.6911,0.7348,0.7362,0.6863,0.7301,0.7251,0.6701,0.7628,0.6125],"rmse":[12.1207,16.554,15.6707,520090.4225,10.8778,29.4384,13.3881,520090.6042,512.5762,512.4675,12.0227,1864.9863,24003.0173,26.1648,58.8938,67.2833,1199.7944,1199.7808,70.1802,34.9222,53.7647,56.6237,24002.8035,56.6267,27.7471,492.2304,43.5568,580.2451,40.6625,50.6378,580.2487,23.4844,38.0894,491.8087,49.1579,3.0625],"qlocal":[0.2067,0.2148,0.2953,0.0517,0.2647,0.2332,0.2826,0.0984,0.1386,0.1452,0.2571,0.0568,0.3267,0.3486,0.3851,0.6565,0.3091,0.3077,0.6333,0.4175,0.3437,0.3319,0.334,0.3824,0.4463,0.1598,0.4767,0.3759,0.4527,0.4475,0.3789,0.4621,0.4855,0.371,0.4932,0.2701],"trustworthiness":[0.7028,0.6701,0.6464,0.5028,0.6409,0.7513,0.6562,0.7239,0.7347,0.7343,0.7114,0.9991,0.5127,0.8735,0.8871,0.8405,0.9542,0.9552,0.8839,0.8935,0.8682,0.9937,0.9611,0.8864,0.8357,0.4994,0.8718,0.891,0.8221,0.8627,0.8918,0.8928,0.8672,0.889,0.8519,1],"scaled_density_preservation":[-0.0078,0.0167,0.695,0,0.5686,0.3045,0.8498,0.2665,-0.4114,-0.2379,0.8234,1,0,0.6571,-0.2306,0.8261,0.1119,-0.1928,0.8451,-0.2153,0.8869,1,0.0885,0.6886,0.3851,0,-0.0035,0.345,0.7667,0.1456,0.2935,0.1043,0.7896,0.5183,0.4769,1],"scaled_qnn":[4.322,3.5873,2.3568,0,2.192,5.2857,3.2895,0.6984,1.3711,1.3787,4.3998,1,0,1.0166,1.1082,1.9606,0.8903,0.8889,1.9516,1.2119,0.9319,1,1.0171,1.0746,0.8033,0,1.5709,1.1878,1.2722,1.3271,1.2245,1.9343,1.4337,0.8139,1.1062,1],"scaled_qglobal":[5.9541,7.1156,13.3601,1,11.9634,7.2991,12.4913,2.3063,3.6504,4.1357,9.5238,0,1,0.9778,0.3608,1.1235,-0.0683,0.1803,0.4886,0.6285,0.6174,0,0.3024,0.6363,8.0741,0,7.081,4.4648,6.9343,7.4762,4.023,6.5668,6.0571,3.9971,7.8964,1],"scaled_lcmc":[4.322,3.5873,2.3568,0,2.192,5.2857,3.2895,0.6984,1.3711,1.3787,4.3998,1,0,1.0166,1.1082,1.9606,0.8903,0.8889,1.9516,1.2119,0.9319,1,1.0171,1.0746,0.8033,0,1.5709,1.1878,1.2722,1.3271,1.2245,1.9343,1.4337,0.8139,1.1062,1],"scaled_continuity":[29.1194,29.6513,37.6843,1,31.23,30.5468,36.026,5.5225,9.1227,12.2719,31.8094,0,0,1.5053,1.4363,1.7541,0.8784,1.297,1.6917,1.4647,1.4746,1,1.1795,1.4422,3.6469,0,3.7923,2.4113,4.4539,3.5908,2.792,4.2165,4.2428,2.3489,4.5736,1],"scaled_qnn_auc":[21.8512,24.3667,44.4425,0,33.0344,27.8954,44.3278,3.8577,8.778,10.4289,34.7765,1,0,4.4064,2.3263,5.3571,0.7299,1.5883,3.1599,3.2993,3.1438,1,2.0564,3.2752,2.2467,0,2.1403,1.7019,2.0919,2.1041,1.6588,2.0504,2.0051,1.5142,2.3422,1],"scaled_rmse":[-0.0036,-0.0036,-0.0036,1,-0.0036,-0.0035,-0.0036,1,-0.0026,-0.0026,-0.0036,0,1,-0.0013,0.0001,0.0004,0.0477,0.0477,0.0006,-0.0009,-0.0001,0,1,1.2646e-07,0.0505,1,0.0828,1.1799,0.0769,0.0973,1.1799,0.0417,0.0716,0.9991,0.0942,0],"scaled_qlocal":[30.5571,32.1594,48.0323,0,41.9922,35.7775,45.5283,9.2067,17.1314,18.4241,40.4998,1,0,4.2664,11.3975,64.3618,-3.4479,-3.7195,59.8398,17.7061,3.3152,1,1.4109,10.871,2.5973,0,2.8728,1.9588,2.6548,2.6076,1.986,2.7403,2.9522,1.9145,3.022,1],"scaled_trustworthiness":[0.403,0.337,0.2894,0,0.2782,0.5006,0.3091,0.4455,0.4671,0.4664,0.4203,1,0,0.7502,0.7783,0.6814,0.9177,0.9199,0.7718,0.7916,0.7391,1,0.9322,0.777,0.6719,0,0.744,0.7823,0.6448,0.7258,0.784,0.7859,0.7349,0.7783,0.7043,1],"submit":["2022-11-23 17:40:42","2022-11-23 17:40:42","2022-11-23 17:40:42","2022-11-23 17:40:42","2022-11-23 17:40:42","2022-11-23 17:40:42","2022-11-23 17:40:42","2022-11-23 17:42:02","2022-11-23 17:40:42","2022-11-23 17:40:43","2022-11-23 17:41:52","2022-11-23 17:41:52","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:43:12","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:32","2022-11-23 17:41:52","2022-11-23 17:42:02","2022-11-23 17:41:32","2022-11-23 17:41:52"],"duration":[61,70,110,121,121,121,130,50.9,140,149,219,369,260,260,280,290,310,310,320,320,330,359,360,479,72,80,110,120,130,130,130,130,169,159,240,339],"realtime":[38.4,48,74,84,90,62,91,21.2,109,80,183,322,9.8,13.1,31.7,35.3,18.7,27.6,13.4,40.1,80,60,64,79,40.1,52.5,85,85,100,97,101,89,146,128,208,314],"cpu_pct":[131.4,882.5,320.5,13,21.8,1079.3,59.6,581.7,779.3,381.9,30.4,1954.9,79.9,144.1,127.2,181.9,676.3,702.4,841.4,1481.6,47.9,1900.3,348,85.4,57.5,21,124.6,1233.7,183.7,846.1,831.8,782,77,310.9,212.7,1332.3],"peak_rss_mb":[800,845.1,918.3,239.5,800.5,794.2,1024,2457.6,881.7,880.4,1024,1331.2,344.9,388.8,427.2,554.3,495.8,497.6,404,403.4,711.5,1740.8,2150.4,721.1,343.9,405.8,782.8,773.9,920.8,791.5,775.4,779.2,877.9,2764.8,743,764.1],"peak_vmem_mb":[6348.8,6553.6,6246.4,3072,3379.2,6246.4,6860.8,6246.4,6656,6656,7168,4505.6,3072,3072,6144,4608,3379.2,6348.8,6246.4,5939.2,6246.4,4915.2,5836.8,3788.8,3072,3072,6246.4,9011.2,6860.8,8806.4,9011.2,6041.6,7168,6553.6,6041.6,3891.2],"rchar_mb":[408.7,407.8,412.8,409.1,407.5,407.1,442.1,415.9,409.4,409.4,442.2,410.7,118.4,118.2,119.5,123.6,118.7,118.7,118.6,117.8,152.9,119.9,125.2,152.9,193.3,192.3,194.5,192.7,228.1,193.7,192.7,192.9,228.2,199.2,198.6,193.9],"wchar_mb":[7,4.7,4.7,362.6,5.5,5.5,5.6,362.5,534.3,534.3,6.3,534.9,72,14.5,15.4,14.2,98.1,98.1,14.2,14.5,15,520.5,72,15.4,14.8,146.4,17.5,217.2,15.8,13.5,217.2,14.9,16.5,146.4,13.4,245.8],"code_version":["0.5.3","1.0.9","0.1.6","0.6.0","1.1.3","0.1","0.5.3","0.1.6","1.0.9","1.0.9","0.5.3","0.6.0","0.6.0","1.1.3","0.5.3","0.1.6","1.0.9","1.0.9","1.0.9","0.1","0.5.3","0.6.0","0.1.6","0.5.3","1.1.3","0.6.0","0.5.3","1.0.9","0.5.3","1.0.9","1.0.9","0.1","0.5.3","0.1.6","0.1.6","0.6.0"],"is_baseline":[false,false,false,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,true,false,false,false,true,false,false,false,false,false,false,false,false,false,true]}},{"name":"scaling_factors_t","value":{"dataset_id":["mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","mouse_hspc_nestorowa2016","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","olsson_2016_mouse_blood","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc","tenx_5k_pbmc"],"metric_id":["continuity","density_preservation","lcmc","qglobal","qlocal","qnn","qnn_auc","rmse","trustworthiness","continuity","density_preservation","lcmc","qglobal","qlocal","qnn","qnn_auc","rmse","trustworthiness","continuity","density_preservation","lcmc","qglobal","qlocal","qnn","qnn_auc","rmse","trustworthiness"],"scale_min":[0.5205,0.0125,-0.0005,0.5318,0.0517,0.0157,0.5,1864.9863,0.5028,0.5491,-0.0301,-0.0007,0.5871,0.3267,0.0465,0.5,56.6237,0.5127,0.528,-0.0004,0,0.659,0.1598,0.006,0.5004,3.0625,0.4994],"scale_max":[0.5289,0.9802,0.0217,0.5482,0.0568,0.0379,0.5028,520090.4225,0.9991,0.7996,0.976,0.3237,0.831,0.3319,0.3708,0.5639,24003.0173,0.9937,0.6016,0.9891,0.0476,0.6862,0.2701,0.0535,0.6125,492.2304,1]}},{"name":"summary_t","value":{"method_id":["neuralee_logCPM_1kHVG","phate_logCPM_1kHVG","densmap_logCPM_1kHVG","densmap_pca_logCPM_1kHVG","tsne_logCPM_1kHVG","pca_logCPM_1kHVG","umap_logCPM_1kHVG","phate_sqrt","phate_default","neuralee_default","high_dim_pca","random_features"],"method_name":["NeuralEE","PHATE","densMAP","densMAP PCA","“t-Distributed Stochastic Neighbor Embedding","Principle Component Analysis","Uniform Manifold Approximation and Projection","PHATE","PHATE","NeuralEE","High-dimensional PCA","Random Features"],"method_config":["CPUlogCPM, 1kHVG","logCPM, 1kHVG","logCPM, 1kHVG","logCPM, 1kHVG","t-SNElogCPM, 1kHVG","PCAlogCPM, 1kHVG","UMAPlogCPM, 1kHVG","gamma=0","default","CPUDefault","",""],"method_is_baseline":["","","","","","","","","","","yes","yes"],"mean_score":[9.206,7.0711,6.6043,6.1559,5.9024,5.8267,4.9872,2.4188,2.1351,1.7298,0.7778,0.2222],"dataset_mouse_hspc_nestorowa2016":[16.5793,11.202,16.2342,14.0721,12.5435,13.7163,10.7242,5.3604,4.6086,2.6669,0.6667,0.3333],"dataset_olsson_2016_mouse_blood":[8.6695,7.8556,1.3379,2.2044,2.8997,1.6217,2.0317,0.211,0.1056,1.0004,0.7778,0.2222],"dataset_tenx_5k_pbmc":[2.3691,2.1557,2.2408,2.1912,2.2638,2.1421,2.2057,1.6851,1.6911,1.522,0.8889,0.1111],"metric_continuity":[14.6707,11.6446,13.9848,12.4981,12.076,12.1274,11.4493,5.4536,4.1375,3.017,0.6667,0.3333],"metric_density_preservation":[0.666,0.3358,0.8345,0.7672,0.0645,0.537,-0.0806,-0.0458,0.0152,0.2911,1,0],"metric_lcmc":[1.8079,2.2886,1.8312,2.3027,2.8107,1.3373,2.3337,1.164,1.1497,0.8431,1,0],"metric_qglobal":[7.46,5.0268,6.681,5.4057,4.8315,7.0051,4.4653,2.7797,2.6823,2.2019,0.3333,0.6667],"metric_qlocal":[38.472,31.5356,17.1661,18.1076,18.7413,16.2853,14.9425,5.5635,5.2141,4.1774,1,0],"metric_qnn":[1.8079,2.2886,1.8312,2.3027,2.8107,1.3373,2.3337,1.164,1.1497,0.8431,1,0],"metric_qnn_auc":[17.3806,9.8769,16.5212,13.3522,11.0817,13.2292,8.7726,4.5587,3.7366,2.4761,1,0],"metric_rmse":[0.0304,0.0314,0.0244,0.0227,0.0124,0.0152,0.0264,0.4084,0.4084,0.9997,0,1],"metric_trustworthiness":[0.5584,0.6115,0.5643,0.6441,0.6927,0.5668,0.6418,0.7234,0.7224,0.7186,1,0]}},{"name":"qc_t","value":{"task_id":["dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction","dimensionality_reduction"],"section":["Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Raw data","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling","Metric scaling"],"name":["Long table size","Percentage of missing results","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per metric","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per dataset","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Percentage of missing results per method","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling","Lower bound check scores after scaling","Upper bound check scores after scaling"],"desc":["Whether the long form of the results table has the right number of rows.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Probably shouldn't be higher than 10%.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range.","Scores should not fall drastically outside the range of the baseline [min, max] range."],"variable":[null,null,"continuity","density_preservation","lcmc","qglobal","qlocal","qnn","qnn_auc","rmse","trustworthiness","mouse_hspc_nestorowa2016","olsson_2016_mouse_blood","tenx_5k_pbmc","densmap_logCPM_1kHVG","densmap_pca_logCPM_1kHVG","high_dim_pca","neuralee_default","neuralee_logCPM_1kHVG","pca_logCPM_1kHVG","phate_default","phate_logCPM_1kHVG","phate_sqrt","random_features","tsne_logCPM_1kHVG","umap_logCPM_1kHVG","continuity","continuity","density_preservation","density_preservation","lcmc","lcmc","qglobal","qglobal","qlocal","qlocal","qnn","qnn","qnn_auc","qnn_auc","rmse","rmse","trustworthiness","trustworthiness"],"value":[324,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37.6843,-0.4114,1,0,5.2857,-0.0683,13.3601,-3.7195,64.3618,0,5.2857,0,44.4425,-0.0036,1.1799,0,1],"lower":[324,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],"upper":[324,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]}}]}
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../results/index.html">
+ <span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../manuscript/index.html">
+ <span class="menu-text">Manuscript</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pre-process-raw-scores" id="toc-pre-process-raw-scores" class="nav-link active" data-scroll-target="#pre-process-raw-scores">Pre-process raw scores</a></li>
+  <li><a href="#compute-scaling-factors" id="toc-compute-scaling-factors" class="nav-link" data-scroll-target="#compute-scaling-factors">Compute scaling factors</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality control</a></li>
+  <li><a href="#raw-data" id="toc-raw-data" class="nav-link" data-scroll-target="#raw-data">Raw data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Dimensionality reduction for visualisation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pre-process-raw-scores" class="level2">
+<h2 class="anchored" data-anchor-id="pre-process-raw-scores">Pre-process raw scores</h2>
+<p>Build a full crossing to make sure no results are missing. It’s likely some of the methods didn’t finish running on all datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cross_df <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dataset_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(dataset_id),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  method_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(method_id, is_baseline),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  metric_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(metric_id)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Transform the results into a long format and join with the crossing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results_long <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  results <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(metric_id, value, <span class="sc">!!</span>metric_info<span class="sc">$</span>metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(method_id, dataset_id, metric_id, value, is_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(cross_df, <span class="at">by =</span> <span class="fu">colnames</span>(cross_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot the raw scores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results_long) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(value, method_id, <span class="at">colour =</span> is_baseline)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_id, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="compute-scaling-factors" class="level2">
+<h2 class="anchored" data-anchor-id="compute-scaling-factors">Compute scaling factors</h2>
+<ul>
+<li>Compute the minimum and maximum scores of baseline methods per dataset per metric.</li>
+<li>Rescale values</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scaling_factors <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  results <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(is_baseline) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(metric_id, value, <span class="sc">!!</span>metric_info<span class="sc">$</span>metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(dataset_id, metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale_min =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="fu">min</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale_max =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="fu">max</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualise the scaling factors.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results_long_scaled <span class="ot">&lt;-</span> results_long <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(scaling_factors, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dataset_id"</span>, <span class="st">"metric_id"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(metric_info <span class="sc">%&gt;%</span> <span class="fu">select</span>(metric_id, maximize), <span class="at">by =</span> <span class="st">"metric_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">~</span> value,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      maximize <span class="sc">~</span> scale_min,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span>maximize <span class="sc">~</span> scale_max</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> (scaled_score <span class="sc">-</span> scale_min) <span class="sc">/</span> (scale_max <span class="sc">-</span> scale_min),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">scaled_score =</span> <span class="fu">ifelse</span>(maximize, scaled_score, <span class="dv">1</span> <span class="sc">-</span> scaled_score)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>overall_ranking <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(scaled_score)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>View results</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order by ranking</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>results_long_scaled<span class="sc">$</span>method_id <span class="ot">&lt;-</span> <span class="fu">factor</span>(results_long_scaled<span class="sc">$</span>method_id, <span class="at">levels =</span> <span class="fu">rev</span>(overall_ranking<span class="sc">$</span>method_id))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results_long_scaled <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(method_id)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> x), <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(scaled_score, method_id, <span class="at">group =</span> dataset_id), <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(scaled_score, method_id, <span class="at">colour =</span> is_baseline)) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>metric_id, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Add extra columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>per_dataset <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id, dataset_id) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(scaled_score), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dataset_id =</span> <span class="fu">paste0</span>(<span class="st">"dataset_"</span>, dataset_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(dataset_id, score)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>per_metric <span class="ot">&lt;-</span> results_long_scaled <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method_id, metric_id) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(scaled_score), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric_id =</span> <span class="fu">paste0</span>(<span class="st">"metric_"</span>, metric_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(metric_id, score)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  method_info <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    method_id,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_tmp =</span> method_name,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_name =</span> <span class="fu">gsub</span>(<span class="st">" </span><span class="sc">\\</span><span class="st">(.*"</span>, <span class="st">""</span>, name_tmp),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_config =</span> <span class="fu">gsub</span>(<span class="st">"[^</span><span class="sc">\\</span><span class="st">(]*</span><span class="sc">\\</span><span class="st">(?([^</span><span class="sc">\\</span><span class="st">)]*)</span><span class="sc">\\</span><span class="st">)?"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, name_tmp),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_is_baseline =</span> <span class="fu">ifelse</span>(is_baseline, <span class="st">"yes"</span>, <span class="st">""</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name_tmp) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(overall_ranking, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(per_dataset, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(per_metric, <span class="at">by =</span> <span class="st">"method_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix funkyheatmap defaults so we don't need to do the processing below</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>column_info <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">colnames</span>(summary)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> id <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"^[^_]+_"</span>, <span class="st">""</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">" "</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_to_title</span>(),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">gsub</span>(<span class="st">"_.*"</span>, <span class="st">""</span>, id),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">==</span> <span class="st">"method"</span> <span class="sc">~</span> <span class="st">"text"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">==</span> <span class="st">"mean"</span> <span class="sc">~</span> <span class="st">"bar"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"dataset"</span>, <span class="st">"metric"</span>) <span class="sc">~</span> <span class="st">"funkyrect"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="fu">ifelse</span>(group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"dataset"</span>, <span class="st">"metric"</span>), group, <span class="cn">NA_character_</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">map2</span>(id, geom, <span class="cf">function</span>(id, geom) {</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"method_name"</span>) {</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">6</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"method_config"</span>) {</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">4</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (id <span class="sc">==</span> <span class="st">"is_baseline"</span>) {</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">1</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (geom <span class="sc">==</span> <span class="st">"bar"</span>) {</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">4</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>()</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">funky_heatmap</span>(</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> summary,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">column_info =</span> column_info,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">expand =</span> <span class="fu">c</span>(<span class="at">xmax =</span> <span class="dv">3</span>),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_annot_offset =</span> <span class="dv">4</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Could not find column 'id' in data. Using rownames as 'id'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No row info was provided, assuming all rows in `data` are to be plotted.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Row info did not contain group information, assuming rows are ungrouped.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No column groups was provided, deriving from column info.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Column groups did not contain a column called 'palette'. Assuming no colour scales need to be used.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Column groups did not contain a column called 'level1'. Using `column_info$group` as a makeshift column group name.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ No palettes were provided, trying to automatically assign palettes.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'mean' was not defined. Assuming palette is numerical. Automatically selected palette 'Blues'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'dataset' was not defined. Assuming palette is numerical. Automatically selected palette 'Reds'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Palette named 'metric' was not defined. Assuming palette is numerical. Automatically selected palette 'YlOrBr'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Ignoring unknown parameters: size</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="784"></p>
+</div>
+</div>
+</section>
+<section id="quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control">Quality control</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> section </th>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> variable </th>
+   <th style="text-align:right;"> lower </th>
+   <th style="text-align:right;"> value </th>
+   <th style="text-align:right;"> upper </th>
+   <th style="text-align:left;"> test </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qlocal </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 64.362 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qnn_auc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 44.443 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> continuity </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 37.684 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qglobal </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 13.360 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> lcmc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 5.286 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qnn </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 5.286 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qlocal </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -3.719 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: red !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✗ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> rmse </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 1.180 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> density_preservation </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 1.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Upper bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> trustworthiness </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 1.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> continuity </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> lcmc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qnn </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qnn_auc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> trustworthiness </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> rmse </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -0.004 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> qglobal </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -0.068 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Metric scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> Lower bound check scores after scaling </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> density_preservation </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -1 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> -0.411 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> 2.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Scores should not fall drastically outside the range of the baseline [min, max] range."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> Long table size </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows.">  </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 324 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 324.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> 324.0 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Whether the long form of the results table has the right number of rows."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%.">  </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> mouse_hspc_nestorowa2016 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> olsson_2016_mouse_blood </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per dataset </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> tenx_5k_pbmc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> densmap_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> densmap_pca_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> high_dim_pca </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> neuralee_default </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> neuralee_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> pca_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> phate_default </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> phate_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> phate_sqrt </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> random_features </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> tsne_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per method </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> umap_logCPM_1kHVG </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> continuity </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> density_preservation </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> lcmc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> qglobal </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> qlocal </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> qnn </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> qnn_auc </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> rmse </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Raw data </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> Percentage of missing results per metric </td>
+   <td style="text-align:left;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> trustworthiness </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.000 </td>
+   <td style="text-align:right;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> 0.1 </td>
+   <td style="text-align:left;color: green !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Probably shouldn't be higher than 10%."> ✓ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="raw-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="raw-data">Raw data</h2>
+<div class="column-page">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Methods</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Metrics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Datasets</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Scaling factors</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">Quality control</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb22" data-startfrom="469" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 468;"><span id="cb22-469"><a href="#cb22-469" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(method_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb23" data-startfrom="476" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 475;"><span id="cb23-476"><a href="#cb23-476" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(metric_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb24" data-startfrom="482" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 481;"><span id="cb24-482"><a href="#cb24-482" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(dataset_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb25" data-startfrom="488" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 487;"><span id="cb25-488"><a href="#cb25-488" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb26" data-startfrom="494" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 493;"><span id="cb26-494"><a href="#cb26-494" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(scaling_factors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb27" data-startfrom="500" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 499;"><span id="cb27-500"><a href="#cb27-500" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb28" data-startfrom="506" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 505;"><span id="cb28-506"><a href="#cb28-506" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb29" data-startfrom="530" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 529;"><span id="cb29-530"><a href="#cb29-530" aria-hidden="true" tabindex="-1"></a>method_info <span class="op">=</span> <span class="fu">transpose</span>(method_info_t)</span>
+<span id="cb29-531"><a href="#cb29-531" aria-hidden="true" tabindex="-1"></a>metric_info <span class="op">=</span> <span class="fu">transpose</span>(metric_info_t)</span>
+<span id="cb29-532"><a href="#cb29-532" aria-hidden="true" tabindex="-1"></a>dataset_info <span class="op">=</span> <span class="fu">transpose</span>(dataset_info_t)</span>
+<span id="cb29-533"><a href="#cb29-533" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> <span class="fu">transpose</span>(results_t)</span>
+<span id="cb29-534"><a href="#cb29-534" aria-hidden="true" tabindex="-1"></a>scaling_factors <span class="op">=</span> <span class="fu">transpose</span>(scaling_factors_t)</span>
+<span id="cb29-535"><a href="#cb29-535" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> <span class="fu">transpose</span>(summary_t)</span>
+<span id="cb29-536"><a href="#cb29-536" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> <span class="fu">transpose</span>(qc_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"Inputs.table(method_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Inputs.table(metric_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"Inputs.table(dataset_info)\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"Inputs.table(results)\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"Inputs.table(scaling_factors)\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"Inputs.table(summary)\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"Inputs.table(qc)\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"method_info = transpose(method_info_t)\nmetric_info = transpose(metric_info_t)\ndataset_info = transpose(dataset_info_t)\nresults = transpose(results_t)\nscaling_factors = transpose(scaling_factors_t)\nsummary = transpose(summary_t)\nqc = transpose(qc_t)\n"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../results/dimensionality_reduction";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

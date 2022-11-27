@@ -1,0 +1,18 @@
+[
+  {
+    "listing": "/results/index.html",
+    "items": [
+      "/results/batch_integration_embed/index.html",
+      "/results/batch_integration_feature/index.html",
+      "/results/batch_integration_graph/index.html",
+      "/results/cell_cell_communication_ligand_target/index.html",
+      "/results/cell_cell_communication_source_target/index.html",
+      "/results/denoising/index.html",
+      "/results/dimensionality_reduction/index.html",
+      "/results/label_projection/index.html",
+      "/results/multimodal_data_integration/index.html",
+      "/results/regulatory_effect_prediction/index.html",
+      "/results/spatial_decomposition/index.html"
+    ]
+  }
+]
