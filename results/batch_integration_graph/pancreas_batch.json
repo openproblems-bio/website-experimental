@@ -6,9 +6,9 @@
         "names": [
             "Rank", 
             "Mean score", 
-            "Graph connectivity", 
             "Isolated label F1", 
             "NMI", 
+            "Graph connectivity", 
             "ARI", 
             "Memory (GB)", 
             "Runtime (min)", 

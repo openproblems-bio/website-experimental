@@ -6,11 +6,11 @@
         "names": [
             "Rank", 
             "Mean score", 
-            "PC Regression", 
             "Batch ASW", 
+            "Cell Cycle Score", 
             "Silhouette", 
             "Isolated label Silhouette", 
-            "Cell Cycle Score", 
+            "PC Regression", 
             "Memory (GB)", 
             "Runtime (min)", 
             "CPU (%)", 

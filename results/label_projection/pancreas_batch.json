@@ -6,8 +6,8 @@
         "names": [
             "Rank", 
             "Mean score", 
-            "Accuracy", 
             "F1 score", 
+            "Accuracy", 
             "Macro F1 score", 
             "Memory (GB)", 
             "Runtime (min)", 
