@@ -23,7 +23,7 @@ In single-cell genomics, large-scale benchmarks [@comparisonsinglecell_saelens20
 
 Learning from machine learning competitions, we propose a living benchmarking framework for single-cell genomics tools that follows the Common Task Framework (CTF) [@yearsdatascience_donoho2017]. The CTF has 3 criteria: (1) An easily available training dataset of sufficient complexity, (2) a set of competitors who submit methods for benchmarking, and (3) a set of metrics that are evaluated on test data to define progress on the task and thereby formally define it. When continuously updating such benchmarks, ...
 
-```{r}
+```{r, echo=FALSE}
 tasks <- map(op$TASKS, function(task) {
   list(
     method_ids = map_chr(task$METHODS, function(fun) fun$`__name__`),
