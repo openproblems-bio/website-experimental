@@ -10,16 +10,16 @@
         "wchar": "1.2 GB", 
         "metrics": {
             "graph_connectivity": 0.7831193052575947, 
+            "isolated_labels_f1": 0.7448742257648358, 
             "nmi": 0.6309086566409079, 
-            "ari": 0.3411824785748277, 
-            "isolated_labels_f1": 0.7448742257648358
+            "ari": 0.3411824785748277
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
             "graph_connectivity": 0.8058140687113152, 
+            "isolated_labels_f1": 0.7547204267568298, 
             "nmi": 0.6322721521722875, 
-            "ari": 0.34123841406717237, 
-            "isolated_labels_f1": 0.7547204267568298
+            "ari": 0.34123841406717237
         }
     }, 
     "random_integration": {
@@ -33,16 +33,16 @@
         "wchar": "1.2 GB", 
         "metrics": {
             "isolated_labels_f1": 0.0, 
-            "graph_connectivity": 0.0, 
+            "ari": 0.0, 
             "nmi": 0.0, 
-            "ari": 0.0
+            "graph_connectivity": 0.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
             "isolated_labels_f1": 0.03859351734065963, 
-            "graph_connectivity": 0.10464169473763299, 
+            "ari": 8.490286084627101e-05, 
             "nmi": 0.003694195369012161, 
-            "ari": 8.490286084627101e-05
+            "graph_connectivity": 0.10464169473763299
         }
     }, 
     "bbknn_hvg_unscaled": {
@@ -55,19 +55,19 @@
         "rchar": "1.3 GB", 
         "wchar": "268.1 MB", 
         "metrics": {
-            "graph_connectivity": 0.9786714789889627, 
-            "ari": 0.6184523293169517, 
             "isolated_labels_f1": 0.36536521148705664, 
-            "nmi": 0.7428398951529075
+            "nmi": 0.7428398951529075, 
+            "ari": 0.6184523293169517, 
+            "graph_connectivity": 0.9786714789889627
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
-            "graph_connectivity": 0.9809033315738048, 
-            "ari": 0.6184847238057419, 
             "isolated_labels_f1": 0.38985800020251676, 
-            "nmi": 0.7437898948213283
+            "nmi": 0.7437898948213283, 
+            "ari": 0.6184847238057419, 
+            "graph_connectivity": 0.9809033315738048
         }, 
-        "mean_score": 0.6763322287364697
+        "mean_score": 0.6763322287364696
     }, 
     "no_integration": {
         "submit": "2022-11-23 17:46:53.241", 
@@ -79,17 +79,17 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
+            "isolated_labels_f1": 0.7423771019729919, 
             "nmi": 0.6394740630737963, 
             "graph_connectivity": 0.7831193052575947, 
-            "ari": 0.29895103809845436, 
-            "isolated_labels_f1": 0.7423771019729919
+            "ari": 0.29895103809845436
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
+            "isolated_labels_f1": 0.7523196757553482, 
             "nmi": 0.6408059163203979, 
             "graph_connectivity": 0.8058140687113152, 
-            "ari": 0.2990105591609131, 
-            "isolated_labels_f1": 0.7523196757553482
+            "ari": 0.2990105591609131
         }
     }, 
     "batch_random_integration": {
@@ -102,17 +102,17 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "nmi": 0.11648613855541474, 
-            "isolated_labels_f1": 0.1196060460446071, 
+            "ari": 0.044860017483528435, 
             "graph_connectivity": 0.1515531616882366, 
-            "ari": 0.044860017483528435
+            "nmi": 0.11648613855541474, 
+            "isolated_labels_f1": 0.1196060460446071
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "nmi": 0.11975001137082139, 
-            "isolated_labels_f1": 0.15358354537319646, 
+            "ari": 0.044941111600552745, 
             "graph_connectivity": 0.240336076743966, 
-            "ari": 0.044941111600552745
+            "nmi": 0.11975001137082139, 
+            "isolated_labels_f1": 0.15358354537319646
         }
     }, 
     "bbknn_full_unscaled": {
@@ -126,15 +126,15 @@
         "wchar": "1.2 GB", 
         "metrics": {
             "graph_connectivity": 0.9909544329351677, 
-            "nmi": 0.7108996665430861, 
             "ari": 0.5822370395832887, 
+            "nmi": 0.7108996665430861, 
             "isolated_labels_f1": 0.39825823784635067
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
             "graph_connectivity": 0.9919009764026947, 
-            "nmi": 0.7119676596561225, 
             "ari": 0.5822725088537837, 
+            "nmi": 0.7119676596561225, 
             "isolated_labels_f1": 0.4214815689786266
         }, 
         "mean_score": 0.6705873442269733
@@ -150,16 +150,16 @@
         "wchar": "241.4 MB", 
         "metrics": {
             "nmi": 0.773100656142705, 
-            "graph_connectivity": 0.9474834632877168, 
             "isolated_labels_f1": 0.7046229561076891, 
-            "ari": 0.7540663564521622
+            "ari": 0.7540663564521622, 
+            "graph_connectivity": 0.9474834632877168
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
             "nmi": 0.7739388666480145, 
-            "graph_connectivity": 0.9529788826910413, 
             "isolated_labels_f1": 0.7160225951731798, 
-            "ari": 0.7540872369220778
+            "ari": 0.7540872369220778, 
+            "graph_connectivity": 0.9529788826910413
         }, 
         "mean_score": 0.7948183579975683
     }, 
@@ -174,16 +174,16 @@
         "wchar": "426.5 MB", 
         "metrics": {
             "isolated_labels_f1": 0.655870403649267, 
-            "nmi": 0.7939189949545904, 
             "graph_connectivity": 0.9572032931209383, 
-            "ari": 0.7533531864906379
+            "ari": 0.7533531864906379, 
+            "nmi": 0.7939189949545904
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
             "isolated_labels_f1": 0.6691515751934631, 
-            "nmi": 0.7946802984490705, 
             "graph_connectivity": 0.9616816130579531, 
-            "ari": 0.7533741275107234
+            "ari": 0.7533741275107234, 
+            "nmi": 0.7946802984490705
         }, 
         "mean_score": 0.7900864695538584
     }, 
@@ -197,16 +197,16 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "nmi": 1.0, 
-            "graph_connectivity": 1.0, 
             "ari": 1.0, 
+            "graph_connectivity": 1.0, 
+            "nmi": 1.0, 
             "isolated_labels_f1": 1.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "nmi": 1.0, 
-            "graph_connectivity": 1.0, 
             "ari": 1.0, 
+            "graph_connectivity": 1.0, 
+            "nmi": 1.0, 
             "isolated_labels_f1": 1.0
         }
     }, 
@@ -232,7 +232,7 @@
             "ari": 0.6316650971984206, 
             "isolated_labels_f1": 0.6579340999270917
         }, 
-        "mean_score": 0.743981886342702
+        "mean_score": 0.7439818863427021
     }, 
     "harmony_full_unscaled": {
         "submit": "2022-11-23 17:46:53.388", 
@@ -244,17 +244,17 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "ari": 0.5617985356845742, 
             "nmi": 0.7156793653602271, 
+            "isolated_labels_f1": 0.6830108282168322, 
             "graph_connectivity": 0.950737600985208, 
-            "isolated_labels_f1": 0.6830108282168322
+            "ari": 0.5617985356845742
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "ari": 0.5618357402425216, 
             "nmi": 0.716729701332028, 
+            "isolated_labels_f1": 0.6952445553148473, 
             "graph_connectivity": 0.9558925019049573, 
-            "isolated_labels_f1": 0.6952445553148473
+            "ari": 0.5618357402425216
         }, 
         "mean_score": 0.7278065825617104
     }, 
@@ -268,17 +268,17 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "ari": 0.5780792490109639, 
-            "nmi": 0.6700830051250914, 
             "graph_connectivity": 0.9478320029062894, 
-            "isolated_labels_f1": 0.6637200294824844
+            "isolated_labels_f1": 0.6637200294824844, 
+            "ari": 0.5780792490109639, 
+            "nmi": 0.6700830051250914
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "ari": 0.5781150712897732, 
-            "nmi": 0.6713017829597168, 
             "graph_connectivity": 0.9532909505332432, 
-            "isolated_labels_f1": 0.6766982563559687
+            "isolated_labels_f1": 0.6766982563559687, 
+            "ari": 0.5781150712897732, 
+            "nmi": 0.6713017829597168
         }, 
         "mean_score": 0.7149285716312073
     }, 
@@ -292,17 +292,17 @@
         "rchar": "1.3 GB", 
         "wchar": "2.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.6786716202390326, 
+            "nmi": 0.7166784419391061, 
             "ari": 0.5952002260551872, 
             "graph_connectivity": 0.8785688072075067, 
-            "nmi": 0.7166784419391061
+            "isolated_labels_f1": 0.6786716202390326
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.6910728126353836, 
+            "nmi": 0.717725087126836, 
             "ari": 0.595234594714065, 
             "graph_connectivity": 0.8912755730153255, 
-            "nmi": 0.717725087126836
+            "isolated_labels_f1": 0.6910728126353836
         }, 
         "mean_score": 0.7172797738602081
     }, 
@@ -316,19 +316,19 @@
         "rchar": "1.3 GB", 
         "wchar": "450.3 MB", 
         "metrics": {
-            "isolated_labels_f1": 0.4290496177305308, 
             "ari": 0.6069302567387124, 
             "nmi": 0.6952354394875061, 
-            "graph_connectivity": 0.9820006317997916
+            "graph_connectivity": 0.9820006317997916, 
+            "isolated_labels_f1": 0.4290496177305308
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.4510846012093038, 
             "ari": 0.6069636294844274, 
             "nmi": 0.6963612993155904, 
-            "graph_connectivity": 0.9838841161924681
+            "graph_connectivity": 0.9838841161924681, 
+            "isolated_labels_f1": 0.4510846012093038
         }, 
-        "mean_score": 0.6783039864391353
+        "mean_score": 0.6783039864391351
     }, 
     "bbknn_full_scaled": {
         "submit": "2022-11-23 17:46:52.778", 
@@ -340,17 +340,17 @@
         "rchar": "1.3 GB", 
         "wchar": "2.4 GB", 
         "metrics": {
-            "nmi": 0.6577219286597767, 
             "ari": 0.573164273409865, 
             "isolated_labels_f1": 0.3826756298608974, 
-            "graph_connectivity": 0.9724749172050792
+            "graph_connectivity": 0.9724749172050792, 
+            "nmi": 0.6577219286597767
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
-            "nmi": 0.6589863707258362, 
             "ari": 0.5732005129841639, 
             "isolated_labels_f1": 0.40650034864467266, 
-            "graph_connectivity": 0.9753551885165334
+            "graph_connectivity": 0.9753551885165334, 
+            "nmi": 0.6589863707258362
         }, 
         "mean_score": 0.6465091872839046
     }, 
@@ -365,15 +365,15 @@
         "wchar": "421 MB", 
         "metrics": {
             "graph_connectivity": 0.9369855262766963, 
-            "ari": 0.7310967439809766, 
             "nmi": 0.7574739874297625, 
+            "ari": 0.7310967439809766, 
             "isolated_labels_f1": 0.5771282368430036
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
             "graph_connectivity": 0.9435794676001028, 
-            "ari": 0.7311195746367035, 
             "nmi": 0.7583699259022644, 
+            "ari": 0.7311195746367035, 
             "isolated_labels_f1": 0.5934483455672784
         }, 
         "mean_score": 0.7506711236326097
@@ -388,17 +388,17 @@
         "rchar": "1.3 GB", 
         "wchar": "957.8 MB", 
         "metrics": {
+            "nmi": 0.7527480270369868, 
             "ari": 0.6593231600028189, 
-            "graph_connectivity": 0.9312836228421161, 
             "isolated_labels_f1": 0.8073137661230602, 
-            "nmi": 0.7527480270369868
+            "graph_connectivity": 0.9312836228421161
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
+            "nmi": 0.753661424130486, 
             "ari": 0.6593520844411587, 
-            "graph_connectivity": 0.9384742210041475, 
             "isolated_labels_f1": 0.8147502056314962, 
-            "nmi": 0.753661424130486
+            "graph_connectivity": 0.9384742210041475
         }, 
         "mean_score": 0.7876671440012455
     }, 
@@ -413,15 +413,15 @@
         "wchar": "944.5 MB", 
         "metrics": {
             "isolated_labels_f1": 0.6582106835067321, 
-            "graph_connectivity": 0.9529602780876466, 
             "nmi": 0.7578706720641821, 
+            "graph_connectivity": 0.9529602780876466, 
             "ari": 0.6923926137249207
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
             "isolated_labels_f1": 0.6714015354196672, 
-            "graph_connectivity": 0.9578825943085423, 
             "nmi": 0.7587651451061447, 
+            "graph_connectivity": 0.9578825943085423, 
             "ari": 0.6924187304720328
         }, 
         "mean_score": 0.7653585618458704
@@ -436,16 +436,16 @@
         "rchar": "1.3 GB", 
         "wchar": "247.1 MB", 
         "metrics": {
-            "isolated_labels_f1": 0.6539888776898516, 
-            "nmi": 0.797905982995505, 
             "ari": 0.7525742522007403, 
+            "nmi": 0.797905982995505, 
+            "isolated_labels_f1": 0.6539888776898516, 
             "graph_connectivity": 0.9560234849694534
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.6673426639387894, 
-            "nmi": 0.798652557777228, 
             "ari": 0.7525952593545755, 
+            "nmi": 0.798652557777228, 
+            "isolated_labels_f1": 0.6673426639387894, 
             "graph_connectivity": 0.9606252620309048
         }, 
         "mean_score": 0.7901231494638876
@@ -461,16 +461,16 @@
         "wchar": "746.5 MB", 
         "metrics": {
             "graph_connectivity": 0.9744583015614944, 
+            "nmi": 0.8236672542456641, 
             "isolated_labels_f1": 0.8417893411014195, 
-            "ari": 0.7859466519074378, 
-            "nmi": 0.8236672542456641
+            "ari": 0.7859466519074378
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "graph_connectivity": 0.9771310281725771, 
+            "nmi": 0.8243186618584349, 
             "isolated_labels_f1": 0.847895246909099, 
-            "ari": 0.7859648256490647, 
-            "nmi": 0.8243186618584349
+            "ari": 0.7859648256490647
         }, 
         "mean_score": 0.8564653872040039
     }, 
@@ -485,18 +485,18 @@
         "wchar": "735.2 MB", 
         "metrics": {
             "nmi": 0.8284702882733084, 
-            "graph_connectivity": 0.8999463557613585, 
             "isolated_labels_f1": 0.8161989077009582, 
+            "graph_connectivity": 0.8999463557613585, 
             "ari": 0.7834660637804634
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "nmi": 0.8291039525400171, 
-            "graph_connectivity": 0.9104161386591662, 
             "isolated_labels_f1": 0.8232924383438334, 
+            "graph_connectivity": 0.9104161386591662, 
             "ari": 0.7834844481311187
         }, 
-        "mean_score": 0.8320204038790222
+        "mean_score": 0.8320204038790221
     }, 
     "fastmnn_feature_hvg_scaled": {
         "submit": "2022-11-23 17:46:53.983", 
@@ -509,16 +509,16 @@
         "wchar": "932.8 MB", 
         "metrics": {
             "ari": 0.7554793684736822, 
+            "isolated_labels_f1": 0.6497372746176137, 
             "nmi": 0.8008508146815974, 
-            "graph_connectivity": 0.9569311976951262, 
-            "isolated_labels_f1": 0.6497372746176137
+            "graph_connectivity": 0.9569311976951262
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
             "ari": 0.7555001289748348, 
+            "isolated_labels_f1": 0.6632551451834455, 
             "nmi": 0.8015865106797432, 
-            "graph_connectivity": 0.9614379901586283, 
-            "isolated_labels_f1": 0.6632551451834455
+            "graph_connectivity": 0.9614379901586283
         }, 
         "mean_score": 0.7907496638670048
     }, 
@@ -532,15 +532,15 @@
         "rchar": "1.3 GB", 
         "wchar": "2.3 GB", 
         "metrics": {
-            "nmi": 0.667167650250642, 
             "graph_connectivity": 0.9475215976903115, 
+            "nmi": 0.667167650250642, 
             "isolated_labels_f1": 0.6648000033650376, 
             "ari": 0.5018047085405093
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "nmi": 0.6683971979757435, 
             "graph_connectivity": 0.9530130266451207, 
+            "nmi": 0.6683971979757435, 
             "isolated_labels_f1": 0.6777365502477581, 
             "ari": 0.5018470067460143
         }, 
@@ -556,16 +556,16 @@
         "rchar": "1.3 GB", 
         "wchar": "716.8 MB", 
         "metrics": {
-            "isolated_labels_f1": 0.8039521795886605, 
-            "ari": 0.731272606655092, 
             "nmi": 0.7801122498682935, 
+            "ari": 0.731272606655092, 
+            "isolated_labels_f1": 0.8039521795886605, 
             "graph_connectivity": 0.8940017003863681
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.8115183545453041, 
-            "ari": 0.7312954223795747, 
             "nmi": 0.7809245581765326, 
+            "ari": 0.7312954223795747, 
+            "isolated_labels_f1": 0.8115183545453041, 
             "graph_connectivity": 0.9050935420972459
         }, 
         "mean_score": 0.8023346841246035
@@ -581,18 +581,18 @@
         "wchar": "727.9 MB", 
         "metrics": {
             "nmi": 0.8015825888074837, 
-            "ari": 0.8074932075046373, 
             "graph_connectivity": 0.9313265140995439, 
+            "ari": 0.8074932075046373, 
             "isolated_labels_f1": 0.8175250144592926
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "nmi": 0.8023155814890425, 
-            "ari": 0.8075095518820524, 
             "graph_connectivity": 0.9385126240477086, 
+            "ari": 0.8075095518820524, 
             "isolated_labels_f1": 0.8245673659779945
         }, 
-        "mean_score": 0.8394818312177394
+        "mean_score": 0.8394818312177392
     }, 
     "combat_full_unscaled": {
         "submit": "2022-11-23 18:00:03.781", 
@@ -605,18 +605,18 @@
         "wchar": "5.5 GB", 
         "metrics": {
             "graph_connectivity": 0.9359729692344975, 
-            "ari": 0.7491177360540092, 
             "isolated_labels_f1": 0.741729696676164, 
+            "ari": 0.7491177360540092, 
             "nmi": 0.7913775540549219
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
             "graph_connectivity": 0.9426728662428182, 
-            "ari": 0.7491390366759538, 
             "isolated_labels_f1": 0.7516972561060699, 
+            "ari": 0.7491390366759538, 
             "nmi": 0.7921482461286042
         }, 
-        "mean_score": 0.8045494890048981
+        "mean_score": 0.8045494890048982
     }, 
     "combat_full_scaled": {
         "submit": "2022-11-23 18:00:23.349", 
@@ -629,16 +629,16 @@
         "wchar": "5.4 GB", 
         "metrics": {
             "graph_connectivity": 0.9760480950562754, 
+            "nmi": 0.7466641066816502, 
             "ari": 0.703659810120819, 
-            "isolated_labels_f1": 0.6666463587036601, 
-            "nmi": 0.7466641066816502
+            "isolated_labels_f1": 0.6666463587036601
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
             "graph_connectivity": 0.9785544629817815, 
+            "nmi": 0.7475999789655514, 
             "ari": 0.7036849702507235, 
-            "isolated_labels_f1": 0.6795116482396024, 
-            "nmi": 0.7475999789655514
+            "isolated_labels_f1": 0.6795116482396024
         }, 
         "mean_score": 0.7732545926406011
     }, 
@@ -652,19 +652,19 @@
         "rchar": "1.3 GB", 
         "wchar": "5.4 GB", 
         "metrics": {
+            "nmi": 0.6265687169051065, 
             "graph_connectivity": 0.9116264518038638, 
             "ari": 0.5125068520168011, 
-            "nmi": 0.6265687169051065, 
             "isolated_labels_f1": 0.613851606244318
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
+            "nmi": 0.6279482450217599, 
             "graph_connectivity": 0.9208740096570854, 
             "ari": 0.5125482415797079, 
-            "nmi": 0.6279482450217599, 
             "isolated_labels_f1": 0.6287544309747958
         }, 
-        "mean_score": 0.6661384067425224
+        "mean_score": 0.6661384067425223
     }, 
     "scalex_hvg": {
         "submit": "2022-11-23 18:28:32.568", 
@@ -676,19 +676,19 @@
         "rchar": "1.3 GB", 
         "wchar": "649.6 MB", 
         "metrics": {
+            "isolated_labels_f1": 0.6963612474029559, 
             "nmi": 0.7726573913095786, 
-            "graph_connectivity": 0.962706334743955, 
             "ari": 0.7240143313412835, 
-            "isolated_labels_f1": 0.6963612474029559
+            "graph_connectivity": 0.962706334743955
         }, 
         "code_version": "1.0.2", 
         "metrics_raw": {
+            "isolated_labels_f1": 0.7080797348666061, 
             "nmi": 0.7734972393217818, 
-            "graph_connectivity": 0.9666088070793255, 
             "ari": 0.7240377633141052, 
-            "isolated_labels_f1": 0.7080797348666061
+            "graph_connectivity": 0.9666088070793255
         }, 
-        "mean_score": 0.7889348261994432
+        "mean_score": 0.7889348261994433
     }, 
     "fastmnn_feature_full_unscaled": {
         "submit": "2022-11-23 18:04:34.108", 
@@ -700,17 +700,17 @@
         "rchar": "1.3 GB", 
         "wchar": "5.4 GB", 
         "metrics": {
+            "graph_connectivity": 0.9134833559377205, 
             "isolated_labels_f1": 0.6384838605702104, 
-            "nmi": 0.6407234098926393, 
             "ari": 0.5615809431157395, 
-            "graph_connectivity": 0.9134833559377205
+            "nmi": 0.6407234098926393
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
+            "graph_connectivity": 0.92253660419541, 
             "isolated_labels_f1": 0.6524360399662223, 
-            "nmi": 0.6420506478080084, 
             "ari": 0.5616181661479185, 
-            "graph_connectivity": 0.92253660419541
+            "nmi": 0.6420506478080084
         }, 
         "mean_score": 0.6885678923790775
     }, 
@@ -724,17 +724,17 @@
         "rchar": "2.8 GB", 
         "wchar": "2.2 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.831986015123829, 
-            "nmi": 0.8153696887870413, 
+            "ari": 0.7857045680277528, 
             "graph_connectivity": 0.9731154277120826, 
-            "ari": 0.7857045680277528
+            "isolated_labels_f1": 0.831986015123829, 
+            "nmi": 0.8153696887870413
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.8384702657626208, 
-            "nmi": 0.8160517492277035, 
+            "ari": 0.7857227623229935, 
             "graph_connectivity": 0.9759286749185867, 
-            "ari": 0.7857227623229935
+            "isolated_labels_f1": 0.8384702657626208, 
+            "nmi": 0.8160517492277035
         }, 
         "mean_score": 0.8515439249126764
     }, 
@@ -748,19 +748,19 @@
         "rchar": "1.3 GB", 
         "wchar": "262.7 MB", 
         "metrics": {
-            "isolated_labels_f1": 0.8109382781997652, 
             "nmi": 0.8101894580235962, 
             "graph_connectivity": 0.9789371721539522, 
-            "ari": 0.8215083508078906
+            "ari": 0.8215083508078906, 
+            "isolated_labels_f1": 0.8109382781997652
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.8182348350385175, 
             "nmi": 0.8108906552487551, 
             "graph_connectivity": 0.9811412221557296, 
-            "ari": 0.8215235052595442
+            "ari": 0.8215235052595442, 
+            "isolated_labels_f1": 0.8182348350385175
         }, 
-        "mean_score": 0.8553933147963011
+        "mean_score": 0.855393314796301
     }, 
     "mnn_hvg_unscaled": {
         "submit": "2022-11-23 18:28:24.588", 
@@ -772,19 +772,19 @@
         "rchar": "2.8 GB", 
         "wchar": "2.1 GB", 
         "metrics": {
+            "graph_connectivity": 0.9907861488096777, 
             "ari": 0.7048899729632894, 
             "nmi": 0.7903956037595876, 
-            "isolated_labels_f1": 0.8177609639679007, 
-            "graph_connectivity": 0.9907861488096777
+            "isolated_labels_f1": 0.8177609639679007
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
+            "graph_connectivity": 0.9917503018132934, 
             "ari": 0.7049150286488493, 
             "nmi": 0.7911699233495035, 
-            "isolated_labels_f1": 0.8247942093651506, 
-            "graph_connectivity": 0.9917503018132934
+            "isolated_labels_f1": 0.8247942093651506
         }, 
-        "mean_score": 0.8259581723751137
+        "mean_score": 0.8259581723751138
     }, 
     "scanorama_feature_full_unscaled": {
         "submit": "2022-11-23 18:38:22.952", 
@@ -796,17 +796,17 @@
         "rchar": "1.3 GB", 
         "wchar": "3.9 GB", 
         "metrics": {
-            "ari": 0.44495482745804715, 
+            "isolated_labels_f1": 0.8411075664183858, 
             "graph_connectivity": 0.7749318109354565, 
             "nmi": 0.7042560684096743, 
-            "isolated_labels_f1": 0.8411075664183858
+            "ari": 0.44495482745804715
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "ari": 0.44500195238109486, 
+            "isolated_labels_f1": 0.8472397843091174, 
             "graph_connectivity": 0.7984833276707003, 
             "nmi": 0.7053486042721687, 
-            "isolated_labels_f1": 0.8472397843091174
+            "ari": 0.44500195238109486
         }, 
         "mean_score": 0.6913125683053909
     }, 
@@ -821,18 +821,18 @@
         "wchar": "262.8 MB", 
         "metrics": {
             "nmi": 0.8581510537546985, 
-            "ari": 0.8873137291663216, 
             "isolated_labels_f1": 0.853660709657486, 
-            "graph_connectivity": 0.9870730609207212
+            "graph_connectivity": 0.9870730609207212, 
+            "ari": 0.8873137291663216
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
             "nmi": 0.8586750714750171, 
-            "ari": 0.8873232965530934, 
             "isolated_labels_f1": 0.8593084575969396, 
-            "graph_connectivity": 0.9884257577337471
+            "graph_connectivity": 0.9884257577337471, 
+            "ari": 0.8873232965530934
         }, 
-        "mean_score": 0.8965496383748067
+        "mean_score": 0.8965496383748068
     }, 
     "scanvi_full_unscaled": {
         "submit": "2022-11-23 18:28:12.513", 
@@ -844,19 +844,19 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.8119448356425114, 
-            "ari": 0.8761978073625233, 
             "nmi": 0.8353305419190469, 
+            "ari": 0.8761978073625233, 
+            "isolated_labels_f1": 0.8119448356425114, 
             "graph_connectivity": 0.9800825953820986
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.8192025458891428, 
-            "ari": 0.8762083185228573, 
             "nmi": 0.8359388630685073, 
+            "ari": 0.8762083185228573, 
+            "isolated_labels_f1": 0.8192025458891428, 
             "graph_connectivity": 0.982166786356091
         }, 
-        "mean_score": 0.8758889450765451
+        "mean_score": 0.875888945076545
     }, 
     "scanorama_feature_full_scaled": {
         "submit": "2022-11-23 19:04:23.192", 
@@ -868,17 +868,17 @@
         "rchar": "1.3 GB", 
         "wchar": "3.9 GB", 
         "metrics": {
-            "ari": 0.6978322571683905, 
-            "nmi": 0.745945678041636, 
             "isolated_labels_f1": 0.7392169832930886, 
-            "graph_connectivity": 0.9412560626499336
+            "nmi": 0.745945678041636, 
+            "graph_connectivity": 0.9412560626499336, 
+            "ari": 0.6978322571683905
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "ari": 0.6978579120742123, 
-            "nmi": 0.7468842043412921, 
             "isolated_labels_f1": 0.7492815171705163, 
-            "graph_connectivity": 0.9474031278098058
+            "nmi": 0.7468842043412921, 
+            "graph_connectivity": 0.9474031278098058, 
+            "ari": 0.6978579120742123
         }, 
         "mean_score": 0.7810627452882621
     }, 
@@ -892,19 +892,19 @@
         "rchar": "1.3 GB", 
         "wchar": "239.1 MB", 
         "metrics": {
-            "nmi": 0.7426038317706994, 
-            "isolated_labels_f1": 0.5656730227708003, 
             "graph_connectivity": 0.870023723758743, 
-            "ari": 0.6951241353140025
+            "ari": 0.6951241353140025, 
+            "isolated_labels_f1": 0.5656730227708003, 
+            "nmi": 0.7426038317706994
         }, 
         "code_version": "0.5.0.9000", 
         "metrics_raw": {
-            "nmi": 0.7435547035033736, 
-            "isolated_labels_f1": 0.5824352284980118, 
             "graph_connectivity": 0.8836246615803149, 
-            "ari": 0.6951500201471174
+            "ari": 0.6951500201471174, 
+            "isolated_labels_f1": 0.5824352284980118, 
+            "nmi": 0.7435547035033736
         }, 
-        "mean_score": 0.7183561784035613
+        "mean_score": 0.7183561784035614
     }, 
     "scanorama_embed_full_unscaled": {
         "submit": "2022-11-23 19:54:43.859", 
@@ -917,16 +917,16 @@
         "wchar": "3.9 GB", 
         "metrics": {
             "isolated_labels_f1": 0.8481709869546126, 
+            "nmi": 0.7073970600910486, 
             "graph_connectivity": 0.9248340619454519, 
-            "ari": 0.5130808292628897, 
-            "nmi": 0.7073970600910486
+            "ari": 0.5130808292628897
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "isolated_labels_f1": 0.8540306026023949, 
+            "nmi": 0.7084779925166196, 
             "graph_connectivity": 0.9326995530900237, 
-            "ari": 0.5131221700934862, 
-            "nmi": 0.7084779925166196
+            "ari": 0.5131221700934862
         }, 
         "mean_score": 0.7483707345635007
     }, 
@@ -940,17 +940,17 @@
         "rchar": "1.3 GB", 
         "wchar": "3.9 GB", 
         "metrics": {
-            "graph_connectivity": 0.9876441844331392, 
+            "nmi": 0.7943459867416715, 
             "isolated_labels_f1": 0.8419636652877451, 
             "ari": 0.7445750427515961, 
-            "nmi": 0.7943459867416715
+            "graph_connectivity": 0.9876441844331392
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "graph_connectivity": 0.9889371179139211, 
+            "nmi": 0.7951057128450691, 
             "isolated_labels_f1": 0.8480628433119168, 
             "ari": 0.7445967290611981, 
-            "nmi": 0.7951057128450691
+            "graph_connectivity": 0.9889371179139211
         }, 
         "mean_score": 0.8421322198035379
     }, 
@@ -964,19 +964,19 @@
         "rchar": "1.3 GB", 
         "wchar": "1.6 GB", 
         "metrics": {
-            "graph_connectivity": 0.9671219470731037, 
             "isolated_labels_f1": 0.6511799697587086, 
+            "nmi": 0.7355598915325049, 
             "ari": 0.6939856747097184, 
-            "nmi": 0.7355598915325049
+            "graph_connectivity": 0.9671219470731037
         }, 
         "code_version": "1.0.2", 
         "metrics_raw": {
-            "graph_connectivity": 0.9705623622510477, 
             "isolated_labels_f1": 0.6646421616445953, 
+            "nmi": 0.7365367849565866, 
             "ari": 0.6940116562013955, 
-            "nmi": 0.7365367849565866
+            "graph_connectivity": 0.9705623622510477
         }, 
-        "mean_score": 0.761961870768509
+        "mean_score": 0.7619618707685089
     }, 
     "mnn_full_unscaled": {
         "submit": "2022-11-23 19:23:03.311", 
@@ -990,17 +990,17 @@
         "metrics": {
             "nmi": 0.806891214104582, 
             "isolated_labels_f1": 0.7660829980151562, 
-            "graph_connectivity": 0.9775108595498263, 
-            "ari": 0.7520708556486912
+            "ari": 0.7520708556486912, 
+            "graph_connectivity": 0.9775108595498263
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
             "nmi": 0.8076045956871524, 
             "isolated_labels_f1": 0.7751106778875334, 
-            "graph_connectivity": 0.9798641613197251, 
-            "ari": 0.7520919055423338
+            "ari": 0.7520919055423338, 
+            "graph_connectivity": 0.9798641613197251
         }, 
-        "mean_score": 0.8256389818295639
+        "mean_score": 0.825638981829564
     }, 
     "scvi_full_unscaled": {
         "submit": "2022-11-23 18:43:23.086", 
@@ -1012,17 +1012,17 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "graph_connectivity": 0.978030953059569, 
             "isolated_labels_f1": 0.6786115345251129, 
             "nmi": 0.7803052965161412, 
-            "ari": 0.7306194808477312
+            "ari": 0.7306194808477312, 
+            "graph_connectivity": 0.978030953059569
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "graph_connectivity": 0.9803298313631863, 
             "isolated_labels_f1": 0.691015045840506, 
             "nmi": 0.7811168916723478, 
-            "ari": 0.7306423520244635
+            "ari": 0.7306423520244635, 
+            "graph_connectivity": 0.9803298313631863
         }, 
         "mean_score": 0.7918918162371386
     }, 
@@ -1036,16 +1036,16 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
+            "nmi": 0.6595678697973815, 
             "graph_connectivity": 0.876933800351126, 
             "ari": 0.5064471080344217, 
-            "nmi": 0.6595678697973815, 
             "isolated_labels_f1": 0.47067160711787337
         }, 
         "code_version": "0.5.0.9000", 
         "metrics_raw": {
+            "nmi": 0.6608254925962389, 
             "graph_connectivity": 0.8898116560473041, 
             "ari": 0.5064890120869285, 
-            "nmi": 0.6608254925962389, 
             "isolated_labels_f1": 0.4911002516274732
         }, 
         "mean_score": 0.6284050963252006
@@ -1060,18 +1060,18 @@
         "rchar": "10.5 GB", 
         "wchar": "13.1 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.7243740658817528, 
             "graph_connectivity": 0.9612325589380095, 
-            "ari": 0.7167761670847903, 
-            "nmi": 0.7779755908334821
+            "isolated_labels_f1": 0.7243740658817528, 
+            "nmi": 0.7779755908334821, 
+            "ari": 0.7167761670847903
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.7350114401496809, 
             "graph_connectivity": 0.9652892496713775, 
-            "ari": 0.7168002135984647, 
-            "nmi": 0.7787957923776327
+            "isolated_labels_f1": 0.7350114401496809, 
+            "nmi": 0.7787957923776327, 
+            "ari": 0.7168002135984647
         }, 
-        "mean_score": 0.7950895956845088
+        "mean_score": 0.7950895956845087
     }
 }

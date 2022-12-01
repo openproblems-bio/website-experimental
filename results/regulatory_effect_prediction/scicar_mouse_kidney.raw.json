@@ -9,13 +9,13 @@
         "rchar": "273.1 MB", 
         "wchar": "271.3 MB", 
         "metrics": {
-            "pearson_correlation": 1.0, 
-            "spearman_correlation": 1.0
+            "spearman_correlation": 1.0, 
+            "pearson_correlation": 1.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "pearson_correlation": 1.0, 
-            "spearman_correlation": 1.0
+            "spearman_correlation": 1.0, 
+            "pearson_correlation": 1.0
         }
     }, 
     "random_scores": {
@@ -28,13 +28,13 @@
         "rchar": "273.1 MB", 
         "wchar": "271.3 MB", 
         "metrics": {
-            "pearson_correlation": 0.0, 
-            "spearman_correlation": 0.0
+            "spearman_correlation": 0.0, 
+            "pearson_correlation": 0.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "pearson_correlation": 0.7693040124046098, 
-            "spearman_correlation": 0.12372784482842239
+            "spearman_correlation": 0.12372784482842239, 
+            "pearson_correlation": 0.7693040124046098
         }
     }, 
     "beta": {
@@ -47,13 +47,13 @@
         "rchar": "2.5 GB", 
         "wchar": "2.1 GB", 
         "metrics": {
-            "spearman_correlation": -0.15715105784123454, 
-            "pearson_correlation": -3.331066380886856
+            "pearson_correlation": -3.331066380886856, 
+            "spearman_correlation": -0.15715105784123454
         }, 
         "code_version": "1.0", 
         "metrics_raw": {
-            "spearman_correlation": -0.013979251313609442, 
-            "pearson_correlation": 0.000840363920114175
+            "pearson_correlation": 0.000840363920114175, 
+            "spearman_correlation": -0.013979251313609442
         }, 
         "mean_score": -1.7441087193640454
     }
