@@ -28,13 +28,13 @@
         "rchar": "1.9 GB", 
         "wchar": "1.9 GB", 
         "metrics": {
-            "odds_ratio": 1.0, 
-            "auprc": 1.0
+            "auprc": 1.0, 
+            "odds_ratio": 1.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "odds_ratio": 1.0, 
-            "auprc": 1.0
+            "auprc": 1.0, 
+            "odds_ratio": 1.0
         }
     }, 
     "logfc_sum": {
@@ -67,13 +67,13 @@
         "rchar": "2 GB", 
         "wchar": "2.8 GB", 
         "metrics": {
-            "odds_ratio": -0.7916666666666667, 
-            "auprc": -0.04969837704526053
+            "auprc": -0.04969837704526053, 
+            "odds_ratio": -0.7916666666666667
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "odds_ratio": 0.0, 
-            "auprc": 0.035807212387951266
+            "auprc": 0.035807212387951266, 
+            "odds_ratio": 0.0
         }, 
         "mean_score": -0.42068252185596366
     }, 
@@ -127,13 +127,13 @@
         "rchar": "2 GB", 
         "wchar": "2.8 GB", 
         "metrics": {
-            "odds_ratio": -0.31353861192570875, 
-            "auprc": -0.017118792907819997
+            "auprc": -0.017118792907819997, 
+            "odds_ratio": -0.31353861192570875
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "odds_ratio": 0.2668621700879765, 
-            "auprc": 0.06573295175809571
+            "auprc": 0.06573295175809571, 
+            "odds_ratio": 0.2668621700879765
         }, 
         "mean_score": -0.16532870241676437
     }, 
@@ -147,13 +147,13 @@
         "rchar": "2 GB", 
         "wchar": "2.8 GB", 
         "metrics": {
-            "odds_ratio": 0.38059523809523804, 
-            "auprc": -0.02148784717998728
+            "auprc": -0.02148784717998728, 
+            "odds_ratio": 0.38059523809523804
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "odds_ratio": 0.6542857142857142, 
-            "auprc": 0.0617197888247899
+            "auprc": 0.0617197888247899, 
+            "odds_ratio": 0.6542857142857142
         }, 
         "mean_score": 0.1795536954576254
     }, 
@@ -227,13 +227,13 @@
         "rchar": "2.1 GB", 
         "wchar": "2.8 GB", 
         "metrics": {
-            "odds_ratio": 0.5973782771535581, 
-            "auprc": 0.007536152117127624
+            "auprc": 0.007536152117127624, 
+            "odds_ratio": 0.5973782771535581
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "odds_ratio": 0.7752808988764045, 
-            "auprc": 0.08837957167470539
+            "auprc": 0.08837957167470539, 
+            "odds_ratio": 0.7752808988764045
         }, 
         "mean_score": 0.30245721463534286
     }, 

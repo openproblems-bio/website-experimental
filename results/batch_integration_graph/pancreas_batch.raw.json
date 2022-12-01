@@ -9,16 +9,16 @@
         "rchar": "1.3 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
+            "ari": 0.21912001453425725, 
             "graph_connectivity": 0.7432931641711659, 
             "isolated_labels_f1": 1.0, 
-            "ari": 0.21912001453425725, 
             "nmi": 0.5909981350749733
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
+            "ari": 0.2193183743950641, 
             "graph_connectivity": 0.7848275921165826, 
             "isolated_labels_f1": 0.10606060606060606, 
-            "ari": 0.2193183743950641, 
             "nmi": 0.593309987406834
         }
     }, 
@@ -32,17 +32,17 @@
         "rchar": "1.3 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 1.0, 
+            "ari": 0.215886259882834, 
             "graph_connectivity": 0.7432931641711659, 
-            "nmi": 0.5912431671663576, 
-            "ari": 0.215886259882834
+            "isolated_labels_f1": 1.0, 
+            "nmi": 0.5912431671663576
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.10606060606060606, 
+            "ari": 0.21608639578957478, 
             "graph_connectivity": 0.7848275921165826, 
-            "nmi": 0.5935531377761256, 
-            "ari": 0.21608639578957478
+            "isolated_labels_f1": 0.10606060606060606, 
+            "nmi": 0.5935531377761256
         }
     }, 
     "random_integration": {
@@ -55,17 +55,17 @@
         "rchar": "1.3 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "nmi": 0.0, 
+            "ari": 0.0, 
             "graph_connectivity": 0.0, 
             "isolated_labels_f1": 0.0, 
-            "ari": 0.0
+            "nmi": 0.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "nmi": 0.006850418040685473, 
+            "ari": 0.0003187051723129418, 
             "graph_connectivity": 0.16179712476807936, 
             "isolated_labels_f1": 0.007722007722007722, 
-            "ari": 0.0003187051723129418
+            "nmi": 0.006850418040685473
         }
     }, 
     "combat_hvg_unscaled": {
@@ -78,15 +78,15 @@
         "rchar": "1.4 GB", 
         "wchar": "509.2 MB", 
         "metrics": {
-            "graph_connectivity": 0.980646179722385, 
             "ari": 0.9490626493395617, 
+            "graph_connectivity": 0.980646179722385, 
             "isolated_labels_f1": 0.9606377851209524, 
             "nmi": 0.9148604069788225
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
-            "graph_connectivity": 0.9837775721965812, 
             "ari": 0.9488601093831887, 
+            "graph_connectivity": 0.9837775721965812, 
             "isolated_labels_f1": 0.10218978102189781, 
             "nmi": 0.914685161442839
         }, 
@@ -102,17 +102,17 @@
         "rchar": "1.4 GB", 
         "wchar": "176.2 MB", 
         "metrics": {
-            "nmi": 0.8934271420963393, 
-            "isolated_labels_f1": 0.9606377851209524, 
+            "ari": 0.9430872008135888, 
             "graph_connectivity": 0.9781886848441822, 
-            "ari": 0.9430872008135888
+            "isolated_labels_f1": 0.9606377851209524, 
+            "nmi": 0.8934271420963393
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
-            "nmi": 0.8934164931559295, 
-            "isolated_labels_f1": 0.10218978102189781, 
+            "ari": 0.9428879426989761, 
             "graph_connectivity": 0.981717692923804, 
-            "ari": 0.9428879426989761
+            "isolated_labels_f1": 0.10218978102189781, 
+            "nmi": 0.8934164931559295
         }, 
         "mean_score": 0.9438352032187656
     }, 
@@ -126,16 +126,16 @@
         "rchar": "1.4 GB", 
         "wchar": "4.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.9682786856562969, 
-            "graph_connectivity": 0.9760443955624034, 
             "ari": 0.9460675431595269, 
+            "graph_connectivity": 0.9760443955624034, 
+            "isolated_labels_f1": 0.9682786856562969, 
             "nmi": 0.9118831403125269
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.10294117647058823, 
-            "graph_connectivity": 0.979920343482488, 
             "ari": 0.9458666481783379, 
+            "graph_connectivity": 0.979920343482488, 
+            "isolated_labels_f1": 0.10294117647058823, 
             "nmi": 0.9117307586733913
         }, 
         "mean_score": 0.9505684411726886
@@ -150,17 +150,17 @@
         "rchar": "1.3 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.11893059494175336, 
             "ari": 0.010558952977437775, 
-            "nmi": 0.04456241343088869, 
-            "graph_connectivity": 0.03284649531667514
+            "graph_connectivity": 0.03284649531667514, 
+            "isolated_labels_f1": 0.11893059494175336, 
+            "nmi": 0.04456241343088869
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.01941747572815534, 
             "ari": 0.0108718589511337, 
-            "nmi": 0.051070614754639435, 
-            "graph_connectivity": 0.18932915158380828
+            "graph_connectivity": 0.18932915158380828, 
+            "isolated_labels_f1": 0.01941747572815534, 
+            "nmi": 0.051070614754639435
         }
     }, 
     "bbknn_full_scaled": {
@@ -197,15 +197,15 @@
         "rchar": "1.4 GB", 
         "wchar": "230.2 MB", 
         "metrics": {
-            "graph_connectivity": 0.9056892145700739, 
             "ari": 0.9215656366509983, 
+            "graph_connectivity": 0.9056892145700739, 
             "isolated_labels_f1": 0.19337229240298145, 
             "nmi": 0.8668498457198986
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "graph_connectivity": 0.9209484284872552, 
             "ari": 0.9213781986311805, 
+            "graph_connectivity": 0.9209484284872552, 
             "isolated_labels_f1": 0.026737967914438505, 
             "nmi": 0.8670432969260182
         }, 
@@ -221,16 +221,16 @@
         "rchar": "1.4 GB", 
         "wchar": "484.4 MB", 
         "metrics": {
-            "isolated_labels_f1": 0.23056184895009302, 
             "ari": 0.923315551850401, 
             "graph_connectivity": 0.9052168223981646, 
+            "isolated_labels_f1": 0.23056184895009302, 
             "nmi": 0.86822337709323
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.030395136778115502, 
             "ari": 0.9231271527404236, 
             "graph_connectivity": 0.9205524680105238, 
+            "isolated_labels_f1": 0.030395136778115502, 
             "nmi": 0.8684062802755557
         }, 
         "mean_score": 0.7318294000729721
@@ -246,16 +246,16 @@
         "wchar": "1.3 GB", 
         "metrics": {
             "ari": 0.9128908834106334, 
-            "nmi": 0.847945779737801, 
+            "graph_connectivity": 0.9441884601868994, 
             "isolated_labels_f1": 0.09615661142396255, 
-            "graph_connectivity": 0.9441884601868994
+            "nmi": 0.847945779737801
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
             "ari": 0.9127082097473861, 
-            "nmi": 0.8482844045756662, 
+            "graph_connectivity": 0.9532186068575382, 
             "isolated_labels_f1": 0.017177914110429453, 
-            "graph_connectivity": 0.9532186068575382
+            "nmi": 0.8482844045756662
         }, 
         "mean_score": 0.700295433689824
     }, 
@@ -269,15 +269,15 @@
         "rchar": "1.3 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "graph_connectivity": 1.0, 
             "ari": 1.0, 
+            "graph_connectivity": 1.0, 
             "isolated_labels_f1": 0.35684307615060923, 
             "nmi": 1.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "graph_connectivity": 1.0, 
             "ari": 0.999769484181424, 
+            "graph_connectivity": 1.0, 
             "isolated_labels_f1": 0.042813455657492346, 
             "nmi": 0.9991709256032871
         }
@@ -292,17 +292,17 @@
         "rchar": "1.4 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.07672641239538443, 
-            "nmi": 0.820081801216011, 
+            "ari": 0.8751692476594455, 
             "graph_connectivity": 0.8980149020865829, 
-            "ari": 0.8751692476594455
+            "isolated_labels_f1": 0.07672641239538443, 
+            "nmi": 0.820081801216011
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.015267175572519085, 
-            "nmi": 0.8206344072662102, 
+            "ari": 0.8750072915103634, 
             "graph_connectivity": 0.9145157976981648, 
-            "ari": 0.8750072915103634
+            "isolated_labels_f1": 0.015267175572519085, 
+            "nmi": 0.8206344072662102
         }, 
         "mean_score": 0.667498090839356
     }, 
@@ -316,17 +316,17 @@
         "rchar": "1.4 GB", 
         "wchar": "503 MB", 
         "metrics": {
-            "isolated_labels_f1": 1.239672152819089, 
-            "nmi": 0.9139544953761563, 
+            "ari": 0.9428626414055835, 
             "graph_connectivity": 0.9832800344131656, 
-            "ari": 0.9428626414055835
+            "isolated_labels_f1": 1.239672152819089, 
+            "nmi": 0.9139544953761563
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.12962962962962962, 
-            "nmi": 0.9137862067814743, 
+            "ari": 0.9426635066237115, 
             "graph_connectivity": 0.9859852767713366, 
-            "ari": 0.9426635066237115
+            "isolated_labels_f1": 0.12962962962962962, 
+            "nmi": 0.9137862067814743
         }, 
         "mean_score": 1.0199423310034985
     }, 
@@ -340,17 +340,17 @@
         "rchar": "1.4 GB", 
         "wchar": "399.3 MB", 
         "metrics": {
-            "graph_connectivity": 0.9804552374108546, 
             "ari": 0.9552685782890713, 
-            "nmi": 0.9243283266265161, 
-            "isolated_labels_f1": 1.0082330128830985
+            "graph_connectivity": 0.9804552374108546, 
+            "isolated_labels_f1": 1.0082330128830985, 
+            "nmi": 0.9243283266265161
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "graph_connectivity": 0.983617523802053, 
             "ari": 0.9550626299062512, 
-            "nmi": 0.9240803722732002, 
-            "isolated_labels_f1": 0.10687022900763359
+            "graph_connectivity": 0.983617523802053, 
+            "isolated_labels_f1": 0.10687022900763359, 
+            "nmi": 0.9240803722732002
         }, 
         "mean_score": 0.9670712888023851
     }, 
@@ -364,16 +364,16 @@
         "rchar": "1.3 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.9456858070949548, 
             "ari": 0.9159284078167291, 
             "graph_connectivity": 0.9535162565895663, 
+            "isolated_labels_f1": 0.9456858070949548, 
             "nmi": 0.8706623104286841
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.10071942446043167, 
             "ari": 0.9157440658813176, 
             "graph_connectivity": 0.9610371926218316, 
+            "isolated_labels_f1": 0.10071942446043167, 
             "nmi": 0.8708264838409048
         }, 
         "mean_score": 0.9214481954824836
@@ -389,15 +389,15 @@
         "wchar": "399.2 MB", 
         "metrics": {
             "ari": 0.9506431382469054, 
-            "isolated_labels_f1": 0.9311579986583466, 
             "graph_connectivity": 0.9858815055150224, 
+            "isolated_labels_f1": 0.9311579986583466, 
             "nmi": 0.9170259575599641
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "ari": 0.9504397302528486, 
-            "isolated_labels_f1": 0.09929078014184396, 
             "graph_connectivity": 0.9881658373287457, 
+            "isolated_labels_f1": 0.09929078014184396, 
             "nmi": 0.9168340816946698
         }, 
         "mean_score": 0.9461771499950595
@@ -413,15 +413,15 @@
         "wchar": "390.7 MB", 
         "metrics": {
             "ari": 0.6588176680459181, 
-            "isolated_labels_f1": 1.7466709376287004, 
             "graph_connectivity": 0.9696047844813033, 
+            "isolated_labels_f1": 1.7466709376287004, 
             "nmi": 0.8290919833706858
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "ari": 0.6587745367257717, 
-            "isolated_labels_f1": 0.17948717948717946, 
             "graph_connectivity": 0.9745226429589345, 
+            "isolated_labels_f1": 0.17948717948717946, 
             "nmi": 0.8295753957951685
         }, 
         "mean_score": 1.051046343381652
@@ -437,16 +437,16 @@
         "wchar": "478.2 MB", 
         "metrics": {
             "ari": 0.8390489645331687, 
+            "graph_connectivity": 0.9093528215992811, 
             "isolated_labels_f1": 0.23150418595203204, 
-            "nmi": 0.8352997383936247, 
-            "graph_connectivity": 0.9093528215992811
+            "nmi": 0.8352997383936247
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
             "ari": 0.8389068464017764, 
+            "graph_connectivity": 0.9240192744328566, 
             "isolated_labels_f1": 0.030487804878048783, 
-            "nmi": 0.8357354784103556, 
-            "graph_connectivity": 0.9240192744328566
+            "nmi": 0.8357354784103556
         }, 
         "mean_score": 0.7038014276195266
     }, 
@@ -461,15 +461,15 @@
         "wchar": "154.1 MB", 
         "metrics": {
             "ari": 0.8051882611050033, 
-            "isolated_labels_f1": 0.23150418595203204, 
             "graph_connectivity": 0.9063638718208489, 
+            "isolated_labels_f1": 0.23150418595203204, 
             "nmi": 0.8271323014002814
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
             "ari": 0.8050647399827, 
-            "isolated_labels_f1": 0.030487804878048783, 
             "graph_connectivity": 0.9215139281346508, 
+            "isolated_labels_f1": 0.030487804878048783, 
             "nmi": 0.8276307631876355
         }, 
         "mean_score": 0.6925471550695415
@@ -484,17 +484,17 @@
         "rchar": "1.4 GB", 
         "wchar": "253.5 MB", 
         "metrics": {
-            "nmi": 0.8653895059902944, 
-            "isolated_labels_f1": 0.8769468477136891, 
+            "ari": 0.919500487640683, 
             "graph_connectivity": 0.9866977989684926, 
-            "ari": 0.919500487640683
+            "isolated_labels_f1": 0.8769468477136891, 
+            "nmi": 0.8653895059902944
         }, 
         "code_version": "1.5.1", 
         "metrics_raw": {
-            "nmi": 0.8655941718643235, 
-            "isolated_labels_f1": 0.09395973154362416, 
+            "ari": 0.9193141838440511, 
             "graph_connectivity": 0.9888500568484775, 
-            "ari": 0.9193141838440511
+            "isolated_labels_f1": 0.09395973154362416, 
+            "nmi": 0.8655941718643235
         }, 
         "mean_score": 0.9121336600782899
     }, 
@@ -508,15 +508,15 @@
         "rchar": "2.1 GB", 
         "wchar": "1.1 GB", 
         "metrics": {
-            "graph_connectivity": 0.9771029721730844, 
             "ari": 0.8507071930487949, 
+            "graph_connectivity": 0.9771029721730844, 
             "isolated_labels_f1": 1.01659268750286, 
             "nmi": 0.8856837537017244
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "graph_connectivity": 0.980807645441214, 
             "ari": 0.8505586719735853, 
+            "graph_connectivity": 0.980807645441214, 
             "isolated_labels_f1": 0.10769230769230768, 
             "nmi": 0.8857325700539309
         }, 
@@ -532,17 +532,17 @@
         "rchar": "1.4 GB", 
         "wchar": "2 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.07792065162677891, 
-            "nmi": 0.8230008507000728, 
             "ari": 0.8780016250563417, 
-            "graph_connectivity": 0.8978172782561482
+            "graph_connectivity": 0.8978172782561482, 
+            "isolated_labels_f1": 0.07792065162677891, 
+            "nmi": 0.8230008507000728
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.015384615384615384, 
-            "nmi": 0.8235310399318346, 
             "ari": 0.877838113306139, 
-            "graph_connectivity": 0.9143501488352801
+            "graph_connectivity": 0.9143501488352801, 
+            "isolated_labels_f1": 0.015384615384615384, 
+            "nmi": 0.8235310399318346
         }, 
         "mean_score": 0.6691851014098353
     }, 
@@ -556,17 +556,17 @@
         "rchar": "2.1 GB", 
         "wchar": "1.1 GB", 
         "metrics": {
-            "graph_connectivity": 0.9807639213561019, 
             "ari": 0.9485509509813691, 
-            "nmi": 0.9166862838956328, 
-            "isolated_labels_f1": 0.8519671997293861
+            "graph_connectivity": 0.9807639213561019, 
+            "isolated_labels_f1": 0.8519671997293861, 
+            "nmi": 0.9166862838956328
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "graph_connectivity": 0.9838762635724972, 
             "ari": 0.9483486920604753, 
-            "nmi": 0.9164970165516749, 
-            "isolated_labels_f1": 0.0915032679738562
+            "graph_connectivity": 0.9838762635724972, 
+            "isolated_labels_f1": 0.0915032679738562, 
+            "nmi": 0.9164970165516749
         }, 
         "mean_score": 0.9244920889906224
     }, 
@@ -580,17 +580,17 @@
         "rchar": "1.3 GB", 
         "wchar": "227.7 MB", 
         "metrics": {
-            "nmi": 0.8714679679750914, 
+            "ari": 0.9049239297629831, 
             "graph_connectivity": 0.9750802175472659, 
             "isolated_labels_f1": 3.87606583382907, 
-            "ari": 0.9049239297629831
+            "nmi": 0.8714679679750914
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "nmi": 0.8716259543462772, 
+            "ari": 0.9047456317179124, 
             "graph_connectivity": 0.9791121666979643, 
             "isolated_labels_f1": 0.3888888888888889, 
-            "ari": 0.9047456317179124
+            "nmi": 0.8716259543462772
         }, 
         "mean_score": 1.6568844872786026
     }, 
@@ -604,17 +604,17 @@
         "rchar": "1.4 GB", 
         "wchar": "390.6 MB", 
         "metrics": {
-            "nmi": 0.9070529364290054, 
-            "isolated_labels_f1": 1.1594340842666113, 
             "ari": 0.9436248333894615, 
-            "graph_connectivity": 0.9645185584066733
+            "graph_connectivity": 0.9645185584066733, 
+            "isolated_labels_f1": 1.1594340842666113, 
+            "nmi": 0.9070529364290054
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "nmi": 0.9069376483040644, 
-            "isolated_labels_f1": 0.1217391304347826, 
             "ari": 0.9434252799957528, 
-            "graph_connectivity": 0.9702593536391001
+            "graph_connectivity": 0.9702593536391001, 
+            "isolated_labels_f1": 0.1217391304347826, 
+            "nmi": 0.9069376483040644
         }, 
         "mean_score": 0.9936576031229378
     }, 
@@ -628,17 +628,17 @@
         "rchar": "1.4 GB", 
         "wchar": "4.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 4.2795954788816175, 
+            "ari": 0.4943444516474755, 
             "graph_connectivity": 0.9065907054156778, 
-            "nmi": 0.498555795542836, 
-            "ari": 0.4943444516474755
+            "isolated_labels_f1": 4.2795954788816175, 
+            "nmi": 0.498555795542836
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.42857142857142855, 
+            "ari": 0.4943916524702141, 
             "graph_connectivity": 0.9217040607060356, 
-            "nmi": 0.5015775581220292, 
-            "ari": 0.4943916524702141
+            "isolated_labels_f1": 0.42857142857142855, 
+            "nmi": 0.5015775581220292
         }, 
         "mean_score": 1.5447716078719016
     }, 
@@ -652,16 +652,16 @@
         "rchar": "1.4 GB", 
         "wchar": "4.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.040759148740189224, 
             "ari": 0.8606788453173141, 
             "graph_connectivity": 0.8994669801055201, 
+            "isolated_labels_f1": 0.040759148740189224, 
             "nmi": 0.8042931876620626
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.011730205278592377, 
             "ari": 0.8605248476013647, 
             "graph_connectivity": 0.915732933668699, 
+            "isolated_labels_f1": 0.011730205278592377, 
             "nmi": 0.8049670422506462
         }, 
         "mean_score": 0.6512995404562715
@@ -676,17 +676,17 @@
         "rchar": "1.4 GB", 
         "wchar": "4.3 GB", 
         "metrics": {
-            "nmi": 0.8038883889643614, 
+            "ari": 0.8095179660005631, 
             "graph_connectivity": 0.8822759949171415, 
             "isolated_labels_f1": 0.12284060053834056, 
-            "ari": 0.8095179660005631
+            "nmi": 0.8038883889643614
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "nmi": 0.8045653522014827, 
+            "ari": 0.8093920669134468, 
             "graph_connectivity": 0.9013234004557308, 
             "isolated_labels_f1": 0.019801980198019802, 
-            "ari": 0.8093920669134468
+            "nmi": 0.8045653522014827
         }, 
         "mean_score": 0.6546307376051016
     }, 
@@ -700,17 +700,17 @@
         "rchar": "1.3 GB", 
         "wchar": "150.8 MB", 
         "metrics": {
-            "nmi": 0.9161583486231857, 
             "ari": 0.9513919675265041, 
             "graph_connectivity": 0.9783331766494757, 
-            "isolated_labels_f1": 0.8642915955891912
+            "isolated_labels_f1": 0.8642915955891912, 
+            "nmi": 0.9161583486231857
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "nmi": 0.91597313555416, 
             "ari": 0.9511881482596883, 
             "graph_connectivity": 0.9818388063704484, 
-            "isolated_labels_f1": 0.09271523178807947
+            "isolated_labels_f1": 0.09271523178807947, 
+            "nmi": 0.91597313555416
         }, 
         "mean_score": 0.9275437720970892
     }, 
@@ -724,17 +724,17 @@
         "rchar": "1.4 GB", 
         "wchar": "3.2 GB", 
         "metrics": {
-            "nmi": 0.8238312457558699, 
-            "graph_connectivity": 0.9303988248766683, 
             "ari": 0.8770966917374109, 
-            "isolated_labels_f1": 0.9101229426928416
+            "graph_connectivity": 0.9303988248766683, 
+            "isolated_labels_f1": 0.9101229426928416, 
+            "nmi": 0.8238312457558699
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "nmi": 0.8243550579750807, 
-            "graph_connectivity": 0.9416600948921029, 
             "ari": 0.8769336769955823, 
-            "isolated_labels_f1": 0.09722222222222222
+            "graph_connectivity": 0.9416600948921029, 
+            "isolated_labels_f1": 0.09722222222222222, 
+            "nmi": 0.8243550579750807
         }, 
         "mean_score": 0.8853624262656976
     }, 
@@ -748,17 +748,17 @@
         "rchar": "1.3 GB", 
         "wchar": "2 GB", 
         "metrics": {
-            "nmi": 0.8155727650916961, 
-            "graph_connectivity": 0.959896681327118, 
             "ari": 0.8276036035019383, 
-            "isolated_labels_f1": 3.9890541344437835
+            "graph_connectivity": 0.959896681327118, 
+            "isolated_labels_f1": 3.9890541344437835, 
+            "nmi": 0.8155727650916961
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "nmi": 0.8161599982507118, 
-            "graph_connectivity": 0.9663852829820484, 
             "ari": 0.8274677714030726, 
-            "isolated_labels_f1": 0.4
+            "graph_connectivity": 0.9663852829820484, 
+            "isolated_labels_f1": 0.4, 
+            "nmi": 0.8161599982507118
         }, 
         "mean_score": 1.648031796091134
     }, 
@@ -772,17 +772,17 @@
         "rchar": "1.4 GB", 
         "wchar": "3.2 GB", 
         "metrics": {
-            "nmi": 0.7578923687873952, 
-            "isolated_labels_f1": 1.0250819694810676, 
+            "ari": 0.5685605446722471, 
             "graph_connectivity": 0.9468631047170879, 
-            "ari": 0.5685605446722471
+            "isolated_labels_f1": 1.0250819694810676, 
+            "nmi": 0.7578923687873952
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "nmi": 0.758922558113616, 
-            "isolated_labels_f1": 0.10852713178294575, 
+            "ari": 0.5685669844588348, 
             "graph_connectivity": 0.9554605015929656, 
-            "ari": 0.5685669844588348
+            "isolated_labels_f1": 0.10852713178294575, 
+            "nmi": 0.758922558113616
         }, 
         "mean_score": 0.8245994969144494
     }, 
@@ -797,16 +797,16 @@
         "wchar": "9.6 GB", 
         "metrics": {
             "ari": 0.8409594515850048, 
-            "nmi": 0.863376808069405, 
+            "graph_connectivity": 0.9625158225346457, 
             "isolated_labels_f1": 1.078916440562383, 
-            "graph_connectivity": 0.9625158225346457
+            "nmi": 0.863376808069405
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
             "ari": 0.8408162841740209, 
-            "nmi": 0.8635969304418963, 
+            "graph_connectivity": 0.9685806546728365, 
             "isolated_labels_f1": 0.11382113821138212, 
-            "graph_connectivity": 0.9685806546728365
+            "nmi": 0.8635969304418963
         }, 
         "mean_score": 0.9364421306878596
     }, 
@@ -820,17 +820,17 @@
         "rchar": "1.4 GB", 
         "wchar": "174.7 MB", 
         "metrics": {
-            "isolated_labels_f1": 0.8399608527949952, 
+            "ari": 0.9432435151639321, 
             "graph_connectivity": 0.9873472155374614, 
-            "nmi": 0.9081278614226495, 
-            "ari": 0.9432435151639321
+            "isolated_labels_f1": 0.8399608527949952, 
+            "nmi": 0.9081278614226495
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.09032258064516129, 
+            "ari": 0.9430441711981972, 
             "graph_connectivity": 0.9893943996838104, 
-            "nmi": 0.9080043184193489, 
-            "ari": 0.9430441711981972
+            "isolated_labels_f1": 0.09032258064516129, 
+            "nmi": 0.9080043184193489
         }, 
         "mean_score": 0.9196698612297596
     }, 
@@ -844,17 +844,17 @@
         "rchar": "1.4 GB", 
         "wchar": "3.2 GB", 
         "metrics": {
-            "isolated_labels_f1": 1.0250819694810676, 
             "ari": 0.5489131384910234, 
-            "nmi": 0.7612411989201797, 
-            "graph_connectivity": 0.9574520367468997
+            "graph_connectivity": 0.9574520367468997, 
+            "isolated_labels_f1": 1.0250819694810676, 
+            "nmi": 0.7612411989201797
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.10852713178294575, 
             "ari": 0.5489303690455023, 
-            "nmi": 0.7622456709307216, 
-            "graph_connectivity": 0.9643361748659892
+            "graph_connectivity": 0.9643361748659892, 
+            "isolated_labels_f1": 0.10852713178294575, 
+            "nmi": 0.7622456709307216
         }, 
         "mean_score": 0.8231720859097926
     }, 
@@ -868,16 +868,16 @@
         "rchar": "1.4 GB", 
         "wchar": "150.3 MB", 
         "metrics": {
+            "ari": 0.37509603809622216, 
             "graph_connectivity": 0.6013796131003872, 
             "isolated_labels_f1": 0.40736356751730346, 
-            "ari": 0.37509603809622216, 
             "nmi": 0.3684119714745748
         }, 
         "code_version": "0.5.0.9000", 
         "metrics_raw": {
+            "ari": 0.37520873265081334, 
             "graph_connectivity": 0.6658752455746839, 
             "isolated_labels_f1": 0.04778156996587031, 
-            "ari": 0.37520873265081334, 
             "nmi": 0.37243317256647424
         }, 
         "mean_score": 0.4380627975471219
@@ -892,17 +892,17 @@
         "rchar": "1.4 GB", 
         "wchar": "3.2 GB", 
         "metrics": {
+            "ari": 0.9284763501429829, 
             "graph_connectivity": 0.9771648525158892, 
             "isolated_labels_f1": 1.27733491969066, 
-            "nmi": 0.8829856750026941, 
-            "ari": 0.9284763501429829
+            "nmi": 0.8829856750026941
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
+            "ari": 0.9282851166142534, 
             "graph_connectivity": 0.9808595137224734, 
             "isolated_labels_f1": 0.13333333333333333, 
-            "nmi": 0.8830552112298653, 
-            "ari": 0.9282851166142534
+            "nmi": 0.8830552112298653
         }, 
         "mean_score": 1.0164904493380567
     }, 
@@ -916,17 +916,17 @@
         "rchar": "1.4 GB", 
         "wchar": "626.7 MB", 
         "metrics": {
-            "nmi": 0.901305409668307, 
             "ari": 0.9398707400144951, 
             "graph_connectivity": 0.9581761720502537, 
-            "isolated_labels_f1": 0.9760327847180911
+            "isolated_labels_f1": 0.9760327847180911, 
+            "nmi": 0.901305409668307
         }, 
         "code_version": "1.0.2", 
         "metrics_raw": {
-            "nmi": 0.9012342596316585, 
             "ari": 0.9396732484476698, 
             "graph_connectivity": 0.9649431471593175, 
-            "isolated_labels_f1": 0.1037037037037037
+            "isolated_labels_f1": 0.1037037037037037, 
+            "nmi": 0.9012342596316585
         }, 
         "mean_score": 0.9438462766127867
     }, 
@@ -940,17 +940,17 @@
         "rchar": "8.2 GB", 
         "wchar": "9.9 GB", 
         "metrics": {
+            "ari": 0.4571801525556917, 
             "graph_connectivity": 0.9034926183402696, 
-            "nmi": 0.5357291283009583, 
             "isolated_labels_f1": 0.6565799187230779, 
-            "ari": 0.4571801525556917
+            "nmi": 0.5357291283009583
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
+            "ari": 0.45724776479160323, 
             "graph_connectivity": 0.9191072352117097, 
-            "nmi": 0.5384654185523625, 
             "isolated_labels_f1": 0.07228915662650602, 
-            "ari": 0.45724776479160323
+            "nmi": 0.5384654185523625
         }, 
         "mean_score": 0.6382454544799994
     }, 
@@ -964,17 +964,17 @@
         "rchar": "1.4 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.9170365624856998, 
+            "ari": 0.9440813372501196, 
             "graph_connectivity": 0.9805401224062488, 
-            "nmi": 0.9102222771808725, 
-            "ari": 0.9440813372501196
+            "isolated_labels_f1": 0.9170365624856998, 
+            "nmi": 0.9102222771808725
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.09790209790209789, 
+            "ari": 0.9438815331349082, 
             "graph_connectivity": 0.9836886746492565, 
-            "nmi": 0.9100826501275959, 
-            "ari": 0.9438815331349082
+            "isolated_labels_f1": 0.09790209790209789, 
+            "nmi": 0.9100826501275959
         }, 
         "mean_score": 0.9379700748307351
     }, 
@@ -988,17 +988,17 @@
         "rchar": "1.4 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "nmi": 0.8974413569380968, 
             "ari": 0.9306839737379755, 
+            "graph_connectivity": 0.9773788112668818, 
             "isolated_labels_f1": 0.9033046831729883, 
-            "graph_connectivity": 0.9773788112668818
+            "nmi": 0.8974413569380968
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "nmi": 0.8973998808651676, 
             "ari": 0.9304915277360276, 
+            "graph_connectivity": 0.9810388545627363, 
             "isolated_labels_f1": 0.09655172413793105, 
-            "graph_connectivity": 0.9810388545627363
+            "nmi": 0.8973998808651676
         }, 
         "mean_score": 0.9272022062789855
     }, 
@@ -1012,17 +1012,17 @@
         "rchar": "1.4 GB", 
         "wchar": "1.7 GB", 
         "metrics": {
-            "isolated_labels_f1": 0.24875176926706183, 
-            "nmi": 0.8616181799764644, 
+            "ari": 0.915387272519058, 
             "graph_connectivity": 0.8912021532435439, 
-            "ari": 0.915387272519058
+            "isolated_labels_f1": 0.24875176926706183, 
+            "nmi": 0.8616181799764644
         }, 
         "code_version": "1.0.2", 
         "metrics_raw": {
-            "isolated_labels_f1": 0.032183908045977004, 
-            "nmi": 0.8618518077200957, 
+            "ari": 0.915203227786511, 
             "graph_connectivity": 0.9088053320296966, 
-            "ari": 0.915203227786511
+            "isolated_labels_f1": 0.032183908045977004, 
+            "nmi": 0.8618518077200957
         }, 
         "mean_score": 0.7292398437515321
     }, 
@@ -1036,16 +1036,16 @@
         "rchar": "1.4 GB", 
         "wchar": "174.8 MB", 
         "metrics": {
+            "ari": 0.9486975476280616, 
             "graph_connectivity": 0.9867286729864188, 
             "isolated_labels_f1": 0.858088856883434, 
-            "ari": 0.9486975476280616, 
             "nmi": 0.9199155997440015
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
+            "ari": 0.9484952081932123, 
             "graph_connectivity": 0.9888759355390732, 
             "isolated_labels_f1": 0.09210526315789473, 
-            "ari": 0.9484952081932123, 
             "nmi": 0.9197015328934082
         }, 
         "mean_score": 0.9283576693104789
@@ -1060,17 +1060,17 @@
         "rchar": "1.4 GB", 
         "wchar": "1.3 GB", 
         "metrics": {
-            "nmi": 0.33543975248623886, 
+            "ari": 0.3731288383866793, 
             "graph_connectivity": 0.586142366119643, 
             "isolated_labels_f1": 0.6889430146027185, 
-            "ari": 0.3731288383866793
+            "nmi": 0.33543975248623886
         }, 
         "code_version": "0.5.0.9000", 
         "metrics_raw": {
-            "nmi": 0.3397141634845035, 
+            "ari": 0.3732426133686443, 
             "graph_connectivity": 0.6531033413448052, 
             "isolated_labels_f1": 0.07547169811320754, 
-            "ari": 0.3732426133686443
+            "nmi": 0.3397141634845035
         }, 
         "mean_score": 0.4959134928988199
     }
