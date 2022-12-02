@@ -9,20 +9,21 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "isolated_labels_sil": 0.24898872273698694, 
-            "silhouette": 0.0, 
-            "silhouette_batch": 0.4066801576011583, 
             "cc_score": 0.0, 
-            "pcr": 1.0
+            "isolated_labels_sil": 0.24898872273698694, 
+            "kBET": NaN, 
+            "pcr": 1.0, 
+            "silhouette": 0.0, 
+            "silhouette_batch": 0.4066801576011583
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "isolated_labels_sil": 0.4754216754809022, 
-            "silhouette": 0.4226672351360321, 
-            "kBET": NaN, 
-            "silhouette_batch": 0.8511529363744722, 
             "cc_score": 0.01708182535523304, 
-            "pcr": 0.9995840732849108
+            "isolated_labels_sil": 0.4754216754809022, 
+            "kBET": NaN, 
+            "pcr": 0.9995840732849108, 
+            "silhouette": 0.4226672351360321, 
+            "silhouette_batch": 0.8511529363744722
         }
     }, 
     "no_integration": {
@@ -35,20 +36,21 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
+            "cc_score": 1.0, 
+            "isolated_labels_sil": 0.38192833453910835, 
+            "kBET": NaN, 
             "pcr": 9.753950522211953e-08, 
             "silhouette": 0.23740203883832625, 
-            "silhouette_batch": 0.0, 
-            "isolated_labels_sil": 0.38192833453910835, 
-            "cc_score": 1.0
+            "silhouette_batch": 0.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
+            "cc_score": 0.751094874768629, 
+            "isolated_labels_sil": 0.49309905245900154, 
+            "kBET": NaN, 
             "pcr": 9.749893593612107e-08, 
             "silhouette": 0.5320867523550987, 
-            "silhouette_batch": 0.7666339206165897, 
-            "kBET": NaN, 
-            "isolated_labels_sil": 0.49309905245900154, 
-            "cc_score": 0.751094874768629
+            "silhouette_batch": 0.7666339206165897
         }
     }, 
     "celltype_random_embedding": {
@@ -61,20 +63,21 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "silhouette": 1.0, 
-            "silhouette_batch": 1.0, 
+            "cc_score": 0.7728758975558928, 
             "isolated_labels_sil": 1.0, 
+            "kBET": NaN, 
             "pcr": 0.9079055780447585, 
-            "cc_score": 0.7728758975558928
+            "silhouette": 1.0, 
+            "silhouette_batch": 1.0
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "silhouette": 0.8835710999658648, 
-            "silhouette_batch": 0.9744606713890541, 
-            "kBET": NaN, 
+            "cc_score": 0.5843828197383494, 
             "isolated_labels_sil": 0.5752858866292179, 
+            "kBET": NaN, 
             "pcr": 0.9075279558600712, 
-            "cc_score": 0.5843828197383494
+            "silhouette": 0.8835710999658648, 
+            "silhouette_batch": 0.9744606713890541
         }
     }, 
     "batch_random_integration": {
@@ -87,20 +90,21 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
+            "cc_score": 0.0024441046306877636, 
+            "isolated_labels_sil": 0.0, 
+            "kBET": NaN, 
             "pcr": 0.0, 
             "silhouette": 0.025315224663114127, 
-            "silhouette_batch": 0.41820238287298267, 
-            "isolated_labels_sil": 0.0, 
-            "cc_score": 0.0024441046306877636
+            "silhouette_batch": 0.41820238287298267
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
+            "cc_score": 0.018875830048289566, 
+            "isolated_labels_sil": 0.4423129018396139, 
             "kBET": NaN, 
             "pcr": 0.0, 
             "silhouette": 0.4343351200222969, 
-            "silhouette_batch": 0.8535475630143838, 
-            "isolated_labels_sil": 0.4423129018396139, 
-            "cc_score": 0.018875830048289566
+            "silhouette_batch": 0.8535475630143838
         }
     }, 
     "celltype_random_integration": {
@@ -113,20 +117,21 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "pcr": 0.8496636545141645, 
-            "silhouette_batch": 0.6120082105775614, 
-            "isolated_labels_sil": 0.38192832753526035, 
             "cc_score": 0.35312577239407406, 
-            "silhouette": 0.23740203883832625
+            "isolated_labels_sil": 0.38192832753526035, 
+            "kBET": NaN, 
+            "pcr": 0.8496636545141645, 
+            "silhouette": 0.23740203883832625, 
+            "silhouette_batch": 0.6120082105775614
         }, 
         "code_version": "0.6.0", 
         "metrics_raw": {
-            "pcr": 0.8493102567014117, 
-            "silhouette_batch": 0.8938255984669945, 
-            "kBET": NaN, 
-            "isolated_labels_sil": 0.49309905152767897, 
             "cc_score": 0.27628075037666816, 
-            "silhouette": 0.5320867523550987
+            "isolated_labels_sil": 0.49309905152767897, 
+            "kBET": NaN, 
+            "pcr": 0.8493102567014117, 
+            "silhouette": 0.5320867523550987, 
+            "silhouette_batch": 0.8938255984669945
         }
     }, 
     "scanorama_feature_hvg_unscaled": {
@@ -140,18 +145,17 @@
         "wchar": "716.7 MB", 
         "metrics": {
             "cc_score": 1.2054089933458927, 
+            "isolated_labels_sil": 1.0446466998795148, 
             "pcr": 9.27988487311518e-07, 
             "silhouette": 0.3995496417115838, 
-            "isolated_labels_sil": 1.0446466998795148, 
             "silhouette_batch": 0.3508048025570664
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "cc_score": 0.9018677563513837, 
+            "isolated_labels_sil": 0.5812226915732026, 
             "pcr": 9.276025121083499e-07, 
             "silhouette": 0.606821209192276, 
-            "isolated_labels_sil": 0.5812226915732026, 
-            "kBET": NaN, 
             "silhouette_batch": 0.8395405428874008
         }, 
         "mean_score": 0.600082213096509
@@ -166,22 +170,21 @@
         "rchar": "1.3 GB", 
         "wchar": "247.1 MB", 
         "metrics": {
-            "silhouette": 0.35900590649511327, 
+            "cc_score": 0.9914273688741538, 
             "isolated_labels_sil": 0.4550694636792902, 
-            "silhouette_batch": 0.3826255364144649, 
             "pcr": 0.8602380899184251, 
-            "cc_score": 0.9914273688741538
+            "silhouette": 0.35900590649511327, 
+            "silhouette_batch": 0.3826255364144649
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "silhouette": 0.5881344449363674, 
+            "cc_score": 0.7448024516544505, 
             "isolated_labels_sil": 0.5028248467116534, 
-            "silhouette_batch": 0.8461537426121792, 
-            "kBET": NaN, 
             "pcr": 0.8598802939154907, 
-            "cc_score": 0.7448024516544505
+            "silhouette": 0.5881344449363674, 
+            "silhouette_batch": 0.8461537426121792
         }, 
-        "mean_score": 0.6096732730762894
+        "mean_score": 0.6096732730762895
     }, 
     "combat_hvg_scaled": {
         "submit": "2022-11-23 17:46:42.495", 
@@ -195,17 +198,16 @@
         "metrics": {
             "cc_score": 0.915045084224596, 
             "isolated_labels_sil": 0.7278523089258304, 
-            "silhouette": 0.3146733360399546, 
             "pcr": NaN, 
+            "silhouette": 0.3146733360399546, 
             "silhouette_batch": 0.45055855319988825
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
             "cc_score": 0.6887368579776665, 
             "isolated_labels_sil": 0.5390975958434865, 
-            "silhouette": 0.5677013918757439, 
             "pcr": NaN, 
-            "kBET": NaN, 
+            "silhouette": 0.5677013918757439, 
             "silhouette_batch": 0.860272040760865
         }, 
         "mean_score": 0.48162585647805384
@@ -220,20 +222,19 @@
         "rchar": "1.3 GB", 
         "wchar": "426.5 MB", 
         "metrics": {
-            "silhouette_batch": 0.3825780186051391, 
-            "isolated_labels_sil": 0.4550584959789443, 
-            "silhouette": 0.3589911532420481, 
             "cc_score": 0.8482124936072271, 
-            "pcr": 0.0
+            "isolated_labels_sil": 0.4550584959789443, 
+            "pcr": 0.0, 
+            "silhouette": 0.3589911532420481, 
+            "silhouette_batch": 0.3825780186051391
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "silhouette_batch": 0.8461438671402632, 
-            "isolated_labels_sil": 0.5028233883038021, 
-            "kBET": NaN, 
-            "silhouette": 0.5881276451050108, 
             "cc_score": 0.6396808643384144, 
-            "pcr": 0.0
+            "isolated_labels_sil": 0.5028233883038021, 
+            "pcr": 0.0, 
+            "silhouette": 0.5881276451050108, 
+            "silhouette_batch": 0.8461438671402632
         }, 
         "mean_score": 0.4089680322866718
     }, 
@@ -249,18 +250,17 @@
         "metrics": {
             "cc_score": 1.1871828913554492, 
             "isolated_labels_sil": 0.4100568360893602, 
-            "silhouette_batch": 0.4511029062993109, 
+            "pcr": 0.0, 
             "silhouette": 0.2942127648811496, 
-            "pcr": 0.0
+            "silhouette_batch": 0.4511029062993109
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
-            "kBET": NaN, 
             "cc_score": 0.8884895596504586, 
             "isolated_labels_sil": 0.49683938326779753, 
-            "silhouette_batch": 0.860385171896791, 
+            "pcr": 0.0, 
             "silhouette": 0.5582710355520248, 
-            "pcr": 0.0
+            "silhouette_batch": 0.860385171896791
         }, 
         "mean_score": 0.468511079725054
     }, 
@@ -275,21 +275,20 @@
         "wchar": "1.2 GB", 
         "metrics": {
             "cc_score": 1.215004904227205, 
-            "pcr": 0.8114491591199194, 
             "isolated_labels_sil": 1.4932475146889768, 
-            "silhouette_batch": 0.3876209692227651, 
-            "silhouette": 0.232322927138209
+            "pcr": 0.8114491591199194, 
+            "silhouette": 0.232322927138209, 
+            "silhouette_batch": 0.3876209692227651
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
             "cc_score": 0.9089112801592749, 
-            "pcr": 0.8111116557367049, 
             "isolated_labels_sil": 0.6408744808974651, 
-            "silhouette_batch": 0.8471919271814304, 
-            "kBET": NaN, 
-            "silhouette": 0.5297457701426123
+            "pcr": 0.8111116557367049, 
+            "silhouette": 0.5297457701426123, 
+            "silhouette_batch": 0.8471919271814304
         }, 
-        "mean_score": 0.8279290948794152
+        "mean_score": 0.827929094879415
     }, 
     "scanorama_embed_hvg_unscaled": {
         "submit": "2022-11-23 17:46:42.600", 
@@ -301,20 +300,19 @@
         "rchar": "1.3 GB", 
         "wchar": "735.2 MB", 
         "metrics": {
-            "pcr": 0.017346239295467518, 
-            "silhouette_batch": 0.6611645357886522, 
-            "isolated_labels_sil": 0.9083372153491999, 
             "cc_score": 1.2311019326772383, 
-            "silhouette": 0.3447316459314151
+            "isolated_labels_sil": 0.9083372153491999, 
+            "pcr": 0.017346239295467518, 
+            "silhouette": 0.3447316459314151, 
+            "silhouette_batch": 0.6611645357886522
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "pcr": 0.017339024531138204, 
-            "silhouette_batch": 0.9040415978155301, 
-            "isolated_labels_sil": 0.5630972125600743, 
-            "kBET": NaN, 
             "cc_score": 0.9207267090983781, 
-            "silhouette": 0.5815553830749708
+            "isolated_labels_sil": 0.5630972125600743, 
+            "pcr": 0.017339024531138204, 
+            "silhouette": 0.5815553830749708, 
+            "silhouette_batch": 0.9040415978155301
         }, 
         "mean_score": 0.6325363138083946
     }, 
@@ -328,20 +326,19 @@
         "rchar": "1.3 GB", 
         "wchar": "2.3 GB", 
         "metrics": {
-            "silhouette": 0.2323163189361959, 
-            "silhouette_batch": 0.3881847291782794, 
-            "pcr": 0.0, 
+            "cc_score": 0.9323326033028848, 
             "isolated_labels_sil": 1.4934180208048997, 
-            "cc_score": 0.9323326033028848
+            "pcr": 0.0, 
+            "silhouette": 0.2323163189361959, 
+            "silhouette_batch": 0.3881847291782794
         }, 
         "code_version": "1.12.3", 
         "metrics_raw": {
-            "silhouette": 0.5297427243967648, 
-            "silhouette_batch": 0.8473090915812006, 
-            "pcr": 0.0, 
-            "isolated_labels_sil": 0.6408971536046243, 
             "cc_score": 0.7014261225731135, 
-            "kBET": NaN
+            "isolated_labels_sil": 0.6408971536046243, 
+            "pcr": 0.0, 
+            "silhouette": 0.5297427243967648, 
+            "silhouette_batch": 0.8473090915812006
         }, 
         "mean_score": 0.609250334444452
     }, 
@@ -355,20 +352,19 @@
         "rchar": "2.8 GB", 
         "wchar": "2.2 GB", 
         "metrics": {
-            "silhouette": 0.33800257490502467, 
+            "cc_score": 0.6121090714855082, 
             "isolated_labels_sil": 1.1661142467756234, 
             "pcr": 0.0, 
-            "silhouette_batch": 0.631854875122029, 
-            "cc_score": 0.6121090714855082
+            "silhouette": 0.33800257490502467, 
+            "silhouette_batch": 0.631854875122029
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "silhouette": 0.578453928232193, 
+            "cc_score": 0.4663778714899133, 
             "isolated_labels_sil": 0.5973745938390493, 
             "pcr": 0.0, 
-            "silhouette_batch": 0.8979502662729423, 
-            "kBET": NaN, 
-            "cc_score": 0.4663778714899133
+            "silhouette": 0.578453928232193, 
+            "silhouette_batch": 0.8979502662729423
         }, 
         "mean_score": 0.5496161536576369
     }, 
@@ -382,20 +378,19 @@
         "rchar": "1.3 GB", 
         "wchar": "746.5 MB", 
         "metrics": {
+            "cc_score": 1.1467436776282394, 
+            "isolated_labels_sil": 1.1850108035656866, 
             "pcr": 0.14583934625236103, 
             "silhouette": 0.3071479429087168, 
-            "silhouette_batch": 0.7706277510151566, 
-            "cc_score": 1.1467436776282394, 
-            "isolated_labels_sil": 1.1850108035656866
+            "silhouette_batch": 0.7706277510151566
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "pcr": 0.14577868777214353, 
-            "silhouette": 0.5642329090971925, 
-            "silhouette_batch": 0.9267909821651614, 
             "cc_score": 0.8588066490666693, 
             "isolated_labels_sil": 0.5998873253976703, 
-            "kBET": NaN
+            "pcr": 0.14577868777214353, 
+            "silhouette": 0.5642329090971925, 
+            "silhouette_batch": 0.9267909821651614
         }, 
         "mean_score": 0.711073904274032
     }, 
@@ -409,22 +404,21 @@
         "rchar": "1.3 GB", 
         "wchar": "727.9 MB", 
         "metrics": {
-            "silhouette_batch": 0.38569724816674267, 
-            "pcr": 0.0, 
             "cc_score": 1.043170957889066, 
+            "isolated_labels_sil": 1.360414620001385, 
+            "pcr": 0.0, 
             "silhouette": 0.37410934727475514, 
-            "isolated_labels_sil": 1.360414620001385
+            "silhouette_batch": 0.38569724816674267
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "kBET": NaN, 
-            "silhouette_batch": 0.8467921264849647, 
-            "pcr": 0.0, 
             "cc_score": 0.7827829212148797, 
+            "isolated_labels_sil": 0.6232112944126129, 
+            "pcr": 0.0, 
             "silhouette": 0.5950956791639328, 
-            "isolated_labels_sil": 0.6232112944126129
+            "silhouette_batch": 0.8467921264849647
         }, 
-        "mean_score": 0.6326784346663897
+        "mean_score": 0.6326784346663896
     }, 
     "harmony_hvg_unscaled": {
         "submit": "2022-11-23 17:46:42.733", 
@@ -436,20 +430,19 @@
         "rchar": "1.3 GB", 
         "wchar": "241.4 MB", 
         "metrics": {
-            "silhouette_batch": 0.4213137585292186, 
+            "cc_score": 0.9176335964814627, 
+            "isolated_labels_sil": 0.5751395113457785, 
             "pcr": 0.8822158972903318, 
             "silhouette": 0.2975557262019513, 
-            "isolated_labels_sil": 0.5751395113457785, 
-            "cc_score": 0.9176335964814627
+            "silhouette_batch": 0.4213137585292186
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "kBET": NaN, 
-            "silhouette_batch": 0.8541941901074519, 
+            "cc_score": 0.6906368597527732, 
+            "isolated_labels_sil": 0.5187909193336964, 
             "pcr": 0.8818489601301723, 
             "silhouette": 0.559811819344759, 
-            "isolated_labels_sil": 0.5187909193336964, 
-            "cc_score": 0.6906368597527732
+            "silhouette_batch": 0.8541941901074519
         }, 
         "mean_score": 0.6187716979697486
     }, 
@@ -463,20 +456,19 @@
         "rchar": "1.3 GB", 
         "wchar": "421 MB", 
         "metrics": {
-            "isolated_labels_sil": 0.563234732951183, 
-            "silhouette_batch": 0.618209690273138, 
             "cc_score": 0.9278577892446961, 
+            "isolated_labels_sil": 0.563234732951183, 
             "pcr": 0.0, 
-            "silhouette": 0.2937908221083054
+            "silhouette": 0.2937908221083054, 
+            "silhouette_batch": 0.618209690273138
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "isolated_labels_sil": 0.5172079054173082, 
-            "kBET": NaN, 
-            "silhouette_batch": 0.8951144318421076, 
             "cc_score": 0.6981415506607045, 
+            "isolated_labels_sil": 0.5172079054173082, 
             "pcr": 0.0, 
-            "silhouette": 0.5580765604972839
+            "silhouette": 0.5580765604972839, 
+            "silhouette_batch": 0.8951144318421076
         }, 
         "mean_score": 0.4806186069154645
     }, 
@@ -491,21 +483,20 @@
         "wchar": "5.5 GB", 
         "metrics": {
             "cc_score": 0.9060175797323838, 
-            "silhouette": 0.27182778906724553, 
             "isolated_labels_sil": 0.409652515762861, 
             "pcr": 0.8891482990716133, 
+            "silhouette": 0.27182778906724553, 
             "silhouette_batch": 0.5319844325851081
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
             "cc_score": 0.6821105518767447, 
-            "silhouette": 0.5479537136852741, 
             "isolated_labels_sil": 0.4967856195871718, 
-            "kBET": NaN, 
             "pcr": 0.8887784785403533, 
+            "silhouette": 0.5479537136852741, 
             "silhouette_batch": 0.8771945167022859
         }, 
-        "mean_score": 0.6017261232438422
+        "mean_score": 0.6017261232438423
     }, 
     "combat_full_scaled": {
         "submit": "2022-11-23 17:58:13.740", 
@@ -519,17 +510,16 @@
         "metrics": {
             "cc_score": 1.147702944638704, 
             "isolated_labels_sil": 0.7436979065842774, 
-            "silhouette": 0.24255402604857018, 
             "pcr": NaN, 
+            "silhouette": 0.24255402604857018, 
             "silhouette_batch": 0.7157395965698476
         }, 
         "code_version": "1.9.1", 
         "metrics_raw": {
-            "kBET": NaN, 
             "cc_score": 0.859510763570222, 
             "isolated_labels_sil": 0.5412046322599053, 
-            "silhouette": 0.534461323171854, 
             "pcr": NaN, 
+            "silhouette": 0.534461323171854, 
             "silhouette_batch": 0.9153837553708957
         }, 
         "mean_score": 0.5699388947682799
@@ -545,21 +535,20 @@
         "wchar": "3.9 GB", 
         "metrics": {
             "cc_score": 1.1559748354899555, 
-            "pcr": 0.16563790683987875, 
-            "silhouette_batch": 0.6729507849310455, 
             "isolated_labels_sil": 1.0642257329638745, 
-            "silhouette": 0.2878736022811223
+            "pcr": 0.16563790683987875, 
+            "silhouette": 0.2878736022811223, 
+            "silhouette_batch": 0.6729507849310455
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "cc_score": 0.8655824393983641, 
-            "pcr": 0.1655690136093926, 
-            "silhouette_batch": 0.9064910956785884, 
             "isolated_labels_sil": 0.5838261740417243, 
+            "pcr": 0.1655690136093926, 
             "silhouette": 0.5553492910098875, 
-            "kBET": NaN
+            "silhouette_batch": 0.9064910956785884
         }, 
-        "mean_score": 0.6693325725011754
+        "mean_score": 0.6693325725011753
     }, 
     "harmony_full_scaled": {
         "submit": "2022-11-23 18:27:13.872", 
@@ -571,22 +560,21 @@
         "rchar": "1.3 GB", 
         "wchar": "2.3 GB", 
         "metrics": {
+            "cc_score": 0.9353840651351572, 
             "isolated_labels_sil": 0.9618544507096463, 
-            "silhouette": 0.305683960198733, 
-            "silhouette_batch": 0.5888201765647462, 
             "pcr": 0.0, 
-            "cc_score": 0.9353840651351572
+            "silhouette": 0.305683960198733, 
+            "silhouette_batch": 0.5888201765647462
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
+            "cc_score": 0.7036659353777883, 
             "isolated_labels_sil": 0.5702135590836406, 
-            "silhouette": 0.5635581538081169, 
-            "silhouette_batch": 0.8890065047013097, 
             "pcr": 0.0, 
-            "kBET": NaN, 
-            "cc_score": 0.7036659353777883
+            "silhouette": 0.5635581538081169, 
+            "silhouette_batch": 0.8890065047013097
         }, 
-        "mean_score": 0.5583485305216564
+        "mean_score": 0.5583485305216566
     }, 
     "harmony_full_unscaled": {
         "submit": "2022-11-23 18:27:14.088", 
@@ -598,20 +586,19 @@
         "rchar": "1.2 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "silhouette_batch": 0.36670653792629104, 
-            "pcr": 0.9400154900114771, 
             "cc_score": 0.9760994452056656, 
             "isolated_labels_sil": 0.703071469876165, 
-            "silhouette": 0.2498208191456175
+            "pcr": 0.9400154900114771, 
+            "silhouette": 0.2498208191456175, 
+            "silhouette_batch": 0.36670653792629104
         }, 
         "code_version": "0.1.7", 
         "metrics_raw": {
-            "silhouette_batch": 0.8428453488808303, 
-            "pcr": 0.9396245124565837, 
             "cc_score": 0.7335515556613676, 
             "isolated_labels_sil": 0.5358024137094617, 
-            "kBET": NaN, 
-            "silhouette": 0.5378106161952019
+            "pcr": 0.9396245124565837, 
+            "silhouette": 0.5378106161952019, 
+            "silhouette_batch": 0.8428453488808303
         }, 
         "mean_score": 0.6471427524330432
     }, 
@@ -625,20 +612,19 @@
         "rchar": "1.3 GB", 
         "wchar": "637.2 MB", 
         "metrics": {
-            "silhouette": 0.33385786612315155, 
-            "pcr": 0.9981316106156506, 
             "cc_score": 1.0673163125034117, 
-            "silhouette_batch": 0.5162452173164491, 
-            "isolated_labels_sil": 0.7444370606397732
+            "isolated_labels_sil": 0.7444370606397732, 
+            "pcr": 0.9981316106156506, 
+            "silhouette": 0.33385786612315155, 
+            "silhouette_batch": 0.5162452173164491
         }, 
         "code_version": "1.0.2", 
         "metrics_raw": {
-            "kBET": NaN, 
-            "silhouette": 0.5765436159360335, 
-            "pcr": 0.9977164610136205, 
             "cc_score": 0.8005059265845235, 
-            "silhouette_batch": 0.8739234867332921, 
-            "isolated_labels_sil": 0.541302919780884
+            "isolated_labels_sil": 0.541302919780884, 
+            "pcr": 0.9977164610136205, 
+            "silhouette": 0.5765436159360335, 
+            "silhouette_batch": 0.8739234867332921
         }, 
         "mean_score": 0.7319976134396873
     }, 
@@ -653,21 +639,20 @@
         "wchar": "3.9 GB", 
         "metrics": {
             "cc_score": 0.7779819944814869, 
-            "silhouette": 0.2855807195963946, 
-            "silhouette_batch": 0.7309276898608409, 
             "isolated_labels_sil": 1.4292733402195095, 
-            "pcr": 0.2487942537288262
+            "pcr": 0.2487942537288262, 
+            "silhouette": 0.2855807195963946, 
+            "silhouette_batch": 0.7309276898608409
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
             "cc_score": 0.588130761513305, 
-            "kBET": NaN, 
-            "silhouette": 0.5542924925188951, 
-            "silhouette_batch": 0.9185402474499919, 
             "isolated_labels_sil": 0.6323676439688092, 
-            "pcr": 0.2486907735521397
+            "pcr": 0.2486907735521397, 
+            "silhouette": 0.5542924925188951, 
+            "silhouette_batch": 0.9185402474499919
         }, 
-        "mean_score": 0.6945115995774116
+        "mean_score": 0.6945115995774115
     }, 
     "scvi_hvg_unscaled": {
         "submit": "2022-11-23 18:28:23.201", 
@@ -679,22 +664,21 @@
         "rchar": "1.3 GB", 
         "wchar": "262.7 MB", 
         "metrics": {
+            "cc_score": 0.8702348311543947, 
+            "isolated_labels_sil": 0.8698313679962741, 
             "pcr": 0.9320652510356854, 
             "silhouette": 0.29907615564960416, 
-            "cc_score": 0.8702348311543947, 
-            "silhouette_batch": 0.5612037317146561, 
-            "isolated_labels_sil": 0.8698313679962741
+            "silhouette_batch": 0.5612037317146561
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "pcr": 0.9316775801975733, 
-            "kBET": NaN, 
-            "silhouette": 0.5605125911533833, 
             "cc_score": 0.655845547476622, 
-            "silhouette_batch": 0.8832670687002285, 
-            "isolated_labels_sil": 0.5579769751057029
+            "isolated_labels_sil": 0.5579769751057029, 
+            "pcr": 0.9316775801975733, 
+            "silhouette": 0.5605125911533833, 
+            "silhouette_batch": 0.8832670687002285
         }, 
-        "mean_score": 0.7064822675101228
+        "mean_score": 0.706482267510123
     }, 
     "liger_hvg_unscaled": {
         "submit": "2022-11-23 18:26:33.765", 
@@ -706,20 +690,19 @@
         "rchar": "1.3 GB", 
         "wchar": "239.1 MB", 
         "metrics": {
+            "cc_score": 0.7872392387274736, 
             "isolated_labels_sil": 1.267826586088536, 
             "pcr": 0.9336293288770401, 
-            "cc_score": 0.7872392387274736, 
-            "silhouette_batch": 0.26601676521201434, 
-            "silhouette": 0.3080501642287676
+            "silhouette": 0.3080501642287676, 
+            "silhouette_batch": 0.26601676521201434
         }, 
         "code_version": "0.5.0.9000", 
         "metrics_raw": {
+            "cc_score": 0.5949256995914664, 
             "isolated_labels_sil": 0.6108995871874203, 
             "pcr": 0.9332410074971693, 
-            "cc_score": 0.5949256995914664, 
-            "kBET": NaN, 
-            "silhouette_batch": 0.8219193205816042, 
-            "silhouette": 0.5646487463905357
+            "silhouette": 0.5646487463905357, 
+            "silhouette_batch": 0.8219193205816042
         }, 
         "mean_score": 0.7125524166267663
     }, 
@@ -734,19 +717,18 @@
         "wchar": "2.1 GB", 
         "metrics": {
             "cc_score": 1.189072698475395, 
-            "silhouette": 0.3554411195695034, 
+            "isolated_labels_sil": 0.924437986103172, 
             "pcr": 2.2066305513127777e-06, 
-            "silhouette_batch": 0.6204819130774937, 
-            "isolated_labels_sil": 0.924437986103172
+            "silhouette": 0.3554411195695034, 
+            "silhouette_batch": 0.6204819130774937
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "kBET": NaN, 
             "cc_score": 0.8898767027373733, 
-            "silhouette": 0.5864914208650589, 
+            "isolated_labels_sil": 0.5652381801046431, 
             "pcr": 2.2057127547161547e-06, 
-            "silhouette_batch": 0.8955866605245679, 
-            "isolated_labels_sil": 0.5652381801046431
+            "silhouette": 0.5864914208650589, 
+            "silhouette_batch": 0.8955866605245679
         }, 
         "mean_score": 0.6178871847712231
     }, 
@@ -760,20 +742,19 @@
         "rchar": "1.3 GB", 
         "wchar": "3.9 GB", 
         "metrics": {
-            "silhouette": 0.30070345291088324, 
-            "silhouette_batch": 0.6075487248616206, 
-            "pcr": 0.03744019243709738, 
             "cc_score": 1.0243655984657787, 
-            "isolated_labels_sil": 0.8274018260755233
+            "isolated_labels_sil": 0.8274018260755233, 
+            "pcr": 0.03744019243709738, 
+            "silhouette": 0.30070345291088324, 
+            "silhouette_batch": 0.6075487248616206
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "silhouette": 0.5612626187503338, 
-            "kBET": NaN, 
-            "silhouette_batch": 0.8928987980405343, 
-            "pcr": 0.03742462006084472, 
             "cc_score": 0.7689795419992776, 
-            "isolated_labels_sil": 0.552334992273245
+            "isolated_labels_sil": 0.552334992273245, 
+            "pcr": 0.03742462006084472, 
+            "silhouette": 0.5612626187503338, 
+            "silhouette_batch": 0.8928987980405343
         }, 
         "mean_score": 0.5594919589501806
     }, 
@@ -787,22 +768,21 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
+            "cc_score": 0.9019803347288108, 
             "isolated_labels_sil": 1.065404683593613, 
-            "silhouette": 0.3107735741736303, 
             "pcr": 0.9359763455322048, 
-            "silhouette_batch": 0.5453083361062024, 
-            "cc_score": 0.9019803347288108
+            "silhouette": 0.3107735741736303, 
+            "silhouette_batch": 0.5453083361062024
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
+            "cc_score": 0.6791471613604431, 
             "isolated_labels_sil": 0.5839829426258802, 
-            "silhouette": 0.565903976559639, 
-            "kBET": NaN, 
             "pcr": 0.9355870479654064, 
-            "silhouette_batch": 0.8799635802786807, 
-            "cc_score": 0.6791471613604431
+            "silhouette": 0.565903976559639, 
+            "silhouette_batch": 0.8799635802786807
         }, 
-        "mean_score": 0.7518886548268923
+        "mean_score": 0.7518886548268922
     }, 
     "scanvi_hvg_unscaled": {
         "submit": "2022-11-23 18:27:52.520", 
@@ -814,20 +794,19 @@
         "rchar": "1.3 GB", 
         "wchar": "262.8 MB", 
         "metrics": {
-            "pcr": 0.916824999208829, 
             "cc_score": 0.8876835119986346, 
+            "isolated_labels_sil": 0.9789084704163413, 
+            "pcr": 0.916824999208829, 
             "silhouette": 0.39106427911511393, 
-            "silhouette_batch": 0.5220005089032413, 
-            "isolated_labels_sil": 0.9789084704163413
+            "silhouette_batch": 0.5220005089032413
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "pcr": 0.9164436671985964, 
             "cc_score": 0.6686531069113437, 
-            "kBET": NaN, 
+            "isolated_labels_sil": 0.5724812829867005, 
+            "pcr": 0.9164436671985964, 
             "silhouette": 0.6029102727770805, 
-            "silhouette_batch": 0.8751195902835233, 
-            "isolated_labels_sil": 0.5724812829867005
+            "silhouette_batch": 0.8751195902835233
         }, 
         "mean_score": 0.7392963539284321
     }, 
@@ -841,22 +820,21 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "isolated_labels_sil": 1.0954432211682226, 
-            "silhouette": 0.3872153404837073, 
             "cc_score": 1.0161754429878325, 
+            "isolated_labels_sil": 1.0954432211682226, 
             "pcr": 0.9209528987413272, 
+            "silhouette": 0.3872153404837073, 
             "silhouette_batch": 0.5329675238608709
         }, 
         "code_version": "0.19.0", 
         "metrics_raw": {
-            "kBET": NaN, 
-            "isolated_labels_sil": 0.5879772566258907, 
-            "silhouette": 0.6011362820863724, 
             "cc_score": 0.7629678610017405, 
+            "isolated_labels_sil": 0.5879772566258907, 
             "pcr": 0.9205698498274019, 
+            "silhouette": 0.6011362820863724, 
             "silhouette_batch": 0.8773988293678404
         }, 
-        "mean_score": 0.790550885448392
+        "mean_score": 0.7905508854483921
     }, 
     "scanorama_feature_full_scaled": {
         "submit": "2022-11-23 19:54:42.613", 
@@ -868,22 +846,21 @@
         "rchar": "1.3 GB", 
         "wchar": "3.9 GB", 
         "metrics": {
-            "pcr": 0.08829067082209566, 
             "cc_score": 0.6067543823089361, 
             "isolated_labels_sil": 1.4302576506972986, 
-            "silhouette_batch": 0.394984127041516, 
-            "silhouette": 0.3091402796413097
+            "pcr": 0.08829067082209566, 
+            "silhouette": 0.3091402796413097, 
+            "silhouette_batch": 0.394984127041516
         }, 
         "code_version": "1.7", 
         "metrics_raw": {
-            "pcr": 0.08825394837340761, 
             "cc_score": 0.46244745975875673, 
-            "kBET": NaN, 
             "isolated_labels_sil": 0.6324985306710005, 
-            "silhouette_batch": 0.8487221883463263, 
-            "silhouette": 0.565151184797287
+            "pcr": 0.08825394837340761, 
+            "silhouette": 0.565151184797287, 
+            "silhouette_batch": 0.8487221883463263
         }, 
-        "mean_score": 0.5658854221022311
+        "mean_score": 0.5658854221022314
     }, 
     "mnn_full_unscaled": {
         "submit": "2022-11-23 19:25:42.805", 
@@ -895,22 +872,21 @@
         "rchar": "10.5 GB", 
         "wchar": "12.3 GB", 
         "metrics": {
-            "silhouette": 0.3371239342845675, 
-            "isolated_labels_sil": 0.9795062033187986, 
             "cc_score": 1.0942890147922457, 
+            "isolated_labels_sil": 0.9795062033187986, 
             "pcr": 0.17877622318429096, 
+            "silhouette": 0.3371239342845675, 
             "silhouette_batch": 0.6043147092273613
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "silhouette": 0.5780489593744278, 
-            "isolated_labels_sil": 0.5725607653148472, 
             "cc_score": 0.8203042420424701, 
+            "isolated_labels_sil": 0.5725607653148472, 
             "pcr": 0.17870186537704585, 
-            "kBET": NaN, 
+            "silhouette": 0.5780489593744278, 
             "silhouette_batch": 0.8922266830793188
         }, 
-        "mean_score": 0.6388020169614528
+        "mean_score": 0.6388020169614529
     }, 
     "scalex_full": {
         "submit": "2022-11-23 18:27:52.788", 
@@ -922,22 +898,21 @@
         "rchar": "1.3 GB", 
         "wchar": "1.6 GB", 
         "metrics": {
-            "silhouette": 0.30072513631056635, 
-            "pcr": 1.0000739759998896, 
-            "silhouette_batch": 0.4619516741463118, 
+            "cc_score": 1.152522926086642, 
             "isolated_labels_sil": 0.9189538196383933, 
-            "cc_score": 1.152522926086642
+            "pcr": 1.0000739759998896, 
+            "silhouette": 0.30072513631056635, 
+            "silhouette_batch": 0.4619516741463118
         }, 
         "code_version": "1.0.2", 
         "metrics_raw": {
-            "silhouette": 0.5612726127130504, 
-            "pcr": 0.9996580185162058, 
-            "silhouette_batch": 0.862639836068318, 
-            "isolated_labels_sil": 0.5645089341207384, 
             "cc_score": 0.8630486928509391, 
-            "kBET": NaN
+            "isolated_labels_sil": 0.5645089341207384, 
+            "pcr": 0.9996580185162058, 
+            "silhouette": 0.5612726127130504, 
+            "silhouette_batch": 0.862639836068318
         }, 
-        "mean_score": 0.7668455064363606
+        "mean_score": 0.7668455064363605
     }, 
     "mnn_full_scaled": {
         "submit": "2022-11-23 19:55:10.144", 
@@ -949,20 +924,19 @@
         "rchar": "10.5 GB", 
         "wchar": "13.1 GB", 
         "metrics": {
-            "pcr": 0.11118180629862873, 
             "cc_score": 1.0252015657209168, 
             "isolated_labels_sil": 1.0248193901151417, 
-            "silhouette_batch": 0.8030640544987657, 
-            "silhouette": 0.26659951042659635
+            "pcr": 0.11118180629862873, 
+            "silhouette": 0.26659951042659635, 
+            "silhouette_batch": 0.8030640544987657
         }, 
         "code_version": "0.1.9.5", 
         "metrics_raw": {
-            "pcr": 0.11113556281515725, 
             "cc_score": 0.7695931528734312, 
-            "kBET": NaN, 
             "isolated_labels_sil": 0.5785861950134858, 
-            "silhouette_batch": 0.9335321137252295, 
-            "silhouette": 0.5455439798533916
+            "pcr": 0.11113556281515725, 
+            "silhouette": 0.5455439798533916, 
+            "silhouette_batch": 0.9335321137252295
         }, 
         "mean_score": 0.6461732654120098
     }, 
@@ -976,20 +950,19 @@
         "rchar": "1.3 GB", 
         "wchar": "1.2 GB", 
         "metrics": {
-            "silhouette_batch": 0.14409889361069309, 
             "cc_score": 0.823123912976915, 
-            "silhouette": 0.2226533929815363, 
+            "isolated_labels_sil": 1.5569970785116594, 
             "pcr": 0.9454207137859673, 
-            "isolated_labels_sil": 1.5569970785116594
+            "silhouette": 0.2226533929815363, 
+            "silhouette_batch": 0.14409889361069309
         }, 
         "code_version": "0.5.0.9000", 
         "metrics_raw": {
-            "kBET": NaN, 
-            "silhouette_batch": 0.7965815254656071, 
             "cc_score": 0.6212655187645052, 
-            "silhouette": 0.5252890444786977, 
+            "isolated_labels_sil": 0.6493514506780026, 
             "pcr": 0.945027488054105, 
-            "isolated_labels_sil": 0.6493514506780026
+            "silhouette": 0.5252890444786977, 
+            "silhouette_batch": 0.7965815254656071
         }, 
         "mean_score": 0.7384587983733543
     }
