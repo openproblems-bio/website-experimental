@@ -47,13 +47,13 @@
         "rchar": "2.5 GB", 
         "wchar": "2.1 GB", 
         "metrics": {
-            "spearman_correlation": -0.15715105784123454, 
-            "pearson_correlation": -3.331066380886856
+            "pearson_correlation": -3.331066380886856, 
+            "spearman_correlation": -0.15715105784123454
         }, 
         "code_version": "1.0", 
         "metrics_raw": {
-            "spearman_correlation": -0.013979251313609442, 
-            "pearson_correlation": 0.000840363920114175
+            "pearson_correlation": 0.000840363920114175, 
+            "spearman_correlation": -0.013979251313609442
         }, 
         "mean_score": -1.7441087193640454
     }
