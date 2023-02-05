@@ -1,0 +1,220 @@
+{
+    "perfect_denoising": {
+        "submit": "2023-02-03 19:10:18.568", 
+        "duration": "26m 39s", 
+        "realtime": "17.4s", 
+        "%cpu": "85.3%", 
+        "peak_rss": "4.3 GB", 
+        "peak_vmem": "6.7 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 1.0, 
+            "poisson": 1.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "mse": 1.5782482e-17, 
+            "poisson": 0.026936694795145644
+        }
+    }, 
+    "no_denoising": {
+        "submit": "2023-02-03 19:10:18.628", 
+        "duration": "28m 9s", 
+        "realtime": "29.2s", 
+        "%cpu": "71.0%", 
+        "peak_rss": "4.3 GB", 
+        "peak_vmem": "8.5 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.0, 
+            "poisson": 0.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "mse": 0.26162183, 
+            "poisson": 0.20639474229979976
+        }
+    }, 
+    "knn_naive": {
+        "submit": "2023-02-03 19:10:18.472", 
+        "duration": "35m 9s", 
+        "realtime": "7m", 
+        "%cpu": "128.2%", 
+        "peak_rss": "8.2 GB", 
+        "peak_vmem": "13.4 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.12908727838193024, 
+            "poisson": -0.030290082180567834
+        }, 
+        "code_version": "3.0.0", 
+        "metrics_raw": {
+            "mse": 0.22784978, 
+            "poisson": 0.21183054130668
+        }, 
+        "mean_score": 0.0493985981006812
+    }, 
+    "magic_approx_reverse_norm": {
+        "submit": "2023-02-03 19:10:18.791", 
+        "duration": "35m 48s", 
+        "realtime": "7m 24s", 
+        "%cpu": "137.8%", 
+        "peak_rss": "7.8 GB", 
+        "peak_vmem": "12.9 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.2979793391094314, 
+            "poisson": 0.9847398880442504
+        }, 
+        "code_version": "3.0.0", 
+        "metrics_raw": {
+            "mse": 0.18366393, 
+            "poisson": 0.029675244691426902
+        }, 
+        "mean_score": 0.6413596135768409
+    }, 
+    "magic": {
+        "submit": "2023-02-03 19:10:18.688", 
+        "duration": "36m 19s", 
+        "realtime": "8m 31s", 
+        "%cpu": "126.8%", 
+        "peak_rss": "8.2 GB", 
+        "peak_vmem": "11.2 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.2960694831925915, 
+            "poisson": 0.5000797160051643
+        }, 
+        "code_version": "3.0.0", 
+        "metrics_raw": {
+            "mse": 0.18416359, 
+            "poisson": 0.11665141286883103
+        }, 
+        "mean_score": 0.3980745995988779
+    }, 
+    "magic_approx": {
+        "submit": "2023-02-03 19:10:18.441", 
+        "duration": "37m 9s", 
+        "realtime": "10m 8s", 
+        "%cpu": "121.8%", 
+        "peak_rss": "2.6 GB", 
+        "peak_vmem": "7.5 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.29730921154400614, 
+            "poisson": 0.5047268257379136
+        }, 
+        "code_version": "3.0.0", 
+        "metrics_raw": {
+            "mse": 0.18383925, 
+            "poisson": 0.11581745162965196
+        }, 
+        "mean_score": 0.4010180186409599
+    }, 
+    "magic_reverse_norm": {
+        "submit": "2023-02-03 19:10:18.540", 
+        "duration": "39m 52s", 
+        "realtime": "12m 54s", 
+        "%cpu": "111.7%", 
+        "peak_rss": "8.2 GB", 
+        "peak_vmem": "13.4 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.2962700016279223, 
+            "poisson": 0.9847373746700339
+        }, 
+        "code_version": "3.0.0", 
+        "metrics_raw": {
+            "mse": 0.18411113, 
+            "poisson": 0.02967569573665644
+        }, 
+        "mean_score": 0.6405036881489781
+    }, 
+    "dca": {
+        "submit": "2023-02-03 19:10:18.780", 
+        "duration": "44m 11s", 
+        "realtime": "15m 53s", 
+        "%cpu": "1750.0%", 
+        "peak_rss": "6.9 GB", 
+        "peak_vmem": "13.6 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "2.5 GB", 
+        "metrics": {
+            "mse": 0.17585508823938745, 
+            "poisson": -0.03504288923180465
+        }, 
+        "code_version": "0.3.4", 
+        "metrics_raw": {
+            "mse": 0.2156143, 
+            "poisson": 0.21268347078026129
+        }, 
+        "mean_score": 0.0704060995037914
+    }, 
+    "knn_smoothing": {
+        "submit": "2023-02-03 19:38:18.005", 
+        "duration": "34m 22s", 
+        "realtime": "9m 28s", 
+        "%cpu": "477.8%", 
+        "peak_rss": "28.1 GB", 
+        "peak_vmem": "33.2 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4 GB", 
+        "metrics": {
+            "mse": 0.13822168432962956, 
+            "poisson": -9.601612495593068
+        }, 
+        "code_version": "2.0", 
+        "metrics_raw": {
+            "mse": 0.22546002, 
+            "poisson": 1.9294813736552212
+        }, 
+        "mean_score": -4.7316954056317195
+    }, 
+    "alra_log": {
+        "submit": "2023-02-03 20:04:20.583", 
+        "duration": "54m 9s", 
+        "realtime": "27m 17s", 
+        "%cpu": "101.0%", 
+        "peak_rss": "46.7 GB", 
+        "peak_vmem": "51.1 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4.4 GB", 
+        "metrics": {
+            "mse": -0.06899015269482667, 
+            "poisson": -0.1723924880279475
+        }, 
+        "code_version": "1.0.0", 
+        "metrics_raw": {
+            "mse": 0.27967116, 
+            "poisson": 0.23733196160576467
+        }, 
+        "mean_score": -0.12069132036138708
+    }, 
+    "alra_sqrt": {
+        "submit": "2023-02-03 20:59:39.883", 
+        "duration": "2h 7m 31s", 
+        "realtime": "38m 3s", 
+        "%cpu": "100.9%", 
+        "peak_rss": "39.3 GB", 
+        "peak_vmem": "45.2 GB", 
+        "rchar": "1.1 GB", 
+        "wchar": "4.4 GB", 
+        "metrics": {
+            "mse": -0.041030368146266705, 
+            "poisson": 0.9834783317064063
+        }, 
+        "code_version": "1.0.0", 
+        "metrics_raw": {
+            "mse": 0.27235627, 
+            "poisson": 0.029901641128633513
+        }, 
+        "mean_score": 0.4712239817800698
+    }
+}

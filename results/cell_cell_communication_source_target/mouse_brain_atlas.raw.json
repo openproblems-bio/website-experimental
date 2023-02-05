@@ -1,0 +1,320 @@
+{
+    "random_events": {
+        "submit": "2023-02-03 19:09:08.436", 
+        "duration": "14m 29s", 
+        "realtime": "39.6s", 
+        "%cpu": "49.2%", 
+        "peak_rss": "2.2 GB", 
+        "peak_vmem": "6.4 GB", 
+        "rchar": "1.9 GB", 
+        "wchar": "1.9 GB", 
+        "metrics": {
+            "auprc": 0.0, 
+            "odds_ratio": 0.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "auprc": 0.04334026605274756, 
+            "odds_ratio": 0.2753623188405796
+        }
+    }, 
+    "true_events": {
+        "submit": "2023-02-03 19:09:16.939", 
+        "duration": "17m 20s", 
+        "realtime": "37.2s", 
+        "%cpu": "34.4%", 
+        "peak_rss": "2.2 GB", 
+        "peak_vmem": "4.6 GB", 
+        "rchar": "1.9 GB", 
+        "wchar": "1.9 GB", 
+        "metrics": {
+            "auprc": 1.0, 
+            "odds_ratio": 1.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "auprc": 1.0, 
+            "odds_ratio": 1.0
+        }
+    }, 
+    "sca_max": {
+        "submit": "2023-02-03 19:28:17.821", 
+        "duration": "39m 2s", 
+        "realtime": "10m 1s", 
+        "%cpu": "96.6%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.6 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.04814735979974676, 
+            "odds_ratio": 0.4146856663872591
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.08940090646903594, 
+            "odds_ratio": 0.575859178541492
+        }, 
+        "mean_score": 0.23141651309350295
+    }, 
+    "connectome_sum": {
+        "submit": "2023-02-03 19:40:07.858", 
+        "duration": "31m 51s", 
+        "realtime": "8m 54s", 
+        "%cpu": "100.3%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.9 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.02807469932311006, 
+            "odds_ratio": 0.538
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.07019820043784314, 
+            "odds_ratio": 0.6652173913043478
+        }, 
+        "mean_score": 0.283037349661555
+    }, 
+    "natmi_sum": {
+        "submit": "2023-02-03 19:31:07.698", 
+        "duration": "41m 52s", 
+        "realtime": "12m 17s", 
+        "%cpu": "98.7%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.9 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.07611516672530153, 
+            "odds_ratio": 0.538
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.11615658120152528, 
+            "odds_ratio": 0.6652173913043478
+        }, 
+        "mean_score": 0.30705758336265077
+    }, 
+    "logfc_max": {
+        "submit": "2023-02-03 19:27:37.334", 
+        "duration": "45m 32s", 
+        "realtime": "15m 19s", 
+        "%cpu": "97.6%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.4 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.07263396915451899, 
+            "odds_ratio": 0.4146856663872591
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.11282625965964263, 
+            "odds_ratio": 0.575859178541492
+        }, 
+        "mean_score": 0.24365981777088905
+    }, 
+    "logfc_sum": {
+        "submit": "2023-02-03 19:32:27.556", 
+        "duration": "40m 42s", 
+        "realtime": "10m 27s", 
+        "%cpu": "98.2%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.7 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.09535095092532964, 
+            "odds_ratio": 0.538
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.13455868139659094, 
+            "odds_ratio": 0.6652173913043478
+        }, 
+        "mean_score": 0.31667547546266483
+    }, 
+    "connectome_max": {
+        "submit": "2023-02-03 19:36:17.473", 
+        "duration": "41m 12s", 
+        "realtime": "15m 13s", 
+        "%cpu": "95.8%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.4 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.031666797492622474, 
+            "odds_ratio": 0.24503468780971263
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.0736346161170013, 
+            "odds_ratio": 0.45292368681863227
+        }, 
+        "mean_score": 0.13835074265116756
+    }, 
+    "sca_sum": {
+        "submit": "2023-02-03 19:36:37.399", 
+        "duration": "42m 12s", 
+        "realtime": "14m 40s", 
+        "%cpu": "96.7%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.7 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": -0.0049752198666679365, 
+            "odds_ratio": 0.0
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.038580673538771926, 
+            "odds_ratio": 0.2753623188405796
+        }, 
+        "mean_score": -0.0024876099333339683
+    }, 
+    "natmi_max": {
+        "submit": "2023-02-03 19:36:07.381", 
+        "duration": "43m 22s", 
+        "realtime": "15m 19s", 
+        "%cpu": "97.0%", 
+        "peak_rss": "21.3 GB", 
+        "peak_vmem": "26.8 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.04769934563998063, 
+            "odds_ratio": 0.6308280254777071
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.08897230936214946, 
+            "odds_ratio": 0.7324840764331211
+        }, 
+        "mean_score": 0.3392636855588439
+    }, 
+    "cellphonedb_max": {
+        "submit": "2023-02-03 22:22:11.238", 
+        "duration": "2h 42m", 
+        "realtime": "1h 13m 2s", 
+        "%cpu": "99.9%", 
+        "peak_rss": "121.4 GB", 
+        "peak_vmem": "126.8 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.06982567467719188, 
+            "odds_ratio": 0.702552467385139
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.11013967741211735, 
+            "odds_ratio": 0.784458309699376
+        }, 
+        "mean_score": 0.38618907103116545
+    }, 
+    "magnitude_max": {
+        "submit": "2023-02-03 22:21:41.363", 
+        "duration": "4h 56m", 
+        "realtime": "1h 37m 47s", 
+        "%cpu": "101.2%", 
+        "peak_rss": "123.3 GB", 
+        "peak_vmem": "128.8 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.053472777392219346, 
+            "odds_ratio": 0.702552467385139
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.09449551904620877, 
+            "odds_ratio": 0.784458309699376
+        }, 
+        "mean_score": 0.37801262238867916
+    }, 
+    "specificity_max": {
+        "submit": "2023-02-03 22:49:21.411", 
+        "duration": "4h 54m", 
+        "realtime": "1h 19m 49s", 
+        "%cpu": "100.0%", 
+        "peak_rss": "122.1 GB", 
+        "peak_vmem": "127.5 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.054223557012873735, 
+            "odds_ratio": 0.538
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.09521375967835702, 
+            "odds_ratio": 0.6652173913043478
+        }, 
+        "mean_score": 0.2961117785064369
+    }, 
+    "magnitude_sum": {
+        "submit": "2023-02-03 22:24:21.081", 
+        "duration": "7h 20m 20s", 
+        "realtime": "1h 20m 47s", 
+        "%cpu": "99.9%", 
+        "peak_rss": "130.3 GB", 
+        "peak_vmem": "135.6 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.0016343114037119801, 
+            "odds_ratio": 0.0
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.04490374596540962, 
+            "odds_ratio": 0.2753623188405796
+        }, 
+        "mean_score": 0.0008171557018559901
+    }, 
+    "cellphonedb_sum": {
+        "submit": "2023-02-04 03:27:22.373", 
+        "duration": "3h 24m 29s", 
+        "realtime": "1h 13m 8s", 
+        "%cpu": "100.1%", 
+        "peak_rss": "121.4 GB", 
+        "peak_vmem": "126.8 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": 0.015511047318301647, 
+            "odds_ratio": 0.0
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.058179060453517256, 
+            "odds_ratio": 0.2753623188405796
+        }, 
+        "mean_score": 0.007755523659150824
+    }, 
+    "specificity_sum": {
+        "submit": "2023-02-04 03:47:21.494", 
+        "duration": "4h 4m 30s", 
+        "realtime": "1h 23m 39s", 
+        "%cpu": "100.0%", 
+        "peak_rss": "130.5 GB", 
+        "peak_vmem": "135.9 GB", 
+        "rchar": "2 GB", 
+        "wchar": "2.8 GB", 
+        "metrics": {
+            "auprc": -0.0025032050143257057, 
+            "odds_ratio": 0.0
+        }, 
+        "code_version": "0.1.9", 
+        "metrics_raw": {
+            "auprc": 0.0409455506097273, 
+            "odds_ratio": 0.2753623188405796
+        }, 
+        "mean_score": -0.0012516025071628528
+    }
+}

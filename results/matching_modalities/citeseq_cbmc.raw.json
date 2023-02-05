@@ -1,0 +1,140 @@
+{
+    "procrustes": {
+        "submit": "2023-02-03 19:07:37.689", 
+        "duration": "4m 30s", 
+        "realtime": "25.2s", 
+        "%cpu": "135.3%", 
+        "peak_rss": "486.4 MB", 
+        "peak_vmem": "3.2 GB", 
+        "rchar": "232.2 MB", 
+        "wchar": "278.6 MB", 
+        "metrics": {
+            "knn_auc": 0.3075638938781073, 
+            "mse": 0.5553460413054874
+        }, 
+        "code_version": "1.9.3", 
+        "metrics_raw": {
+            "knn_auc": 0.1925020896411202, 
+            "mse": 0.43970887308907913
+        }, 
+        "mean_score": 0.43145496759179736
+    }, 
+    "true_features": {
+        "submit": "2023-02-03 19:07:37.774", 
+        "duration": "4m 30s", 
+        "realtime": "13.9s", 
+        "%cpu": "265.4%", 
+        "peak_rss": "487.7 MB", 
+        "peak_vmem": "3.2 GB", 
+        "rchar": "232.2 MB", 
+        "wchar": "277.4 MB", 
+        "metrics": {
+            "knn_auc": 1.0, 
+            "mse": 1.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "knn_auc": 0.5120470771516743, 
+            "mse": 0.0
+        }
+    }, 
+    "random_features": {
+        "submit": "2023-02-03 19:07:47.667", 
+        "duration": "5m 50s", 
+        "realtime": "1m 10s", 
+        "%cpu": "59.8%", 
+        "peak_rss": "487.4 MB", 
+        "peak_vmem": "5.1 GB", 
+        "rchar": "232.2 MB", 
+        "wchar": "277.4 MB", 
+        "metrics": {
+            "knn_auc": 0.0, 
+            "mse": 0.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "knn_auc": 0.05056769344330493, 
+            "mse": 0.9888788
+        }
+    }, 
+    "mnn_log_cp10k": {
+        "submit": "2023-02-03 19:07:47.467", 
+        "duration": "9m 39s", 
+        "realtime": "2m 9s", 
+        "%cpu": "72.9%", 
+        "peak_rss": "2 GB", 
+        "peak_vmem": "6.3 GB", 
+        "rchar": "277.1 MB", 
+        "wchar": "369.5 MB", 
+        "metrics": {
+            "knn_auc": -0.04560971617679472, 
+            "mse": -0.18626773085826653
+        }, 
+        "code_version": "1.14.1", 
+        "metrics_raw": {
+            "knn_auc": 0.02951974973092406, 
+            "mse": 1.1730750101698455
+        }, 
+        "mean_score": -0.11593872351753062
+    }, 
+    "mnn_log_scran_pooling": {
+        "submit": "2023-02-03 19:07:47.597", 
+        "duration": "13m 19s", 
+        "realtime": "6m 8s", 
+        "%cpu": "98.0%", 
+        "peak_rss": "4.2 GB", 
+        "peak_vmem": "8.5 GB", 
+        "rchar": "279.9 MB", 
+        "wchar": "369.6 MB", 
+        "metrics": {
+            "knn_auc": -0.0200171746739683, 
+            "mse": -0.033142313823319114
+        }, 
+        "code_version": "1.14.1", 
+        "metrics_raw": {
+            "knn_auc": 0.04133018001117926, 
+            "mse": 1.021652531522827
+        }, 
+        "mean_score": -0.026579744248643705
+    }, 
+    "harmonic_alignment_log_scran_pooling": {
+        "submit": "2023-02-03 19:08:07.816", 
+        "duration": "14m 49s", 
+        "realtime": "8m 32s", 
+        "%cpu": "449.8%", 
+        "peak_rss": "4.2 GB", 
+        "peak_vmem": "6.8 GB", 
+        "rchar": "278.2 MB", 
+        "wchar": "379.9 MB", 
+        "metrics": {
+            "knn_auc": 0.012873320580578945, 
+            "mse": -0.010460902738163691
+        }, 
+        "code_version": "0.0", 
+        "metrics_raw": {
+            "knn_auc": 0.05650846549111077, 
+            "mse": 0.9992233649466319
+        }, 
+        "mean_score": 0.001206208921207627
+    }, 
+    "harmonic_alignment_sqrt_cp10k": {
+        "submit": "2023-02-03 19:09:00.631", 
+        "duration": "17m 57s", 
+        "realtime": "4m 44s", 
+        "%cpu": "1029.5%", 
+        "peak_rss": "630.2 MB", 
+        "peak_vmem": "5.8 GB", 
+        "rchar": "232.5 MB", 
+        "wchar": "290.1 MB", 
+        "metrics": {
+            "knn_auc": 0.004235319787356874, 
+            "mse": -0.01125165776877668
+        }, 
+        "code_version": "0.0", 
+        "metrics_raw": {
+            "knn_auc": 0.052522206208582244, 
+            "mse": 1.0000053258323984
+        }, 
+        "mean_score": -0.003508168990709903
+    }
+}

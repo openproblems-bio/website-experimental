@@ -1,0 +1,270 @@
+{
+    "nmfreg": {
+        "submit": "2023-02-03 19:07:28.821", 
+        "duration": "3m 38s", 
+        "realtime": "40.8s", 
+        "%cpu": "1983.5%", 
+        "peak_rss": "1.4 GB", 
+        "peak_vmem": "3.9 GB", 
+        "rchar": "215.6 MB", 
+        "wchar": "4 MB", 
+        "metrics": {
+            "r2": 0.4620002584345432
+        }, 
+        "code_version": "1.1.3", 
+        "metrics_raw": {
+            "r2": -0.3475223450800682
+        }, 
+        "mean_score": 0.4620002584345432
+    }, 
+    "nnls_scipy": {
+        "submit": "2023-02-03 19:07:29.144", 
+        "duration": "3m 38s", 
+        "realtime": "34.6s", 
+        "%cpu": "27.1%", 
+        "peak_rss": "237 MB", 
+        "peak_vmem": "3.3 GB", 
+        "rchar": "215.6 MB", 
+        "wchar": "4 MB", 
+        "metrics": {
+            "r2": 0.7398934093902065
+        }, 
+        "code_version": "1.9.3", 
+        "metrics_raw": {
+            "r2": 0.3485137336136697
+        }, 
+        "mean_score": 0.7398934093902065
+    }, 
+    "true_proportions": {
+        "submit": "2023-02-03 19:07:29.275", 
+        "duration": "3m 48s", 
+        "realtime": "44.1s", 
+        "%cpu": "22.9%", 
+        "peak_rss": "224.5 MB", 
+        "peak_vmem": "3 GB", 
+        "rchar": "215.6 MB", 
+        "wchar": "4 MB", 
+        "metrics": {
+            "r2": 1.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "r2": 1.0
+        }
+    }, 
+    "nmf": {
+        "submit": "2023-02-03 19:07:37.350", 
+        "duration": "4m 30s", 
+        "realtime": "30.1s", 
+        "%cpu": "348.0%", 
+        "peak_rss": "658.3 MB", 
+        "peak_vmem": "1.9 GB", 
+        "rchar": "215.6 MB", 
+        "wchar": "4 MB", 
+        "metrics": {
+            "r2": 0.22936552809691652
+        }, 
+        "code_version": "1.1.3", 
+        "metrics_raw": {
+            "r2": -0.9302001293843338
+        }, 
+        "mean_score": 0.22936552809691652
+    }, 
+    "random_proportions": {
+        "submit": "2023-02-03 19:07:37.478", 
+        "duration": "4m 30s", 
+        "realtime": "25.9s", 
+        "%cpu": "34.7%", 
+        "peak_rss": "215.6 MB", 
+        "peak_vmem": "2.8 GB", 
+        "rchar": "215.6 MB", 
+        "wchar": "4 MB", 
+        "metrics": {
+            "r2": 0.0
+        }, 
+        "code_version": "0.7.0", 
+        "metrics_raw": {
+            "r2": -1.5046895769114772
+        }
+    }, 
+    "tangram": {
+        "submit": "2023-02-03 19:07:17.977", 
+        "duration": "7m 9s", 
+        "realtime": "48.8s", 
+        "%cpu": "336.3%", 
+        "peak_rss": "1 GB", 
+        "peak_vmem": "5.7 GB", 
+        "rchar": "229 MB", 
+        "wchar": "4.7 MB", 
+        "metrics": {
+            "r2": -0.10020079458927439
+        }, 
+        "code_version": "1.0.3", 
+        "metrics_raw": {
+            "r2": -1.7556614627174807
+        }, 
+        "mean_score": -0.10020079458927439
+    }, 
+    "seuratv3": {
+        "submit": "2023-02-03 19:07:29.000", 
+        "duration": "7m 28s", 
+        "realtime": "2m 22s", 
+        "%cpu": "158.1%", 
+        "peak_rss": "63.8 GB", 
+        "peak_vmem": "69.7 GB", 
+        "rchar": "440.1 MB", 
+        "wchar": "137.9 MB", 
+        "metrics": {
+            "r2": -0.38156274501729837
+        }, 
+        "code_version": "4.3.0", 
+        "metrics_raw": {
+            "r2": -2.460385807294036
+        }, 
+        "mean_score": -0.38156274501729837
+    }, 
+    "stereoscope": {
+        "submit": "2023-02-03 19:07:29.204", 
+        "duration": "14m 38s", 
+        "realtime": "10m 36s", 
+        "%cpu": "928.3%", 
+        "peak_rss": "1.2 GB", 
+        "peak_vmem": "14.7 GB", 
+        "rchar": "237.1 MB", 
+        "wchar": "4.3 MB", 
+        "metrics": {
+            "r2": 0.6736577716294522
+        }, 
+        "code_version": "0.20.0", 
+        "metrics_raw": {
+            "r2": 0.18261402209422384
+        }, 
+        "mean_score": 0.6736577716294522
+    }, 
+    "rctd": {
+        "submit": "2023-02-03 19:07:37.591", 
+        "duration": "14m 29s", 
+        "realtime": "10m 27s", 
+        "%cpu": "17.6%", 
+        "peak_rss": "2.4 GB", 
+        "peak_vmem": "4.9 GB", 
+        "rchar": "645.4 MB", 
+        "wchar": "4.6 MB", 
+        "metrics": {
+            "r2": 0.6856455187046004
+        }, 
+        "code_version": "2.1.7", 
+        "metrics_raw": {
+            "r2": 0.21263960724399883
+        }, 
+        "mean_score": 0.6856455187046004
+    }, 
+    "destvi": {
+        "submit": "2023-02-03 21:01:22.983", 
+        "duration": "4h 47m 48s", 
+        "realtime": "10m 49s", 
+        "%cpu": "726.7%", 
+        "peak_rss": "1.6 GB", 
+        "peak_vmem": "12.8 GB", 
+        "rchar": "237.1 MB", 
+        "wchar": "4.3 MB", 
+        "metrics": {
+            "r2": 0.18313844118380238
+        }, 
+        "code_version": "0.20.0", 
+        "metrics_raw": {
+            "r2": -1.0459846321465918
+        }, 
+        "mean_score": 0.18313844118380238
+    }, 
+    "cell2location_detection_alpha_1": {
+        "submit": "2023-02-03 21:02:20.375", 
+        "duration": "6h 1s", 
+        "realtime": "55m 22s", 
+        "%cpu": "1498.0%", 
+        "peak_rss": "2 GB", 
+        "peak_vmem": "24.1 GB", 
+        "rchar": "240 MB", 
+        "wchar": "15.8 MB", 
+        "metrics": {
+            "r2": 0.8734497414713095
+        }, 
+        "code_version": "0.1.3", 
+        "metrics_raw": {
+            "r2": 0.683030886507736
+        }, 
+        "mean_score": 0.8734497414713095
+    }, 
+    "cell2location_detection_alpha_20_nb": {
+        "submit": "2023-02-04 01:58:51.338", 
+        "duration": "2h 30m 50s", 
+        "realtime": "1h 11m 18s", 
+        "%cpu": "1512.6%", 
+        "peak_rss": "3.2 GB", 
+        "peak_vmem": "42.2 GB", 
+        "rchar": "240 MB", 
+        "wchar": "15.3 MB", 
+        "metrics": {
+            "r2": 0.8736933883209014
+        }, 
+        "code_version": "0.1.3", 
+        "metrics_raw": {
+            "r2": 0.6836411462323562
+        }, 
+        "mean_score": 0.8736933883209014
+    }, 
+    "cell2location_detection_alpha_200": {
+        "submit": "2023-02-04 01:43:52.798", 
+        "duration": "2h 55m 38s", 
+        "realtime": "1h 27m 48s", 
+        "%cpu": "1403.5%", 
+        "peak_rss": "4.9 GB", 
+        "peak_vmem": "27 GB", 
+        "rchar": "240 MB", 
+        "wchar": "16 MB", 
+        "metrics": {
+            "r2": 0.8700689181476049
+        }, 
+        "code_version": "0.1.3", 
+        "metrics_raw": {
+            "r2": 0.6745629735674743
+        }, 
+        "mean_score": 0.8700689181476049
+    }, 
+    "cell2location_detection_alpha_20": {
+        "submit": "2023-02-04 03:24:04.294", 
+        "duration": "1h 45m 57s", 
+        "realtime": "1h 25m 4s", 
+        "%cpu": "1450.8%", 
+        "peak_rss": "1.6 GB", 
+        "peak_vmem": "23.7 GB", 
+        "rchar": "240 MB", 
+        "wchar": "16.5 MB", 
+        "metrics": {
+            "r2": 0.873288735782773
+        }, 
+        "code_version": "0.1.3", 
+        "metrics_raw": {
+            "r2": 0.6826276172378353
+        }, 
+        "mean_score": 0.873288735782773
+    }, 
+    "cell2location_amortised_detection_alpha_20": {
+        "submit": "2023-02-04 01:58:52.126", 
+        "duration": "4h 42m 59s", 
+        "realtime": "2h 1m 36s", 
+        "%cpu": "1840.7%", 
+        "peak_rss": "17.6 GB", 
+        "peak_vmem": "55.1 GB", 
+        "rchar": "240 MB", 
+        "wchar": "47.6 MB", 
+        "metrics": {
+            "r2": 0.8653424869396995
+        }, 
+        "code_version": "0.1.3", 
+        "metrics_raw": {
+            "r2": 0.6627247305850442
+        }, 
+        "mean_score": 0.8653424869396995
+    }
+}
