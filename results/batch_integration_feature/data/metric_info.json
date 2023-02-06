@@ -1,12 +1,112 @@
 [
     {
-        "task_id": "batch_integration_feature", 
-        "commit_sha": "a49ae996dc5f34402b1fa5cab9b3a3936126a413", 
-        "metric_id": "hvg_conservation", 
-        "metric_name": "HVG conservation", 
-        "metric_description": null, 
-        "paper_reference": "luecken2022benchmarking", 
-        "maximize": true, 
-        "image": "openproblems-r-pytorch"
+        "metric_name": "ARI",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "ari",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "Cell Cycle Score",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "cc_score",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "Graph connectivity",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "graph_connectivity",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "HVG conservation",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "hvg_conservation",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "Isolated label F1",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "isolated_labels_f1",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "Isolated label Silhouette",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "isolated_labels_sil",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "kBET",
+        "paper_reference": "bttner2018test",
+        "maximize": true,
+        "image": "openproblems-r-extras",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "kBET",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "NMI",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "nmi",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "PC Regression",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "pcr",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "Silhouette",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "silhouette",
+        "metric_description": ""
+    },
+    {
+        "metric_name": "Batch ASW",
+        "paper_reference": "luecken2022benchmarking",
+        "maximize": true,
+        "image": "openproblems-r-pytorch",
+        "task_id": "batch_integration_feature",
+        "commit_sha": "30f33504a9964e949c5eab46fcec8e93b4025d86",
+        "metric_id": "silhouette_batch",
+        "metric_description": ""
     }
 ]
