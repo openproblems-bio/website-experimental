@@ -1,0 +1,20 @@
+[
+    {
+        "metric_name": "kNN Area Under the Curve",
+        "paper_reference": "stanley2020harmonic",
+        "maximize": true,
+        "image": "openproblems",
+        "task_id": "matching_modalities",
+        "commit_sha": "d8688d6cb84384d86ff4db8d8ec821c0263fc695",
+        "metric_id": "knn_auc"
+    },
+    {
+        "metric_name": "Mean squared error",
+        "paper_reference": "lance2022multimodal",
+        "maximize": false,
+        "image": "openproblems",
+        "task_id": "matching_modalities",
+        "commit_sha": "d8688d6cb84384d86ff4db8d8ec821c0263fc695",
+        "metric_id": "mse"
+    }
+]
