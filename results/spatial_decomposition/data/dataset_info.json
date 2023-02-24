@@ -6,7 +6,7 @@
         "data_reference": "lopez2022destvi",
         "dataset_summary": "scRNA-seq is generated based on learn NB parameters from the destVI manuscripts leveraging sparsePCA. Number of cells and cell types present in each spatial spot is computed via combination of kernel-based parametrization of a categorical distribution and the NB model.",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "destvi",
         "dataset_description": ""
     },
@@ -17,7 +17,7 @@
         "data_reference": "luecken2022benchmarking",
         "dataset_summary": "Human pancreas cells aggregated from single-cell (Dirichlet alpha=0.5)",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "pancreas_alpha_0_5",
         "dataset_description": ""
     },
@@ -28,7 +28,7 @@
         "data_reference": "luecken2022benchmarking",
         "dataset_summary": "Human pancreas cells aggregated from single-cell (Dirichlet alpha=1)",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "pancreas_alpha_1",
         "dataset_description": ""
     },
@@ -39,7 +39,7 @@
         "data_reference": "luecken2022benchmarking",
         "dataset_summary": "Human pancreas cells aggregated from single-cell (Dirichlet alpha=5)",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "pancreas_alpha_5",
         "dataset_description": ""
     },
@@ -50,7 +50,7 @@
         "data_reference": "tabula2020single",
         "dataset_summary": "Mouse lung cells aggregated from single-cell (Dirichlet alpha=0.5)",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "tabula_muris_senis_alpha_0_5",
         "dataset_description": ""
     },
@@ -61,7 +61,7 @@
         "data_reference": "tabula2020single",
         "dataset_summary": "Mouse lung cells aggregated from single-cell (Dirichlet alpha=1)",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "tabula_muris_senis_alpha_1",
         "dataset_description": ""
     },
@@ -72,7 +72,7 @@
         "data_reference": "tabula2020single",
         "dataset_summary": "Mouse lung cells aggregated from single-cell (Dirichlet alpha=5)",
         "task_id": "spatial_decomposition",
-        "commit_sha": "60444e75411e346d7b2673fac484f43fbadaf061",
+        "commit_sha": "ad1749b1b0cba420cb6d35a99c5f6a8166296388",
         "dataset_id": "tabula_muris_senis_alpha_5",
         "dataset_description": ""
     }
