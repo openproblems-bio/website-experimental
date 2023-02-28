@@ -2,6 +2,7 @@
 .people-person {
   background: none;
   border: none;
+  max-width: 267px;
 }
 
 .people-widget {
@@ -11,6 +12,8 @@
 
 .people-widget .portrait-title h2 {
   font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .people-widget .portrait-title h3 {
@@ -50,7 +53,6 @@
   font-weight: 300;
   color: #000;
   margin: 20px 0 10px;
-  
 }
 
 .portrait-title h6 {
