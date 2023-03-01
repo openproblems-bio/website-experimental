@@ -46,7 +46,7 @@ jobs:
 
       - name: Deploy 🚀
         id: deploy
-        uses: jsmrcaga/action-netlify-deploy@v1.7.2
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
         if: github.event_name != 'pull_request'
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
       - name: Deploy preview
         id: deploy_preview
         if: github.event_name == 'pull_request'
-        uses: jsmrcaga/action-netlify-deploy@v1.7.2
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -69,15 +69,6 @@ jobs:
           build_directory: _site
           install_command: "echo Skipping installing the dependencies"
           build_command: "echo Skipping building the web files"
-
-      # - name: Status check
-      #   if: github.event_name == 'pull_request'
-      #   uses: Sibz/github-status-action@v1.1.6
-      #   with:
-      #     authToken: ${{ secrets.GITHUB_TOKEN }}
-      #     context: Netlify preview
-      #     state: success
-      #     target_url: ${{ steps.deploy_preview.outputs.NETLIFY_PREVIEW_URL }}
 
       - uses: thollander/actions-comment-pull-request@v2
         if: github.event_name == 'pull_request'
