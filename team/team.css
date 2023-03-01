@@ -8,12 +8,14 @@
 .people-widget {
   font-size: 0.8rem;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  padding-top: 1em;
 }
 
 .people-widget .portrait-title h2 {
   font-size: 1rem;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .people-widget .portrait-title h3 {
