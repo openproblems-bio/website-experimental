@@ -71,7 +71,7 @@ jobs:
       
       - name: Debug
         run: |
-          echo ${{ steps.deploy_preview.outputs }}
+          echo ${{ toJSON(steps.deploy_preview.outputs) }}
 
       - name: Status check
         if: github.event_name == 'pull_request'
