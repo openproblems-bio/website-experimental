@@ -1,7 +1,7 @@
 ---
 title: Daniel Strobl
 role: Task leader of Batch Integration
-image: avatar.png
+image: avatar.jpeg
 organizations:
   - name: Helmholtz Zentrum München
     href: 'https://www.helmholtz-munich.de'
