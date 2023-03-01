@@ -45,6 +45,7 @@ jobs:
           quarto render
 
       - name: Deploy 🚀
+        id: deploy
         uses: jsmrcaga/action-netlify-deploy@v1.7.2
         if: github.event_name != 'pull_request'
         with:
@@ -53,8 +54,8 @@ jobs:
           NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
           NETLIFY_DEPLOY_TO_PROD: true
           build_directory: _site
-          install_command: echo no install required
-          build_command: echo no build required
+          install_command: "echo Skipping installing the dependencies"
+          build_command: "echo Skipping building the web files"
 
       - name: Deploy preview
         id: deploy_preview
@@ -66,21 +67,8 @@ jobs:
           NETLIFY_DEPLOY_MESSAGE: "PR deploy v${{ github.ref }}"
           deploy_alias: ${{ env.BRANCH_NAME }}
           build_directory: _site
-          install_command: echo no install required
-          build_command: echo no build required
-      
-      - name: Debug
-        run: |
-          echo ${{ toJSON(steps.deploy_preview.outputs) }}
-
-      - name: Status check
-        if: github.event_name == 'pull_request'
-        uses: Sibz/github-status-action@v1.1.6
-        with:
-          authToken: ${{ secrets.GITHUB_TOKEN }}
-          context: Netlify preview
-          state: success
-          target_url: ${{ steps.deploy_preview.outputs.NETLIFY_PREVIEW_URL }}
+          install_command: "echo Skipping installing the dependencies"
+          build_command: "echo Skipping building the web files"
 
       - uses: thollander/actions-comment-pull-request@v2
         if: github.event_name == 'pull_request'
