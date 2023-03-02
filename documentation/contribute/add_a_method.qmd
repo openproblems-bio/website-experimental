@@ -291,7 +291,13 @@ If a new field needs to be added...
 
 ## Nextflow
 
-After developing your method you can add it to the nextflow workflow that can be found at `task_name/workflows/run/main.nf`
+After developing your method you add it to the nextflow workflow that can be found at `task_name/workflows/run/main.nf`
+
+Execute the cmd below to create and build the docker and nextflow filepaths.
+
+```bash
+viash ns build -q task_name --paralell --setup cachedbuild
+```
 
 ```nextflow
 // import control methods
@@ -308,19 +314,35 @@ include { seurat_transferdata } from "$targetDir/label_projection/methods/seurat
 include { xgboost } from "$targetDir/label_projection/methods/xgboost/main.nf"
 ```
 
-`viash ns build -q common|task_name --paralell --setup cachedbuild`
+Also add your method further down the file with the include name you have given.
+
+```nextflow
+// construct a map of methods (id -> method_module)
+methods = [ true_labels, majority_vote, random_labels, knn, mlp, logistic_regression, scanvi, seurat_transferdata, xgboost ]
+  .collectEntries{method ->
+    [method.config.functionality.name, method]
+  }
+```
 
 ## testing
 
-### unit testing
+### unit test
 
 You can test your method by using the following command:
 
-`viash test path/to/method/config.vsh.yaml`
+```bash
+viash test path/to/method/config.vsh.yaml
+```
 
-There is a general unit test that you can find in the `comp_method.yaml` that will be done when executing the command. if you added a specific unit test for your method it will also be run if added correctly.
+There is a general unit test that you can find in the `comp_method.yaml` that will be executed. If you added a specific unit test for your method it will also be executed if added correctly.
 
-whenever you change your config file you need to perform a `viash run path/to/method/config.vsh.yaml -- ---setup cachedbuild`
+Depending on the result you will get a notification on how many tests succeeded or failed:
+
+```bash
+SUCCESS! All 1 out of 1 test scripts succeeded!
+```
+
+### Workflow test
 
 testing of the full workflow can be done by using the following command:
 
@@ -328,7 +350,7 @@ testing of the full workflow can be done by using the following command:
 
 ## General
 
-As a final note when adding a new method add yourself to the `authors.yaml` file.
+As a final note when adding a new method add yourself to the `task_name/api/authors.yaml` file.
 
 ```yaml
 - name: Robrecht Cannoodt
