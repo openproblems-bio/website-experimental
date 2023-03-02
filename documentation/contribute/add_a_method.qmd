@@ -3,7 +3,7 @@ title: Add a method
 order: 40
 ---
 
-This page describes how to add a method to an already existing task. Make sure you have followed the [Requirements](requirements.qmd) and [first setup](first_time_setup.qmd) pages.
+This page describes how to add a method to an already existing task. Make sure you have followed the [Requirements](requirements.qmd) and [getting started](getting_started.qmd) pages.
 
 There are 2 type of components you can add:
 
@@ -281,7 +281,7 @@ adata.write_h5ad(par['output'], compress='gzip')
 
 Depending on the task The output is stored in different locations in the anndata. e.g. for `denoising` it is located in the `.layers['denoised']` and for `dimensionality_reduction` it is stored in `.obsm[X_emb]`.
 
-### API
+## API
 
 For in depth documentation see [API file formats](../create_task/api_file_formats.qmd) and [API components specs](../create_task/api_component_specs.qmd).
 
@@ -329,6 +329,8 @@ methods = [ true_labels, majority_vote, random_labels, knn, mlp, logistic_regres
 
 ## testing
 
+Check out the in depth documentation [here](run_tests.qmd)
+
 ### unit test
 
 You can test your method by using the following command:
@@ -355,4 +357,4 @@ testing of the full workflow can be done by using the following command:
 
 Add yourself to the `task_name/api/authors.yaml` file.
 
-When you are finished with your component create a Pull Request according to the instructions [here]().
+When you are finished with your component create a Pull Request according to the instructions [here](create_pull_request.qmd).
