@@ -3,14 +3,14 @@ title: Add a method
 order: 40
 ---
 
-This page describes how to add a method to an already existing task. Make sure you have followed the [Requirements](requirements.qmd) and [first setup](first_setup.qmd) pages.
+This page describes how to add a method to an already existing task. Make sure you have followed the [Requirements](requirements.qmd) and [first setup](first_time_setup.qmd) pages.
 
 There are 2 type of components you can add:
 
 * `control method`:  The control methods are methods that form a baseline (random/ground truth) to compare the methods from the same task against.
 * `method`: scripts to be benchmarked on how to perform the task.
 
-You can find the components in their respective directories namely the `control_methods` and `methods` directory. The setup of both components is similar with small differences in the config yaml. 
+You can find the components in their respective task directories (`src/task_name/`) namely the `control_methods` and `methods` directory. The setup of both components is similar with small differences in the config yaml. 
 The differences will be pointed out below. whenever `methods` is mentioned it should be replaced with `control_methods` when adding a control method.
 
 ## Directory
@@ -44,7 +44,7 @@ functionality:
   # a unique name for your method, same as what is being output by the script.
   # must match the regex [a-z][a-z0-9_]*
   name: method
-  namespace: task/methods
+  namespace: task_name/methods
   # metadata for your method
   description: A description for your method.
   info:
@@ -76,8 +76,8 @@ In this section of the configuration you should focus on updating the following 
 
 1. Description and Info - Information about the method
 
-  * `namespace`: this should be structured according to `task/methods` or `task/control_methods`. If the task contains subtasks this should be `task/methods_subtask`, the same for control methods. Where `task` is replaced by the task name
-  * `info/type`: For a method this should be `method`. For control_method it should be `negative_control` or `positive_control`. 
+    * `namespace`: this should be structured according to `task_name/methods` or `task_name/control_methods`. If the task contains subtasks this should be `task/subtask_name_methods`, the same for control methods. Where `task_name` is replaced by the task name.
+    * `info/type`: For a method this should be `method`. For control_method it should be `negative_control` or `positive_control`. 
 
 2. Arguments - Each section here defines a command-line argument for the script. These sections are all passed to the script in the form of a dictionary called `par`. You only need to change the method-specific parameters, and if you would like these parameters hard-coded into the script, you do not need to provide any parameters here. 
 3. Resources - This section describes the files that need to be included in your component. For example if you'd like to add a file containing model weights called `weights.pt`, add `{ type: file, path: weights.pt }` to the resources. You can now load the additional resource in your script by using at the path `meta['resources_dir'] + '/weights.pt'`.
@@ -283,11 +283,14 @@ Depending on the task The output is stored in different locations in the anndata
 
 ### API
 
+For in depth documentation see [API file formats](../create_task/api_file_formats.qmd) and [API components specs](../create_task/api_component_specs.qmd).
+
 In the API directory there are yaml files that have info about the anndata objects. These files all start with `anndata_*.yaml`.
 
 When developing a method it can be useful to check these files on what the anndata objects consist of. For instance the `anndata_dataset.yaml` has information on what is required that the datasets has.
 
 If a new field needs to be added...
+
 
 ## Nextflow
 
@@ -348,13 +351,8 @@ testing of the full workflow can be done by using the following command:
 
 `task_name/workflows/run/run_test.sh`
 
-## General
+## Final steps
 
-As a final note when adding a new method add yourself to the `task_name/api/authors.yaml` file.
+Add yourself to the `task_name/api/authors.yaml` file.
 
-```yaml
-- name: Robrecht Cannoodt
-  roles: [ author ]
-  props: { github: rcannood, orcid: "0000-0003-3641-729X" }
-```
-
+When you are finished with your component create a Pull Request according to the instructions [here]().
