@@ -3,24 +3,32 @@ title: Add a method
 order: 40
 ---
 
-This page describes how to add a method to an already existing task. Make sure you have followed the ["Requirements"](requirements.qmd) and ["Getting started"](getting_started.qmd) guides.
 
-There are 2 type of components you can add:
+OpenProblems has been build with Viash components including the methods of a task. A Viash component consists of a script and a Viash config. The config defines the documentation, input/output arguments and dependencies of the script. This page describes how to add a method to an existing task.
 
-* `control method`:  The control methods are methods that form a baseline (random/ground truth) to compare the methods from the same task against.
-* `method`: scripts to be benchmarked on how to perform the task.
+:::{.callout-tip}
+Make sure you have followed the [Requirements](requirements.qmd) and [getting started](getting_started.qmd) pages.
+:::
 
-You can find the components in their respective task directories (`src/task_name/`) namely the `control_methods` and `methods` directory. The setup of both components is similar with small differences in the config yaml. 
-The differences will be pointed out below. whenever `methods` is mentioned it should be replaced with `control_methods` when adding a control method.
+:::{.callout-note}
+This guide will explain how to add a new method for the Label projection task. Every time you encounter the string `label_projection`, replace it with your task of interest.
+:::
 
-## Directory
+## Create a new component
 
-To add a method, create a new directory in the `src/task/methods` (where `task` is replaced by the task name. e.g. `denoising`) with the name of the new method in snake case. A task can also contain a subtask then this should be `src/task/methods_subtask/`.
-Add a `config.vsh.yaml` and a script file e.g. `script.py` or `script.R`. You can also add additional helper files to this `dir` if it is required for the method e.g. method specific unit test `test.py`
+Create a new Viash component by running the following command:
 
-structure of the new method directory:
+```bash
+viash run src/common/create_skeleton/config.vsh.yaml -- \
+  --task label_projection \
+  --comp-type method \
+  --name my_method \
+  --language python
+```
 
-    src/task/methods/new_method
+This will create a new folder at `src/label_projection/methods/my_method` containing a Viash config (`config.vsh.yaml`) and a script (`script.py` or `script.R`).
+
+    src/label_projection/methods/my_method
         ├── script.py/R                  method script
         ├── config.vsh.yaml              config file for method
         └── additional files             Helper files like e.g. tsv file, unit test specific for method, ...
@@ -33,7 +41,30 @@ Full documentation on the Viash configuration file is available on the [Viash do
 ```yaml
 __merge__: ../../api/comp_method.yaml
 ```
-This file contains metadata that is needed for all the methods. It will contain the required arguments such as the `--input` files and the `--output` files
+This file contains metadata that is needed for all the methods. It will contain the required arguments such as the `--input` files and the `--output` files that are common among all the methods in the task.
+
+```yaml
+functionality:
+  arguments:
+    - name: "--input_train"
+      __merge__: anndata_train.yaml
+    - name: "--input_test"
+      __merge__: anndata_test.yaml
+    - name: "--output"
+      __merge__: anndata_prediction.yaml
+      direction: output
+  test_resources:
+    - path: ../../../../resources_test/label_projection/pancreas
+    - type: python_script
+      path: generic_test.py
+      text: |
+        import anndata as ad
+        import subprocess
+        from os import path
+...
+```
+
+You can find more in depth information [here](../create_task/api_component_specs.qmd).
 
 ### Functionality
 
@@ -43,15 +74,17 @@ This section of the configuration file contains information about the metadata o
 functionality:
   # a unique name for your method, same as what is being output by the script.
   # must match the regex [a-z][a-z0-9_]*
-  name: method
-  namespace: task_name/methods
+  name: my_method
+  namespace: label_projection/methods
   # metadata for your method
   description: A description for your method.
   info:
     type: method
-    method_name: Method
-    preferred_normalization:
+    method_name: My Method
+    preferred_normalization: log_cpm
     variants:
+      my_method:
+      method_variant:
 
 
   # component parameters
@@ -69,17 +102,14 @@ functionality:
     - type: python_script
       path: script.py
     # additional resources your script needs (optional)
-    - path: pretrained_model.pt
+    - type: file
+      path: weights.pt
 ```
 
 In this section of the configuration you should focus on updating the following sections:
 
-1. Description and Info - Information about the method
-
-    * `namespace`: this should be structured according to `task_name/methods` or `task_name/control_methods`. If the task contains subtasks this should be `task/subtask_name_methods`, the same for control methods. Where `task_name` is replaced by the task name.
-    * `info/type`: For a method this should be `method`. For control_method it should be `negative_control` or `positive_control`. 
-
-2. Arguments - Each section here defines a command-line argument for the script. These sections are all passed to the script in the form of a dictionary called `par`. You only need to change the method-specific parameters, and if you would like these parameters hard-coded into the script, you do not need to provide any parameters here. 
+1. Description and Info - Information about the method. 
+2. Arguments - Each section here defines a command-line argument for the script. These sections are all passed to the script in the form of a dictionary called `par`. You only need to add the method-specific parameters. If no additional arguments are required then the ones provdided in `__merge__` file above then you can remove this section entirely
 3. Resources - This section describes the files that need to be included in your component. For example if you'd like to add a file containing model weights called `weights.pt`, add `{ type: file, path: weights.pt }` to the resources. You can now load the additional resource in your script by using at the path `meta['resources_dir'] + '/weights.pt'`.
 
 
@@ -103,8 +133,6 @@ platforms:
     # you need to specify a base image that contains at least bash and python
     image: python:3.10
     # You can specify additional dependencies with 'setup'.
-    # See https://viash.io/reference
-    # for more information on how to add more dependencies.
     setup:
       # - type: apt
       #   packages:
@@ -133,12 +161,7 @@ platforms:
     # you need to specify a base image that contains at least bash and python
     image: eddelbuettel/r2u:22.04
     # You can specify additional dependencies with 'setup'.
-    # See https://viash.io/reference
-    # for more information on how to add more dependencies.
     setup:
-      # - type: apt
-      #   packages:
-      #     - bash
       - type: apt
         packages: [ libhdf5-dev, libgeos-dev, python3, python3-pip, python3-dev, python-is-python3, git ]
       - type: python
@@ -155,7 +178,7 @@ platforms:
 ```
 :::
 
-The most important part of this section to update is the `setup` definition that describes the packages that need to be installed in the docker container for the method to run. There are many different methods for specifying these requirements described in the Viash [docs](https://viash.io/reference). It is required to add the python setup to include the `pyyaml` package due to general unit testing done (if not already in the image). When creating an Rscript also add the `anndata>=0.8` package int the python setup.
+The most important part of this section to update is the `setup` definition that describes the packages that need to be installed in the docker container for the method to run. There are many different methods for specifying these requirements described in the Viash [docs](https://viash.io/reference). It is required to add the python setup to include the `pyyaml` package due to general unit testing done (if not already in the image). When creating an Rscript also add the `anndata>=0.8` package in the python setup.
 
 You can also change the memory and CPU utilization be editing the Nextflow labels section. Available options are `[low|med|high]` for each of `mem` and `cpu`. The corresponding resource values can be found in the `/src/wf_utils/labels.config` file.
 
@@ -241,7 +264,7 @@ meta <- list (
 ```
 :::
 
-Here, the `par` dictionary contains all the `arguments` defined in the `config.vsh.yaml` file. 
+Here, the `par` dictionary contains all the `arguments` defined in the `config.vsh.yaml` file. Including those from the defined `__merge__` file.
 
 ### Method
 
@@ -279,7 +302,34 @@ adata.write_h5ad(par['output'], compress='gzip')
 ```
 :::
 
-Depending on the task The output is stored in different locations in the anndata. e.g. for `denoising` it is located in the `.layers['denoised']` and for `dimensionality_reduction` it is stored in `.obsm[X_emb]`.
+Depending on the task The output is stored in different locations in the anndata. e.g. for `label_projection` it is located in the `.obs["label_pred"]` and for `dimensionality_reduction` it is stored in `.obsm[X_emb]`. You will be able to find this information in the `anndata_*.yaml` file determined in the `output` argument of the `comp_method.yaml` file.
+
+For the `label_projection` this will be `anndata_predictions.yaml`
+
+```yaml
+type: file
+description: "The prediction file"
+example: "prediction.h5ad"
+info:
+  short_description: "Prediction"
+  slots:
+    obs:
+      - type: string
+        name: label_pred
+        description: Predicted labels for the test cells.
+    uns:
+      - type: string
+        name: dataset_id
+        description: "A unique identifier for the dataset"
+        required: true
+      - type: string
+        name: normalization_id
+        description: "Which normalization was used"
+        required: true
+      - type: string
+        name: method_id
+        description: "A unique identifier for the method"
+```
 
 ## API
 
@@ -358,3 +408,67 @@ testing of the full workflow can be done by using the following command:
 Add yourself to the `task_name/api/authors.yaml` file.
 
 When you are finished with your component create a Pull Request according to the instructions [here](create_pull_request.qmd).
+
+## alternative methods
+
+There is also a possibility to add a __control method__ to the the task. These methods form the baseline that will be used to compare the methods from the same task against to see how they perform.
+These `controls` can divided in 2 type:
+
+* __negative control__: These methods contain no or a random prediction. Which will make these have a bad result when performing metrics. 
+* __Positive control__: These methods contain the ground truth. This ensures they have the good result when performing the metrics.
+
+For most of the time these methods are added in the same way as the methods above. The differences will be shown below.
+
+### Create a new component
+
+Create a new Viash component by running the following command:
+
+```bash
+viash run src/common/create_skeleton/config.vsh.yaml -- \
+  --task label_projection \
+  --comp-type negative_control \
+  --name my_method \
+  --language python
+```
+
+This will create a new folder at `src/label_projection/control_methods/my_method`. You will need to change the `--comp-type` to postivie control depending on wich typ you want to add.
+
+    src/label_projection/control_methods/my_method
+        ├── script.py/R                  method script
+        ├── config.vsh.yaml              config file for method
+        └── additional files             Helper files like e.g. tsv file, unit test specific for method, ...
+
+### config.vsh.yaml
+
+The main difference:
+
+1. `namespace` -> `control_methods`
+2. `info/type`: This will be `negative_control` or `positive_control`.
+
+
+```yaml
+__merge__: ../../api/comp_control_method.yaml
+functionality:
+  name: my_method
+  namespace: label_projection/control_methods
+  description: A description for your method.
+  info:
+    type: negative_control
+    method_name: My Method
+    variants:
+      my_method:
+    preferred_normalization: counts
+  resources:
+    - type: python_script
+      path: script.py
+platforms:
+  - type: docker
+    image: "python:3.8"
+    setup:
+      - type: python
+        packages:
+          - "anndata>=0.8"
+  - type: nextflow
+    directives: 
+      label: [ lowmem, lowcpu ]
+```
