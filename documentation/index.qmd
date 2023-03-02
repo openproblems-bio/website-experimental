@@ -18,7 +18,7 @@ We encourage everyone who uses OpenProblems to contribute to the library in any 
 
 One simple but important way to contribute is to spread the word about the library by referencing it from your blog and articles, linking to it from your website, or starring it on GitHub to show that you use it. This not only helps us gain more visibility but also encourages others to try out the library and contribute to it. 
 
-[![](https://i.imgur.com/dIuJF2e.png){width=500px}](https://github.com/openproblems-bio/openproblems-v2/stargazers)
+[![](images/stargazers.png){width=500px}](https://github.com/openproblems-bio/openproblems-v2/stargazers)
 
 To get started with contributing to the library, please see the "Contribute" section which provides information on the requirements, getting started, adding datasets, methods, and metrics, and running benchmarks. We also provide a detailed guide on how to create a new task in the "Create a new task" section.
 

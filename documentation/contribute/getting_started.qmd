@@ -9,8 +9,7 @@ To get started with contributing to OpenProblems, you'll need to fork and clone 
 
 Go to the OpenProblems repository at [https://github.com/openproblems-bio/openproblems-v2](https://github.com/openproblems-bio/openproblems-v2) and click on the "Fork" button in the top right corner of the page.
 
-![](https://i.imgur.com/fUcpLYl.png){width=400px}
-
+![](../images/fork_repo.png){width=500px}
 
 This will create a copy of the repository under your GitHub account. 
 
