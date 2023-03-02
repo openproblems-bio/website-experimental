@@ -12,7 +12,7 @@ To contribute new functionality to OpenProblems, please follow the steps below:
 
 3. [Install the necessary requirements](requirements.qmd) to work with OpenProblems.
 
-4. Follow the [first-time setup guide](first_time_setup.qmd) to fork and clone the repository.
+4. Follow the [getting started](first_time_setup.qmd) guide to fork and clone the repository and download the necessary test resources.
 
 5. Add a [dataset](add_a_dataset.qmd), [method](add_a_method.qmd), or [metric](add_a_metric.qmd) to the library.
 
