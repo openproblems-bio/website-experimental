@@ -157,7 +157,7 @@ platforms:
 
 The most important part of this section to update is the `setup` definition that describes the packages that need to be installed in the docker container for the method to run. There are many different methods for specifying these requirements described in the Viash [docs](https://viash.io/reference). It is required to add the python setup to include the `pyyaml` package due to general unit testing done (if not already in the image). When creating an Rscript also add the `anndata>=0.8` package int the python setup.
 
-You can also change the memory, runtime, and CPU utilization be editing the Nextflow labels section. Available options are `[low|med|high]` for each of `mem` and `cpu`. The corresponding resource values can be found in the `scripts/nextflow.config` file.
+You can also change the memory and CPU utilization be editing the Nextflow labels section. Available options are `[low|med|high]` for each of `mem` and `cpu`. The corresponding resource values can be found in the `/src/wf_utils/labels.config` file.
 
 :::{.callout-note}
 **Tip:** After making changes to the components dependencies, you will need to rebuild the docker container as follows:
@@ -281,9 +281,80 @@ adata.write_h5ad(par['output'], compress='gzip')
 
 Depending on the task The output is stored in different locations in the anndata. e.g. for `denoising` it is located in the `.layers['denoised']` and for `dimensionality_reduction` it is stored in `.obsm[X_emb]`.
 
-<!-- 
-TODO:
-* add to authors
-* 
+### API
 
--->
+In the API directory there are yaml files that have info about the anndata objects. These files all start with `anndata_*.yaml`.
+
+When developing a method it can be useful to check these files on what the anndata objects consist of. For instance the `anndata_dataset.yaml` has information on what is required that the datasets has.
+
+If a new field needs to be added...
+
+## Nextflow
+
+After developing your method you add it to the nextflow workflow that can be found at `task_name/workflows/run/main.nf`
+
+Execute the cmd below to create and build the docker and nextflow filepaths.
+
+```bash
+viash ns build -q task_name --paralell --setup cachedbuild
+```
+
+```nextflow
+// import control methods
+include { true_labels } from "$targetDir/label_projection/control_methods/true_labels/main.nf"
+include { majority_vote } from "$targetDir/label_projection/control_methods/majority_vote/main.nf"
+include { random_labels } from "$targetDir/label_projection/control_methods/random_labels/main.nf"
+
+// import methods
+include { knn } from "$targetDir/label_projection/methods/knn/main.nf"
+include { mlp } from "$targetDir/label_projection/methods/mlp/main.nf"
+include { logistic_regression } from "$targetDir/label_projection/methods/logistic_regression/main.nf"
+include { scanvi } from "$targetDir/label_projection/methods/scanvi/main.nf"
+include { seurat_transferdata } from "$targetDir/label_projection/methods/seurat_transferdata/main.nf"
+include { xgboost } from "$targetDir/label_projection/methods/xgboost/main.nf"
+```
+
+Also add your method further down the file with the include name you have given.
+
+```nextflow
+// construct a map of methods (id -> method_module)
+methods = [ true_labels, majority_vote, random_labels, knn, mlp, logistic_regression, scanvi, seurat_transferdata, xgboost ]
+  .collectEntries{method ->
+    [method.config.functionality.name, method]
+  }
+```
+
+## testing
+
+### unit test
+
+You can test your method by using the following command:
+
+```bash
+viash test path/to/method/config.vsh.yaml
+```
+
+There is a general unit test that you can find in the `comp_method.yaml` that will be executed. If you added a specific unit test for your method it will also be executed if added correctly.
+
+Depending on the result you will get a notification on how many tests succeeded or failed:
+
+```bash
+SUCCESS! All 1 out of 1 test scripts succeeded!
+```
+
+### Workflow test
+
+testing of the full workflow can be done by using the following command:
+
+`task_name/workflows/run/run_test.sh`
+
+## General
+
+As a final note when adding a new method add yourself to the `task_name/api/authors.yaml` file.
+
+```yaml
+- name: Robrecht Cannoodt
+  roles: [ author ]
+  props: { github: rcannood, orcid: "0000-0003-3641-729X" }
+```
+
