@@ -5,7 +5,7 @@ order: 20
 
 To get started with contributing to OpenProblems, you'll need to fork and clone the OpenProblems repository to your local machine.
 
-## Create a fork
+## Step 1: Create a fork
 
 Go to the OpenProblems repository at [https://github.com/openproblems-bio/openproblems-v2](https://github.com/openproblems-bio/openproblems-v2) and click on the "Fork" button in the top right corner of the page.
 
@@ -15,7 +15,7 @@ Go to the OpenProblems repository at [https://github.com/openproblems-bio/openpr
 This will create a copy of the repository under your GitHub account. 
 
 
-## Clone the repository
+## Step 2: Clone the repository
 To clone this forked repository to your local machine, copy the URL of the forked repository by clicking the green "Code" button and selecting HTTPS or SSH.
 
 In your terminal or command prompt, navigate to the directory where you want to clone the repository and enter the following command:
@@ -26,7 +26,7 @@ git clone <forked repository URL>
 
 This will download a copy of the repository to your local machine. You can now make changes to the code, add new functionality, and commit your changes.
 
-## Download test resources
+## Step 3: Download test resources
 
 You will also need to download the test resources by running the following command.
 
@@ -40,6 +40,31 @@ viash run src/common/sync_test_resources/config.vsh.yaml
     Completed 1.0 MiB/7.2 MiB (1.1 MiB/s) with 6 file(s) remaining    
     Completed 1.2 MiB/7.2 MiB (1.3 MiB/s) with 6 file(s) remaining
     ...
+
+## Project structure
+
+The project repository is structured as follows:
+
+* `resources_test`: Datasets for testing components. This folder can be obtained by running step 3.
+* `src`: Source files for each component in the pipeline.
+  - `common`: Common processing components.
+  - `datasets`: Components and pipelines for building the 'Common datasets'
+  - `label_projection`: Source files related to the 'Label projection' task.
+  - `...`: Other tasks.
+* `target`: Artifacts built from the components in `src/` by running `viash ns build`.
+  - `docker`: Bash executables which can be used from a terminal.
+  - `nextflow`: Nextflow modules which can be used as a standalone pipeline or as part of a bigger pipeline.
+
+Detailed overview of a task folder (e.g. `src/label_projection`):
+
+* `api`: Specifications for the components and data files in this task.
+* `control_methods`: Control methods which serve as quality control checks for the benchmark.
+* `methods`: Label projection method components.
+* `metrics`: Label projection metric components.
+* `resources_scripts`: The scripts needed to run the benchmark.
+* `resources_test_scripts`: The scripts needed to generate the test resources, which are required for unit testing.
+* `split_dataset`: A component that splits a common dataset into a solution and a masked dataset.
+* `workflows`: The benchmarking workflow.
 
 ## Ready, set, go!
 
