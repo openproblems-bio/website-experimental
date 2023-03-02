@@ -20,7 +20,7 @@ One simple but important way to contribute is to spread the word about the libra
 
 [![](https://i.imgur.com/dIuJF2e.png){width=500px}](https://github.com/openproblems-bio/openproblems-v2/stargazers)
 
-To get started with contributing to the library, please see the "Contribute" section which provides information on the requirements, first-time setup, adding datasets, methods, and metrics, and running benchmarks. We also provide a detailed guide on how to create a new task in the "Create a new task" section.
+To get started with contributing to the library, please see the "Contribute" section which provides information on the requirements, getting started, adding datasets, methods, and metrics, and running benchmarks. We also provide a detailed guide on how to create a new task in the "Create a new task" section.
 
 Finally, we want to emphasize that OpenProblems is an inclusive community and we expect all members to adhere to our [code of conduct](more_information/code_of_conduct.qmd). We hope that this documentation helps you get started with OpenProblems and we look forward to your contributions.
 
