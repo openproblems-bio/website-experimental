@@ -18,18 +18,30 @@ jobs:
 
     env:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+      NETLIFY_SITE_ID: 50eb8c92-d903-4d5d-a896-58a092b37874
 
     steps:
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "4.1"
+          r-version: "4.2"
           use-public-rspm: true
 
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
+
+      - name: Set up environment
+        run: |
+          echo "LINUX_VERSION=$(uname -rs)" >> $GITHUB_ENV
+
+      - name: Cache Python packages
+        uses: actions/cache@v3
+        with:
+          path: renv/python/virtualenvs/renv-python-3.10
+          key: python-${{env.LINUX_VERSION}}-${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: python-${{env.LINUX_VERSION}}-${{ env.pythonLocation }}-
 
       - uses: r-lib/actions/setup-renv@v2
           
@@ -49,7 +61,7 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           auth: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          site: ${{ secrets.NETLIFY_SITE_ID }}
+          site: ${{ env.NETLIFY_SITE_ID }}
           dir: '_site'
           prod: true
           message: 'Deploy production ${{ github.ref }}'
@@ -60,7 +72,7 @@ jobs:
         uses: data-intuitive/netlify-deploy-site@v1
         with:
           auth: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          site: ${{ secrets.NETLIFY_SITE_ID }}
+          site: ${{ env.NETLIFY_SITE_ID }}
           dir: '_site'
           alias: "${{ env.BRANCH_NAME }}"
           message: 'Deploy prooduction ${{ github.ref }}'
