@@ -21,7 +21,7 @@ Create a new Viash component by running the following command:
 ```bash
 viash run src/common/create_skeleton/config.vsh.yaml -- \
   --task label_projection \
-  --comp-type method \
+  --comp_type method \
   --name my_method \
   --language python
 ```
