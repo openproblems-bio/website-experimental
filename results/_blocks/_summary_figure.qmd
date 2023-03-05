@@ -3,7 +3,7 @@
 #| echo: false
 #| message: false
 #| warning: false
-overall <- results_long %>% 
+overall <- results_long %>%
   group_by(method_id) %>%
   summarise(mean_score = mean(score %|% 0), .groups = "drop") %>%
   mutate(mean_score = pmin(1, pmax(mean_score, 0))) %>%
@@ -21,7 +21,7 @@ per_metric <- results_long %>%
   mutate(score = pmin(1, pmax(score, 0))) %>%
   spread(metric_id, score)
 
-summary_all <- 
+summary_all <-
   method_info %>%
   filter(!is_baseline) %>%
   select(method_id, method_name) %>%
@@ -90,6 +90,43 @@ g_all <- funky_heatmap(
   add_abc = FALSE,
   scale_column = FALSE
 )
+
+ojs_define(
+    funky_heatmap_args = list(
+        data = summary_all,
+        columns = colnames(summary_all)[2:ncol(summary_all)],
+        column_info = column_info %>% filter(id %in% colnames(summary_all)),
+        column_groups = column_groups %>% rename(name = Category),
+        palettes = palettes,
+        expand = c(xmax = 3),
+        col_annot_offset = 5,
+        add_abc = FALSE,
+        scale_column = FALSE
+    )
+)
+```
+
+```{ojs}
+//| echo: false
+funkyheatmap = (
+    await import('https://unpkg.com/funkyheatmap-js@0.1.2/dist/funkyheatmap.js')
+).default;
+funkyheatmap(
+    funky_heatmap_args.data,
+    funky_heatmap_args.columns,
+    funky_heatmap_args.column_info,
+    funky_heatmap_args.column_groups,
+    funky_heatmap_args.palettes,
+    funky_heatmap_args.expand,
+    funky_heatmap_args.col_annot_offset,
+    funky_heatmap_args.add_abc,
+    funky_heatmap_args.scale_column,
+    {
+        fontSize: 14,
+        rowHeight: 26,
+        rootStyle: 'max-width: none'
+    }
+);
 ```
 
 ```{r}
