@@ -110,7 +110,7 @@ ojs_define(
 ```{ojs}
 //| echo: false
 //| panel: input
-viewof scale_column = Inputs.toggle({label: "Rescale"})
+viewof scale_column = Inputs.toggle({label: "Rescale columns"})
 ```
 
 ```{ojs}
