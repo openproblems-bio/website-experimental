@@ -80,18 +80,19 @@ palettes <- list(
   metric = "Reds"
 )
 
-g_all <- funky_heatmap(
-  data = summary_all,
-  column_info = column_info %>% filter(id %in% colnames(summary_all)),
-  column_groups = column_groups,
-  palettes = palettes,
-  expand = c(xmax = 3),
-  col_annot_offset = 5,
-  add_abc = FALSE,
-  scale_column = FALSE
-)
+# g_all <- funky_heatmap(
+#   data = summary_all,
+#   column_info = column_info %>% filter(id %in% colnames(summary_all)),
+#   column_groups = column_groups,
+#   palettes = palettes,
+#   expand = c(xmax = 3),
+#   col_annot_offset = 5,
+#   add_abc = FALSE,
+#   scale_column = TRUE
+# )
 
 ojs_define(
+    method_info = method_info,
     funky_heatmap_args = list(
         data = summary_all,
         columns = colnames(summary_all)[2:ncol(summary_all)],
@@ -108,9 +109,15 @@ ojs_define(
 
 ```{ojs}
 //| echo: false
-funkyheatmap = (
-    await import('https://unpkg.com/funkyheatmap-js@0.1.2/dist/funkyheatmap.js')
-).default;
+//| panel: input
+viewof scale_column = Inputs.toggle({label: "Rescale"})
+```
+
+```{ojs}
+//| echo: false
+//| column: page
+//| fig-cap: "Overview of the results per method. This figures shows the mean of the scaled scores (group Overall), the mean scores per dataset (group Dataset) and the mean scores per metric (group Metric)."
+
 funkyheatmap(
     funky_heatmap_args.data,
     funky_heatmap_args.columns,
@@ -120,7 +127,7 @@ funkyheatmap(
     funky_heatmap_args.expand,
     funky_heatmap_args.col_annot_offset,
     funky_heatmap_args.add_abc,
-    funky_heatmap_args.scale_column,
+    scale_column,
     {
         fontSize: 14,
         rowHeight: 26,
@@ -129,16 +136,11 @@ funkyheatmap(
 );
 ```
 
-```{r}
-#| include: false
-knitr::opts_chunk$set(
-  fig.width = g_all$width,
-  fig.height = g_all$height
-)
-```
 
-```{r summary}
-#| echo: false
-#| fig-cap: "Overview of the results per method. This figures shows the mean of the scaled scores (group Overall), the mean scores per dataset (group Dataset) and the mean scores per metric (group Metric)."
-g_all
+
+```{ojs}
+//| echo: false
+funkyheatmap = (
+    await import('https://unpkg.com/funkyheatmap-js@0.1.2/dist/funkyheatmap.js')
+).default;
 ```
