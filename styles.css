@@ -27,7 +27,7 @@ a {
 
 @media screen and (min-width: 575.98px) and (max-width: 992px) {
   .navbar-logo {
-    max-height: 36px;
+    max-height: 40px;
   }
   .navbar-brand {
     padding-top: 0.4rem;
