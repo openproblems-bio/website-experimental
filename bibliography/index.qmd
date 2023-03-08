@@ -1,5 +1,6 @@
 ---
 title: "Bibliography"
+title-block-banner: images/heros/biblio_hero.png
 sidebar: false
 page-layout: full
 resources: 
