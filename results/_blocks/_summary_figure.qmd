@@ -30,18 +30,30 @@ summary_all <-
   left_join(per_metric, by = "method_id") %>%
   arrange(desc(method_id))
 
-column_info <- tibble(
-  id = colnames(summary_all)[-1],
-  name = id %>%
-    gsub("^[^_]+_", "", .) %>%
-    gsub("_", " ", .) %>%
-    str_to_title(),
-  group = gsub("_.*", "", id),
-  geom = case_when(
-    group == "method" ~ "text",
-    group == "mean" ~ "bar",
-    group %in% c("dataset", "metric") ~ "funkyrect"
-  ),
+column_info <- 
+  bind_rows(
+    tribble(
+      ~id, ~name, ~group,
+      "method_name", "Name", "method",
+      "mean_score", "Score", "mean",
+    ),
+    dataset_info %>% transmute(
+      id = paste0("dataset_", dataset_id),
+      name = dataset_name,
+      group = "dataset"
+    ),
+    metric_info %>% transmute(
+      id = paste0("metric_", metric_id),
+      name = metric_name,
+      group = "metric"
+    )
+  ) %>%
+  mutate(
+    geom = case_when(
+      group == "method" ~ "text",
+      group == "mean" ~ "bar",
+      group %in% c("dataset", "metric") ~ "funkyrect",
+    ),
   palette = ifelse(group %in% c("mean", "dataset", "metric"), group, NA_character_),
   options = map2(id, geom, function(id, geom) {
     if (id == "method_name") {
