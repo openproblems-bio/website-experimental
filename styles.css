@@ -51,3 +51,8 @@ a {
   color: #ff414b;
 
 }
+
+/* Fix overflow of wide funkyheatmap */
+.quarto-figure > figure {
+    overflow-x: auto;
+}
