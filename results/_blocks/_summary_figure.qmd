@@ -115,7 +115,6 @@ viewof scale_column = Inputs.toggle({label: "Zoom scale"})
 
 ```{ojs}
 //| echo: false
-//| column: page
 //| fig-cap: "Overview of the results per method. This figures shows the mean of the scaled scores (group Overall), the mean scores per dataset (group Dataset) and the mean scores per metric (group Metric)."
 
 funkyheatmap(
