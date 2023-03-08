@@ -16,10 +16,6 @@
 
 {{< include ../_blocks/_metric_descriptions.qmd >}}
 
-## Results
-
-{{< include ../_blocks/_results_table.qmd >}}
-
 ## Details
 
 <details><summary>Methods</summary>
