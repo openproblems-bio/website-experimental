@@ -21,3 +21,9 @@
         height:350px
     }
 }
+
+@media screen and (min-width: 767.98px) and (max-width:930px) {
+    .quarto-title-banner {
+        height:415.797px
+    }
+}
