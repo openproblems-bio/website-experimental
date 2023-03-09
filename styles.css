@@ -55,9 +55,10 @@ header#quarto-header {
   align-items: flex-end;
 }
 
-@media screen and (min-width: 768px)
-.quarto-title-banner {
-  height: 22em;
+@media screen and (min-width: 768px) {
+  .quarto-title-banner {
+    height: 22em;
+  }
 }
 
 /* Card fx */
