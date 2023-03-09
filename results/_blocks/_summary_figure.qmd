@@ -116,6 +116,7 @@ ojs_define(
         add_abc = FALSE,
         scale_column = FALSE
     )
+)
 ```
 
 ```{ojs}
