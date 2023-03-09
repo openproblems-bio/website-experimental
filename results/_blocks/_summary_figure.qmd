@@ -120,8 +120,9 @@ ojs_define(
 ```
 
 ```{ojs}
+//| include: false
 //| echo: false
-//| panel: input
+// panel: input
 viewof scale_column = Inputs.toggle({label: "Zoom scale"})
 ```
 
