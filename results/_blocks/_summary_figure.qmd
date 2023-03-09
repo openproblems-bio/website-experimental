@@ -152,6 +152,6 @@ funkyheatmap(
 //| echo: false
 funkyheatmap = (await require('d3@7').then(d3 => {
   window.d3 = d3;
-  return import('https://unpkg.com/funkyheatmap-js');
+  return import('https://unpkg.com/funkyheatmap-js@0.1.6');
 })).default;
 ```
