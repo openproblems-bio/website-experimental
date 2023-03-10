@@ -1,3 +1,7 @@
+# This repository is now archived and merged into the [openproblems-bio/website](https://github.com/openproblems-bio/website) repository.
+
+<br/><br/><br/><br/>
+
 ## Experimental website repository
 
 This is a repository for hosting experimental website designs.
